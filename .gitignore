@@ -1,4 +1,7 @@
 
+.gradle
+build
+
 # --- Idea
 *.iml
 *.ipr

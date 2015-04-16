@@ -1,0 +1,33 @@
+= Github
+
+image:vault.jpg[Vault, 100, float=right]
+
+Un Versioning Control System (VCS) permet de stocker tout son fichiers : code, configuration, scripts...
+
+C'est le coffre fort d'une équipe de développement.
+
+Il doit être simple d'interagir avec et simple de restaurer un état passé.
+
+De tous les système récents, *git* est le plus à la mode.
+
+C'est un distributed VCS (*DVCS*) et suit donc une philosophie spéciale. Il multiplie les capacités de travail dans des branches (locales ou distantes) permettant de travailler simultanément sur plusiseurs sujets en parallèle. Il est particulièrement adapté à du travail sur des projets open source où les bureaux sont dématérialisés et les collaborateurs multiples.
+
+En pratique, il est aussi assez simple à utiliser dans un cadre plus restreint.
+
+== Compte github
+
+image:github.png[40, 40] https://github.com/[Github] est un site web qui propose une interface web communautaire par dessus git. Github est gratuit pour les projets open source et simple à utiliser. Cela en fait un outils de référence pour les projets open source.
+
+C'est l'outils que nous allons utiliser pour notre projet.
+
+Créez un compte github et configurez une clée ssh en suivant le https://help.github.com/articles/generating-ssh-keys/[tutorial github]
+
+== Repository de test
+
+Depuis le dashboard, créez un repository todooz.
+
+On doit donc obtenir un repository de la forme `git@github.com:{user}/todooz.git`
+
+On peut choisir un autre nom pour le repository. Dans ce cas, il faut adapter les références à github pour toutes les manipulations à venir.
+
+
