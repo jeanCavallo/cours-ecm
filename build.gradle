@@ -14,12 +14,11 @@ repositories {
 asciidoctor {
     resources {
         from('src/docs/asciidoc') {
-            include '**/*.png', '**/*.jpg', '**/*.css'
+            include '**/*.png', '**/*.jpg', '**/*.css', '**/*.otf'
         }
     }
 
-    //attributes stylesheet : 'style.css'
-    attributes 'source-highlighter' : 'coderay'
+    attributes 'source-highlighter' : 'coderay', 'linkcss': '', 'last-update-label': '', 'nofooter': ''
 }
 
 watch {

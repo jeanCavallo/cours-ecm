@@ -1,7 +1,7 @@
 = Gradle
 :stylesheet: ../../style.css
 
-Gradle est un outils de build.
+image:gradle.jpg[Gradle, 40,40] Gradle est un outils de build écrit en groovy.
 
 Son rôle est de s'occuper de tout ce qui peut être automatisé lors de la construction du projet.
 
