@@ -1,0 +1,14 @@
+= Intégration continue
+:stylesheet: ../../style.css
+
+== Une pratique agile
+
+Une pratique qui bénéficie de l'outils de build et de la suite de tests.
+
+== Les outils existants
+
+jenkins, bamboo, Hudson, Continuum et Gump...
+
+== Des bénéfices évidents
+
+== Le déploiement continu

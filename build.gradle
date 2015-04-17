@@ -19,6 +19,7 @@ asciidoctor {
     }
 
     //attributes stylesheet : 'style.css'
+    attributes 'source-highlighter' : 'coderay'
 }
 
 watch {
