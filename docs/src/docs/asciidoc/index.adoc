@@ -1,0 +1,49 @@
+= Applications en java
+:stylesheet: style.css
+
+=== Partie 1 : la forge logicielle : pratiques et outils
+
+Cette partie couvre la mise en place des outils et du projet.
+
+****
+. link:partie-1/github/index.html[Github]
+. link:partie-1/gradle/index.html[Gradle]
+. link:partie-1/intellij/index.html[Intellij]
+. link:partie-1/java/index.html[Java]
+. link:partie-1/tdd/index.html[TDD]
+. link:partie-1/ci/index.html[Intégration continue]
+****
+
+=== Partie 2 : Bienvenue chez S4U
+
+****
+. link:partie-2/contexte/index.html[Contexte]
+. link:partie-2/architecture/index.html[Architecture logicielle]
+. link:partie-2/tasks/index.html[Let's roll !]
+. link:partie-2/prod/index.html[Installation en prod]
+****
+
+=== Partie 3 : Décomposition
+
+****
+. http
+. composants jee / serveurs d'app
+. jsp / custom tags / tag libs / tag files
+. spring
+. spring mvc
+. services / persistence
+. web services
+****
+
+=== Partie 4 : Variations
+
+****
+. going groovy
+. nosql
+. selenium
+****
+
+==== Notes
+
+gradle tomcatRun debug
+

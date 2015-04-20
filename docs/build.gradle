@@ -1,0 +1,30 @@
+
+plugins {
+    id "org.asciidoctor.convert" version "1.5.2" // https://github.com/asciidoctor/asciidoctor-gradle-plugin && http://asciidoctor.org/
+    id "com.bluepapa32.watch" version "0.1.5"
+}
+
+repositories {
+    mavenCentral()
+}
+
+asciidoctor {
+    resources {
+        from('src/docs/asciidoc') {
+            include '**/*.png', '**/*.jpg', '**/*.css', '**/*.otf'
+        }
+    }
+
+    attributes 'source-highlighter' : 'coderay', 'linkcss': '', 'last-update-label': '', 'nofooter': ''
+}
+
+watch {
+    asciidoc {
+        files fileTree(dir: 'src/docs/asciidoc', include: '**/*')
+        tasks 'asciidoctor'
+    }
+}
+
+dependencies {
+
+}
