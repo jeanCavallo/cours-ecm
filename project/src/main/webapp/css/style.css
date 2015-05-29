@@ -24,3 +24,28 @@ ul.recipe-list li div {
     width: 50px;
     text-align: right;
 }
+
+.footer {
+    border-top: 1px solid #98999d;
+    margin: 0 20px;
+    padding: 20px 0 60px 0;
+}
+
+.footer li {
+    display: inline-block;
+    margin: 0 10px;
+}
+
+.footer li a {
+    color: #7b7c7f;
+}
+
+@media (max-width: 600px) {
+    ul.recipe-column {
+        width: 100%;
+    }
+
+    ul.recipe-column .thumbnail>img {
+        width: 100%;
+    }
+}

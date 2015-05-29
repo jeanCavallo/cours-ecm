@@ -23,7 +23,7 @@ public class AdminController {
     @Inject
     private ReceipeService receipeService;
 
-    @RequestMapping("/recettes")
+    @RequestMapping
     public String index() {
         return "redirect:/admin/recettes";
     }

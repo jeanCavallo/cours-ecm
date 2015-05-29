@@ -2,6 +2,7 @@
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="fragments" tagdir="/WEB-INF/tags/fragments" %>
 
 <!doctype html>
 <html lang="fr">
@@ -15,7 +16,7 @@
     <link rel="stylesheet" href="/css/style.css" />
 </head>
 <body>
-    <%-- BUG-3 : factorize through tag files --%>
+    <%-- BUG-3 : factorize through tag files, as for footer --%>
     <nav class="navbar navbar-default navbar-fixed-top">
         <div class="container-fluid">
             <div class="navbar-header">
@@ -59,12 +60,7 @@
         </c:forEach>
     </div>
 
-    <div class="footer">
-        <ul>
-            <li><a href="/contact">Nous contacter</a></li>
-            <li><a href="/mentions-legales">Mentions légales</a></li>
-        </ul>
-    </div>
+    <fragments:footer />
 
     <script src="/lib/jquery/dist/jquery.min.js"></script>
     <script src="/lib/bootstrap/dist/js/bootstrap.min.js"></script>
