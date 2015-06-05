@@ -17,3 +17,6 @@
 
 * ajout d'une recette aléatoire
 * moteur de recherche
+
+
+* scope en gradle (notamment providedCompile pour jsp / servlet)

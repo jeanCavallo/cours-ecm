@@ -47,7 +47,7 @@
                     <li>
                         <a href="/recette/${item.id}">
                             <div class="thumbnail">
-                                <img src="/${item.image.filename}" alt="${fn:escapeXml(item.title)}">
+                                <img src="/image/${item.imageId}" alt="${fn:escapeXml(item.title)}">
                                 <div class="caption">
                                     <h3>${fn:escapeXml(item.title)}</h3>
                                     <p>${fn:escapeXml(item.intro)}</p>

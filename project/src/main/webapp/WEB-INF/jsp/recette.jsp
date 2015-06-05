@@ -42,12 +42,15 @@
         <div class="row">
             <div class="col-xs-12 col-sm-4">
                 <div class="thumbnail">
-                    <img src="/${receipe.image.filename}" alt="${fn:escapeXml(receipe.title)}">
+                    <img src="/image/${receipe.imageId}" alt="${fn:escapeXml(receipe.title)}">
                 </div>
             </div>
             <div class="col-xs-12 col-sm-8">
+                <%-- BUG : edit button when admin --%>
                 <h1>${fn:escapeXml(receipe.title)}</h1>
                 <p>${fn:escapeXml(receipe.intro)}</p>
+                    <%-- BUG : format date --%>
+                <p>${receipe.date}</p>
                 <c:if test="${not empty receipe.ingredients}">
                     <ul>
                         <c:forEach var="ingredient" items="${receipe.ingredients}">
@@ -55,6 +58,7 @@
                         </c:forEach>
                     </ul>
                 </c:if>
+                <%-- BUG : format text with function --%>
                 <p>${fn:escapeXml(receipe.text)}</p>
             </div>
         </div>

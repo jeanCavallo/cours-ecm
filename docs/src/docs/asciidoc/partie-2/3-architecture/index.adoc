@@ -1,20 +1,27 @@
 = Architecture de l'application
 :stylesheet: ../../style.css
 
-== Le projet est sous github
-
-mais on a perdu le compte
-
-== fonctionnalités
-
-workflows et screenshots
-
 == vision globale
 
 app + base de données
+
+== technology stack
+
+java
+gradle
+tomcat
+mongo
+boostrap
+bower
+...
 
 == structure de l'app
 
 controllers
 jsp
 services
+
+== Le projet est sous github
+
+mais on a perdu le compte
+

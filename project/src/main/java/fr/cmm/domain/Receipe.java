@@ -27,7 +27,7 @@ public class Receipe {
 
     private String intro;
 
-    private Image image;
+    private String imageId;
 
     private List<String> tags = new ArrayList<>();
 
@@ -69,12 +69,12 @@ public class Receipe {
         this.intro = intro;
     }
 
-    public Image getImage() {
-        return image;
+    public String getImageId() {
+        return imageId;
     }
 
-    public void setImage(Image image) {
-        this.image = image;
+    public void setImageId(String imageId) {
+        this.imageId = imageId;
     }
 
     public List<String> getTags() {
@@ -124,7 +124,7 @@ public class Receipe {
                 ", title='" + title + '\'' +
                 ", date=" + date +
                 ", intro='" + intro + '\'' +
-                ", image=" + image +
+                ", imageId='" + imageId + '\'' +
                 ", tags=" + tags +
                 ", ingredients=" + ingredients +
                 ", text='" + text + '\'' +

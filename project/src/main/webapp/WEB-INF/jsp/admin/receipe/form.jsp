@@ -57,6 +57,13 @@
                 </div>
             </div>
             <div class="col-xs-12 col-sm-9">
+                <c:if test="${not empty command.id}">
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <a href="/recette/${command.id}" class="pull-right">Voir sur le site</a>
+                        </div>
+                    </div>
+                </c:if>
                 <div class="row">
                     <div class="col-xs-12 col-sm-8">
                         <spring:bind path="title">
@@ -100,7 +107,7 @@
                         <spring:bind path="text">
                             <div class="form-group ${status.error ? 'has-error' : ''}">
                                 <label class="control-label" for="text">Texte ${status.errorMessage}</label>
-                                <form:textarea cssClass="form-control" id="text" placeholder="Texte" path="text" />
+                                <form:textarea cssClass="form-control" id="text" placeholder="Texte" path="text" rows="10" />
                             </div>
                         </spring:bind>
                     </div>
@@ -126,9 +133,13 @@
                         </spring:bind>
                     </div>
                 </div>
+                <div class="row">
+                    <div class="col-xs-12">
+                        <button type="submit" class="btn btn-primary">Sauver</button>
+                    </div>
+                </div>
             </div>
         </div>
-        <button type="submit" class="btn btn-primary">Sauver</button>
     </form:form>
 </div>
 

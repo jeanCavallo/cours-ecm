@@ -4,6 +4,7 @@ import java.net.UnknownHostException;
 
 import javax.inject.Inject;
 
+import com.mongodb.gridfs.GridFS;
 import org.jongo.Jongo;
 import org.jongo.MongoCollection;
 import org.springframework.context.annotation.Bean;
@@ -34,6 +35,11 @@ public class SpringConfig {
     @Bean
     public DB db() throws UnknownHostException {
         return new MongoClient().getDB(getDbName());
+    }
+
+    @Bean
+    public GridFS gridFS() throws UnknownHostException {
+        return new GridFS(db());
     }
 
     @Bean
