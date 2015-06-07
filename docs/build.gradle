@@ -2,6 +2,7 @@
 plugins {
     id "org.asciidoctor.convert" version "1.5.2" // https://github.com/asciidoctor/asciidoctor-gradle-plugin && http://asciidoctor.org/
     id "com.bluepapa32.watch" version "0.1.5"
+    id "com.github.jruby-gradle.base" version "0.3.0"
 }
 
 repositories {
@@ -9,6 +10,12 @@ repositories {
 }
 
 asciidoctor {
+    dependsOn jrubyPrepareGems
+
+    requires = ['asciidoctor-diagram']
+
+    gemPath = jrubyPrepareGems.outputDir
+
     resources {
         from('src/docs/asciidoc') {
             include '**/*.png', '**/*.jpg', '**/*.css', '**/*.otf'
@@ -26,5 +33,5 @@ watch {
 }
 
 dependencies {
-
+    gems 'rubygems:asciidoctor-diagram:1.2.1'
 }

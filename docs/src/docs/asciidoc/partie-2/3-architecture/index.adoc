@@ -3,7 +3,20 @@
 
 == vision globale
 
-app + base de données
+L'architecture est composée d'une application web qui est reliée à une base de données mongodb.
+
+[ditaa, 'architecture']
+....
+/-------\      +-------+
+|       |      |{s}    |
+|web app| ---> | mongo |
+|       |      |       |
+\-------/      +-------+
+....
+
+L'application est en java et est packagée sous le format standard war.
+
+Mongodb est une base nosql qui stocke des documents en format BSON (Binary JSON).
 
 == technology stack
 
@@ -14,6 +27,20 @@ mongo
 boostrap
 bower
 ...
+
+== structure de projet standard
+
+[source]
+----
+src
+├─ main
+|  ├─ java
+|  ├─ resources
+|  └─ webapp
+└─ test
+   ├─ java
+   └─ resources
+----
 
 == structure de l'app
 

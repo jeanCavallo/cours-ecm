@@ -27,7 +27,6 @@ Cette partie couvre la mise en place des outils et du projet.
 . link:partie-2/tasks/index.html[Let's roll !]
 . link:partie-2/prod/index.html[Installation en prod]
 
-
 ****
 . http
 . composants jee / serveurs d'app
