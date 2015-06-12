@@ -1,0 +1,31 @@
+= Récupération du projet
+:stylesheet: ../../style.css
+
+Le code source du projet est sous github https://github.com/dbourdette/cours-ecm
+
+== Fork
+
+Il ne sera pas possible de travailler directement dans ce repository.
+
+Github permet de rappatrier simplement un repository vers son compte en le forkant.
+
+NOTE: le guide complet du fork de github : https://help.github.com/articles/fork-a-repo/
+
+Simplement, depuis https://github.com/dbourdette/cours-ecm, il suffit d'appuyer sur le bouton fork.
+
+image:fork_button.jpg[Fork]
+
+== Clone
+
+une fois que le fork est fait, il suffit de faire un clone pour récupérer le projet en local.
+
+[source.terminal]
+----
+projects$ mkdir cours-ecm
+projects$ git clone https://github.com/{username}/cours-ecm
+projects$ cd cours-ecm
+cours-ecm$
+----
+
+== gradle tomcatRun
+

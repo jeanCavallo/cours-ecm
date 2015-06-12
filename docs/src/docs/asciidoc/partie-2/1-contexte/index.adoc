@@ -1,17 +1,26 @@
 = Bienvenu chez S4U
 :stylesheet: ../../style.css
+:icons: font
 
 S4U est une SSII experte dans tous les dommaines, spécialiste du 2.0 et de la révolution digitale.
 
 Elle est recommandée par tous les grands comptes.
 
-Elle a créé une méthode de gestion de projet innovante : l'Extrême Agile Method~tm~.
+Symbole de son dynamisme, elle a créé sa propre méthode de gestion de projet : l'Extrême Agile Method(TM).
+
+[NOTE]
+.Agilité
+====
+La pensée Agile peut être résumée par le http://agilemanifesto.org/[Manifeste Agile]
+
+On peut aussi résumer cela par : ce sont des humains qui réalise les projets et ils doivent réfléchir.
+====
 
 == On recrute les meilleurs
 
 [.float-group]
 --
-image::winning_team.png[width="200",role="left"]
+image::winning_team.png[title=Une équipe dynamique,width="220",role="left"]
 
 S4U recrute les meilleurs profils du marché.
 
@@ -23,7 +32,7 @@ Vous avez décidé de rejoindre cette équipe formidable.
 
 == Bienvenue dans l'équipe
 
-Vous avez été accueilli par Bertrand Puissant, le CEO, et la responsable des ressources humaines.
+Vous avez été accueilli par Jack Puissant, le CEO, et la responsable des ressources humaines.
 
 Sans perdre de temps, vous voilà projeté Lead Developer tout seul sur un projet innovant : *Cooking Miam Miam*
 
@@ -35,7 +44,7 @@ C'est projet majeur pour l'avenir d'internet : un site de recettes de cuisine.
 
 Malheureusement, le développeur précédent est parti prématurément et le projet est au point mort.
 
-Pour S4U, Pour le client, Pour votre honneur, votre mission est de d'achever ce projet.
+Pour S4U, pour le client, pour votre honneur, votre mission est de d'achever ce projet.
 
 L'internet mondial a besoin de vous.
 

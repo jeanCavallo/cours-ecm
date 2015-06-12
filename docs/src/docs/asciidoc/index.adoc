@@ -20,6 +20,7 @@ Cette partie couvre la mise en place des outils et du projet.
 . link:partie-2/1-contexte/index.html[Contexte]
 . link:partie-2/2-projet/index.html[Le projet]
 . link:partie-2/3-architecture/index.html[Architecture logicielle]
+. link:partie-2/4-fork-and-clone/index.html[Récupération du projet]
 ****
 
 === Partie 3 : Décomposition
