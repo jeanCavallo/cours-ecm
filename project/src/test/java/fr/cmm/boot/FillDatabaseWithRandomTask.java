@@ -1,7 +1,11 @@
 package fr.cmm.boot;
 
-import fr.cmm.domain.Receipe;
-import fr.cmm.service.ImageService;
+import java.io.IOException;
+import java.util.Date;
+import java.util.Random;
+
+import javax.inject.Inject;
+
 import org.apache.commons.io.IOUtils;
 import org.jongo.MongoCollection;
 import org.junit.Test;
@@ -10,13 +14,9 @@ import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import javax.inject.Inject;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.util.Date;
-import java.util.Random;
-
 import static fr.cmm.SpringProfiles.TEST;
+import fr.cmm.domain.Receipe;
+import fr.cmm.service.ImageService;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = FillDatabaseWithRandomTaskConfig.class)
@@ -45,6 +45,7 @@ public class FillDatabaseWithRandomTask {
         receipe.setTitle("La choucroute au lard " + count++);
         receipe.setDate(new Date());
         receipe.setIntro("De la choucroute, du lard et un peu d'espiéglerie");
+        receipe.setText("du texte\ndu texte\ndu texte\net encore du texte.");
         receipe.setImageId(randomImage());
 
         return receipe;

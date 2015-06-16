@@ -1,0 +1,39 @@
+= Mongo db
+:stylesheet: ../../style.css
+
+Mongo db est une base de données qui contient des document BSON.
+
+Nous allons l'utiliser afin de stocker nos données.
+
+== installation
+
+Pour installer mongodb on passe par homebrew :
+
+[source.terminal]
+----
+projects$ brew install mongodb
+... TODO
+----
+
+== Lancer la base
+
+Une fois installée, il suffit de lancer la base.
+
+[source.terminal]
+----
+projects$ mkdir mongodb-data
+projects$ mongod --dbpath mongodb-data
+2015-06-12T17:53:52.757+0200 I JOURNAL  [initandlisten] journal dir=mongodb-data/journal
+2015-06-12T17:53:52.757+0200 I JOURNAL  [initandlisten] recover : no journal files present, no recovery needed
+2015-06-12T17:53:52.783+0200 I JOURNAL  [durability] Durability thread started
+2015-06-12T17:53:52.783+0200 I CONTROL  [initandlisten] MongoDB starting : pid=3015 port=27017 dbpath=mongodb-data 64-bit host=jaadtwo.local
+2015-06-12T17:53:52.783+0200 I JOURNAL  [journal writer] Journal writer thread started
+2015-06-12T17:53:52.783+0200 I CONTROL  [initandlisten] db version v3.0.1
+2015-06-12T17:53:52.784+0200 I CONTROL  [initandlisten] git version: nogitversion
+2015-06-12T17:53:52.784+0200 I CONTROL  [initandlisten] build info: Darwin mavericksvm.local 13.4.0 Darwin Kernel Version 13.4.0: Wed Dec 17 19:05:52 PST 2014; root:xnu-2422.115.10~1/RELEASE_X86_64 x86_64 BOOST_LIB_VERSION=1_49
+2015-06-12T17:53:52.784+0200 I CONTROL  [initandlisten] allocator: system
+2015-06-12T17:53:52.784+0200 I CONTROL  [initandlisten] options: { storage: { dbPath: "mongodb-data" } }
+2015-06-12T17:53:52.850+0200 I NETWORK  [initandlisten] waiting for connections on port 27017
+----
+
+La base est prête à recevoir des connexions.

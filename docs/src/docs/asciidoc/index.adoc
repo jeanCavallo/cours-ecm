@@ -1,7 +1,7 @@
 = Applications en java
 :stylesheet: style.css
 
-=== Partie 1 : la forge logicielle : pratiques et outils
+== Partie 1 : la forge logicielle : pratiques et outils
 
 Cette partie couvre la mise en place des outils et du projet.
 
@@ -14,7 +14,7 @@ Cette partie couvre la mise en place des outils et du projet.
 . link:partie-1/5-ci/index.html[Intégration continue]
 ****
 
-=== Partie 2 : Bienvenue chez S4U
+== Partie 2 : Bienvenue chez S4U
 
 ****
 . link:partie-2/1-contexte/index.html[Contexte]
@@ -23,10 +23,14 @@ Cette partie couvre la mise en place des outils et du projet.
 . link:partie-2/4-fork-and-clone/index.html[Récupération du projet]
 ****
 
-=== Partie 3 : Décomposition
+== Partie 3 : Décomposition
 
-. link:partie-2/tasks/index.html[Let's roll !]
-. link:partie-2/prod/index.html[Installation en prod]
+. link:partie-3/1-jsp/index.html[Templates jsp]
+. link:partie-3/2-/index.html[Installation en prod]
+
+.Annexes
+
+* Annexe A : link:partie-3/A-jsp/index.html[Les Java Server Pages] (JSP)
 
 ****
 . http
@@ -38,15 +42,11 @@ Cette partie couvre la mise en place des outils et du projet.
 . web services
 ****
 
-=== Partie 4 : Variations
+== Partie 4 : Variations
 
 ****
 . going groovy
 . nosql
 . selenium
 ****
-
-==== Notes
-
-gradle tomcatRun debug
 

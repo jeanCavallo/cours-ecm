@@ -1,0 +1,97 @@
+= Templates JSP
+:stylesheet: ../../style.css
+
+Voici la liste des bugs répertoriés en relation avec les JSP
+
+****
+* <<JSP-1>>  : Il manque un 's' dans l'entrée "Toutes les recette" du menu
+* <<JSP-2>>  : le lien vers les mentions légales est incorrect
+* <<JSP-3>>  : format date in recette.jsp
+* <<JSP-4>>  :
+* <<JSP-5>>  : include header with params
+* <<JSP-6>>  :
+* <<JSP-7>>  :
+* <<JSP-8>>  : add sel / poivre
+* <<JSP-9>>  : BUG-8 : delete then add, index is wrong
+* <<JSP-10>> :
+****
+
+NOTE: Il n'est pas nécessaire de redémarrer le serveur tomcat avec `gradle tomcatRun` pour que les modifications soient prise en compte
+
+NOTE: link:../A-jsp/index.html[l'annexe A] couvre ce qu'il est possible de faire dans les jsp
+
+== [[JSP-1]]JSP-1 : Typo
+
+Il manque un 's' à "Toutes les recette" dans le menu de toutes les pages.
+
+Les templates jsp sont dans src/main/webapp/WEB-INF/jsp
+
+Il faut donc trouver tous les templates concernés et corriger.
+
+== [[JSP-2]]JSP-2 : Mauvais lien
+
+Dans le footer, le lien vers les mentions légales n'est pas bon.
+
+Il devrait pointer sur /mentions-legales
+
+Le footer a été partagé entre les templates au travers d'un tag file.
+
+== [[JSP-3]]JSP-3 : Custom tag et jstl
+
+Dans la jsp qui affiche une recette, on trouve `<p>${receipe.date}</p>`
+
+La propriété date d'une recette est de la classe `java.util.Date`.
+
+Comme il faut obtenir une chaîne de caractère, la jsp utilise la méthode toString() qui donne par exemple.
+
+ Sun Jun 14 18:20:53 CEST 2015
+
+Ce n'est pas très lisible.
+
+Il faut formatter avec le pattern suivant `dd MMM yyyy` (TODO doc java patterns)
+
+[[JSP-4]]
+
+[[JSP-5]]
+
+Le footer est produit par le tag file footer.tag.
+
+On peut voir que ce n'est pas le cas pour le header.
+
+[source,jsp]
+----
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">Cooking Miam Miam</a>
+        </div>
+
+        <div class="collapse navbar-collapse" id="navbar-collapse">
+            <ul class="nav navbar-nav">
+                <li><a href="/recettes">Toutes les recette</a></li>
+                <li><a href="/recettes-du-moment">Recette du moment</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+----
+
+Ce n'est pas bien car si on le change, il faut le faire dans tous les fichiers.
+
+Il faut trouver le meilleur moyen de partager ce morceau entre les templates.
+
+[[JSP-6]]
+
+[[JSP-7]]
+
+[[JSP-8]]
+
+[[JSP-9]]
+
+[[JSP-10]]

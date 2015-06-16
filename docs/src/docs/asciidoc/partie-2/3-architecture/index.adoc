@@ -25,7 +25,7 @@ Mongodb est une base nosql qui stocke des documents en format BSON (Binary JSON)
 --
 image::java.png[width="100",role="left"]
 
-Java est un language de programation orienté objet.
+Java est un language de programmation orienté objet.
 
 Java c'est la jvm qui permet de faire tourner les programmes et le jdk qui contient les libraries standard et le compilateur.
 
@@ -144,7 +144,7 @@ src
 |  ├─ java        // notre code en java
 |  ├─ resources   // les fichiers qui vont aussi dans le classpath
 |  └─ webapp      // les fichiers qui vont à la racine de l'application web
-|     ├─ WEB-INF  // fichiers configuration protégés
+|     ├─ WEB-INF  // fichiers de configuration protégés
 |     └─ META-INF // fichiers de méta données protégés
 └─ test
    ├─ java
