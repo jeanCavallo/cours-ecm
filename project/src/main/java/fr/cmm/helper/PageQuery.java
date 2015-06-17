@@ -6,6 +6,8 @@ public class PageQuery {
 
     private int size = 20;
 
+    private String tag;
+
     public int skip() {
         return index * size;
     }
@@ -24,5 +26,13 @@ public class PageQuery {
 
     public void setSize(int size) {
         this.size = size;
+    }
+
+    public String getTag() {
+        return tag;
+    }
+
+    public void setTag(String tag) {
+        this.tag = tag;
     }
 }

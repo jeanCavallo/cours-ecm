@@ -48,8 +48,8 @@ public class SpringConfig {
     }
 
     @Bean
-    public MongoCollection receipeCollection() throws UnknownHostException {
-        MongoCollection collection = jongo().getCollection("receipes");
+    public MongoCollection recipeCollection() throws UnknownHostException {
+        MongoCollection collection = jongo().getCollection("recipes");
 
         collection.ensureIndex("{randomLocation: '2d'}");
 

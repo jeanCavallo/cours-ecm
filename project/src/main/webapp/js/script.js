@@ -1,14 +1,26 @@
 
-// BUG-9 : auto complétion
-$('input[data-role="tags"]').tokenfield();
+$(function(){
+    $('input[data-role="tags"]').each(function() {
+        var input = $(this);
 
-$('button[data-role="addIngredient"]').click(function() {
-    // BUG-8 : delete then add, index is wrong
-    var index = $('#ingredients > div').length;
+        $.getJSON(input.data('service-url'), function(data) {
+            input.tokenfield({autocomplete: {
+                source: data,
+                delay: 100
+            }});
+        })
+    });
 
-    $('#ingredients').append($('<div>').load('/admin/recettes/ingredientFormRow?ingredientIndex=' + index));
+    $('button[data-role="addIngredient"]').click(function() {
+        // BUG-8 : delete then add, index is wrong
+        var index = $('#ingredients > div').length;
+
+        $('#ingredients').append($('<div>').load('/admin/recettes/ingredientFormRow?ingredientIndex=' + index));
+    });
+
+    $(document).on('click', 'button[data-role="removeIngredient"]', function() {
+        $(this).parents('.row')[0].remove();
+    });
 });
 
-$(document).on('click', 'button[data-role="removeIngredient"]', function() {
-    $(this).parents('.row')[0].remove();
-});
+

@@ -42,24 +42,26 @@
         <div class="row">
             <div class="col-xs-12 col-sm-4">
                 <div class="thumbnail">
-                    <img src="/image/${receipe.imageId}" alt="${fn:escapeXml(receipe.title)}">
+                    <img src="/image/${recipe.imageId}" alt="${fn:escapeXml(recipe.title)}">
                 </div>
             </div>
             <div class="col-xs-12 col-sm-8">
                 <%-- BUG : edit button when admin --%>
-                <h1>${fn:escapeXml(receipe.title)}</h1>
-                <p>${fn:escapeXml(receipe.intro)}</p>
-                    <%-- BUG : format date --%>
-                <p>${receipe.date}</p>
-                <c:if test="${not empty receipe.ingredients}">
+                <h1>${fn:escapeXml(recipe.title)}</h1>
+                <p>${fn:escapeXml(recipe.intro)}</p>
+                <%-- BUG : format tags with for each --%>
+                <span class="label label-primary">${fn:escapeXml(recipe.tags)}</span>
+                <%-- BUG : format date --%>
+                <p>${recipe.date}</p>
+                <c:if test="${not empty recipe.ingredients}">
                     <ul>
-                        <c:forEach var="ingredient" items="${receipe.ingredients}">
+                        <c:forEach var="ingredient" items="${recipe.ingredients}">
                             <li>${fn:escapeXml(ingredient.name)} : ${fn:escapeXml(ingredient.quantity)} ${fn:escapeXml(ingredient.unit)}</li>
                         </c:forEach>
                     </ul>
                 </c:if>
                 <%-- BUG : format text with function --%>
-                <p>${fn:escapeXml(receipe.text)}</p>
+                <p>${fn:escapeXml(recipe.text)}</p>
             </div>
         </div>
     </div>

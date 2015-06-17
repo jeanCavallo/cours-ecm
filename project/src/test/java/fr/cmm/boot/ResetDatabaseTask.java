@@ -16,10 +16,10 @@ import static fr.cmm.SpringProfiles.TEST;
 @ActiveProfiles(TEST)
 public class ResetDatabaseTask {
     @Inject
-    private MongoCollection receipeCollection;
+    private MongoCollection recipeCollection;
 
     @Test
-    public void fillDbWithRandomReceipes() {
-        receipeCollection.remove();
+    public void fillDbWithRandomRecipes() {
+        recipeCollection.remove();
     }
 }
