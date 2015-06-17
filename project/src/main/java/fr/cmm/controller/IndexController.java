@@ -4,6 +4,7 @@ import javax.inject.Inject;
 
 import fr.cmm.controller.form.SearchForm;
 import fr.cmm.helper.PageQuery;
+import fr.cmm.helper.Pagination;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -36,16 +37,26 @@ public class IndexController {
     @RequestMapping("/recettes")
     public String recettes(SearchForm searchForm, ModelMap model) {
         PageQuery pageQuery = new PageQuery();
+        pageQuery.setIndex(searchForm.getPageIndex() - 1);
         pageQuery.setTag(searchForm.getTag());
 
+        Pagination pagination = new Pagination();
+        pagination.setPageIndex(searchForm.getPageIndex());
+        pagination.setPageSize(pageQuery.getSize());
+        pagination.setCount(recipeService.countByQuery(pageQuery));
+
         model.put("recipes", recipeService.findByQuery(pageQuery));
+        model.put("pagination", pagination);
 
         return "recettes";
     }
 
-    @RequestMapping("/recettes-du-moment")
-    public String recettesDuMoment() {
-        return "recettes-du-moment";
+    @RequestMapping("/recette-du-moment")
+    public String recettesDuMoment(ModelMap model) {
+        // BUG pick a recipe depending on season
+        model.put("recipe", recipeService.findRandom(1).next());
+
+        return "recette-du-moment";
     }
 
     private Columns randomColumns() {

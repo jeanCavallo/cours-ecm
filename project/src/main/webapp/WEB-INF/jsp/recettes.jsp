@@ -33,14 +33,14 @@
             <div class="collapse navbar-collapse" id="navbar-collapse">
                 <ul class="nav navbar-nav">
                     <li><a href="/recettes">Toutes les recette</a></li>
-                    <li><a href="/recettes-du-moment">Recette du moment</a></li>
+                    <li><a href="/recette-du-moment">Recette du moment</a></li>
                 </ul>
             </div>
         </div>
     </nav>
 
     <div class="container">
-        <h1>Des recettes, des idées pour déguster</h1>
+        <h1>Toutes nos recettes</h1>
 
         <form class="form-inline">
             <div class="form-group">
@@ -69,9 +69,10 @@
                 </li>
             </c:forEach>
         </ul>
-    </div>
 
-    <%-- BUG pagination !!! --%>
+        <%-- BUG pagination !!! --%>
+        ${pagination.pages}
+    </div>
 
     <fragments:footer />
 

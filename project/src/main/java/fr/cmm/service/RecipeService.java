@@ -29,7 +29,7 @@ public class RecipeService {
         }
 
         return recipeCollection
-                .find(mongoQuery, params)
+                .find(mongoQuery, (Object[]) params)
                 .skip(query.skip())
                 .limit(query.getSize())
                 .as(Recipe.class);
