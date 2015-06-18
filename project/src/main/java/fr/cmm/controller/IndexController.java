@@ -36,6 +36,7 @@ public class IndexController {
 
     @RequestMapping("/recettes")
     public String recettes(SearchForm searchForm, ModelMap model) {
+        // FIX-MVC-3 SearchForm what about invalid page index ?
         PageQuery pageQuery = new PageQuery();
         pageQuery.setIndex(searchForm.getPageIndex() - 1);
         pageQuery.setTag(searchForm.getTag());
@@ -60,7 +61,7 @@ public class IndexController {
     }
 
     private Columns randomColumns() {
-        // BUG-12 : column height are too random ?
+        // FIX-MVC-9 : column height are too random ?
         Columns columns = new Columns();
 
         columns.add(recipeService.findRandom(10));
@@ -70,13 +71,23 @@ public class IndexController {
         return columns;
     }
 
-    // BUG-10 : slug seo
     @RequestMapping("/recette/{id}")
     public String recette(@PathVariable("id") String id, ModelMap model) {
-        // BUG-11 : page 404
+        // FIX-MVC-6 : handle not found and create page 404
         model.put("recipe", recipeService.findById(id));
 
         return "recette";
+    }
+
+    @RequestMapping("/contact")
+    public String contact() {
+        // FIX-MVC-1 : wrong jsp
+        return "contac";
+    }
+
+    @RequestMapping("/mentions-legales")
+    public String mentionsLegales() {
+        return "/mentions-legales";
     }
 }
 

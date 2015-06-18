@@ -97,7 +97,7 @@
                         <spring:bind path="tags">
                             <div class="form-group ${status.error ? 'has-error' : ''}">
                                 <label class="control-label" for="tags">Tags ${status.errorMessage}</label>
-                                <%-- BUG-9 : auto complétion : data-service-url --%>
+                                <%-- FIX-JSP-7 --%>
                                 <form:input cssClass="form-control" id="tags" data-role="tags" placeholder="Tags" path="tagsAsString" />
                             </div>
                         </spring:bind>
@@ -117,11 +117,10 @@
                     <div class="col-xs-12">
                         <spring:bind path="ingredients">
                             <div class="form-group ${status.error ? 'has-error' : ''}">
-                                    <%-- BUG-5 : add sel / poivre --%>
+                                <%-- FIX-JSP-8 --%>
                                 <label class="control-label">Ingredients ${status.errorMessage} <button type="button" class="btn btn-default btn-xs" data-role="addIngredient"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></button></label>
                                 <div id="ingredients">
                                     <c:forEach var="ingredient" varStatus="loopStatus" items="${command.ingredients}">
-                                        <%-- BUG-6 : use tag file --%>
                                         <jsp:include page="ingredient-form-row.jsp">
                                             <jsp:param name="ingredientIndex" value="${loopStatus.index}" />
                                             <jsp:param name="ingredientName" value="${ingredient.name}" />

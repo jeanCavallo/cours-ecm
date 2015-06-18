@@ -18,6 +18,7 @@
     <link rel="stylesheet" href="/css/style.css" />
 </head>
 <body>
+    <%-- FIX-JSP-5 --%>
     <nav class="navbar navbar-default navbar-fixed-top">
         <div class="container-fluid">
             <div class="navbar-header">
@@ -45,7 +46,7 @@
         <form class="form-inline">
             <div class="form-group">
                 <label for="tag">Tag</label>
-                <%-- BUG keep tag in input after search --%>
+                <%-- FIX-MVC-2 --%>
                 <input type="text" data-role="tags" data-service-url="/tags.json" data-limit="1" class="form-control" id="tag" placeholder="Tag" name="tag" style="width: 200px;">
             </div>
             <%-- BUG add seach by ingredients --%>
@@ -70,7 +71,7 @@
             </c:forEach>
         </ul>
 
-        <%-- BUG pagination !!! --%>
+        <%-- FIX-JSP-10 --%>
         ${pagination.pages}
     </div>
 

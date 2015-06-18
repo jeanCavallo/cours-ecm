@@ -16,7 +16,7 @@
     <link rel="stylesheet" href="/css/style.css" />
 </head>
 <body>
-    <%-- BUG-3 : factorize through tag files, as for footer --%>
+    <%-- FIX-JSP-5 --%>
     <nav class="navbar navbar-default navbar-fixed-top">
         <div class="container-fluid">
             <div class="navbar-header">
@@ -32,6 +32,7 @@
             <div class="collapse navbar-collapse" id="navbar-collapse">
                 <ul class="nav navbar-nav">
                     <li><a href="/recettes">Toutes les recette</a></li>
+                    <%-- FIX-JSP-1 --%>
                     <li><a href="/recette-du-moment">Recette du moment</a></li>
                 </ul>
             </div>

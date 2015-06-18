@@ -16,7 +16,7 @@
     <link rel="stylesheet" href="/css/style.css" />
 </head>
 <body>
-    <%-- BUG-3 : factorize through tag files --%>
+    <%-- FIX-JSP-5 --%>
     <nav class="navbar navbar-default navbar-fixed-top">
         <div class="container-fluid">
             <div class="navbar-header">
@@ -39,31 +39,7 @@
     </nav>
 
     <div class="container">
-        <div class="row">
-            <div class="col-xs-12 col-sm-4">
-                <div class="thumbnail">
-                    <img src="/image/${recipe.imageId}" alt="${fn:escapeXml(recipe.title)}">
-                </div>
-            </div>
-            <div class="col-xs-12 col-sm-8">
-                <%-- BUG : edit button when admin --%>
-                <h1>${fn:escapeXml(recipe.title)}</h1>
-                <p>${fn:escapeXml(recipe.intro)}</p>
-                <%-- BUG : format tags with for each --%>
-                <span class="label label-primary">${fn:escapeXml(recipe.tags)}</span>
-                <%-- BUG : format date --%>
-                <p>${recipe.date}</p>
-                <c:if test="${not empty recipe.ingredients}">
-                    <ul>
-                        <c:forEach var="ingredient" items="${recipe.ingredients}">
-                            <li>${fn:escapeXml(ingredient.name)} : ${fn:escapeXml(ingredient.quantity)} ${fn:escapeXml(ingredient.unit)}</li>
-                        </c:forEach>
-                    </ul>
-                </c:if>
-                <%-- BUG : format text with function --%>
-                <p>${fn:escapeXml(recipe.text)}</p>
-            </div>
-        </div>
+        <fragments:recipe recipe="${recipe}" />
     </div>
 
     <fragments:footer />

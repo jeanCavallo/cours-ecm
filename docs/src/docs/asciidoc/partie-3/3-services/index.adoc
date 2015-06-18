@@ -1,0 +1,39 @@
+= Les services
+:stylesheet: ../../style.css
+
+Voici la liste des bugs répertoriés en relation avec les services
+
+****
+* <<SER-1>>  : 
+* <<SER-2>>  : 
+* <<SER-3>>  : 
+* <<SER-4>>  : sécurisation
+* <<SER-5>>  : 
+* <<SER-6>>  : 
+* <<SER-7>>  :
+* <<SER-8>>  :
+* <<SER-9>>  : 
+* <<SER-10>> :
+****
+
+NOTE: link:../C-DI/index.html[l'annexe C] explique le principe de l'injection de dépendances
+
+== [[SER-1]]SER-1 : 
+
+== [[SER-2]]SER-2 :
+
+== [[SER-3]]SER-3 : 
+
+[[SER-4]]
+
+[[SER-5]]
+
+[[SER-6]]
+
+[[SER-7]]
+
+[[SER-8]]
+
+[[SER-9]]
+
+[[SER-10]]

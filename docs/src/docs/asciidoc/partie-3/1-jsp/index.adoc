@@ -7,13 +7,13 @@ Voici la liste des bugs répertoriés en relation avec les JSP
 * <<JSP-1>>  : Il manque un 's' dans l'entrée "Toutes les recette" du menu
 * <<JSP-2>>  : le lien vers les mentions légales est incorrect
 * <<JSP-3>>  : format date in recette.jsp
-* <<JSP-4>>  :
+* <<JSP-4>>  : format tags with for each
 * <<JSP-5>>  : include header with params
-* <<JSP-6>>  :
-* <<JSP-7>>  :
+* <<JSP-6>>  : format text with function
+* <<JSP-7>>  : auto complétion : data-service-url
 * <<JSP-8>>  : add sel / poivre
-* <<JSP-9>>  : BUG-8 : delete then add, index is wrong
-* <<JSP-10>> :
+* <<JSP-9>>  : delete then add, index is wrong
+* <<JSP-10>> : pagination
 ****
 
 NOTE: Il n'est pas nécessaire de redémarrer le serveur tomcat avec `gradle tomcatRun` pour que les modifications soient prise en compte

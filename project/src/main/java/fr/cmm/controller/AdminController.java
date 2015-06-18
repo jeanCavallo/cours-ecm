@@ -30,7 +30,6 @@ public class AdminController {
 
     @RequestMapping("/recettes")
     public String recettes(@RequestParam(defaultValue = "1") int index, ModelMap model) {
-        // BUG-2 : index <= 0
         PageQuery query = new PageQuery();
         query.setIndex(index - 1);
 

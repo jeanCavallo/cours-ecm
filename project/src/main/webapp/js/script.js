@@ -12,7 +12,7 @@ $(function(){
     });
 
     $('button[data-role="addIngredient"]').click(function() {
-        // BUG-8 : delete then add, index is wrong
+        // FIX-JSP-9
         var index = $('#ingredients > div').length;
 
         $('#ingredients').append($('<div>').load('/admin/recettes/ingredientFormRow?ingredientIndex=' + index));
