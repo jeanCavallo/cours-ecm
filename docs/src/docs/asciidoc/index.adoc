@@ -40,6 +40,8 @@ Cette partie couvre la mise en place des outils et du projet.
 
 == Partie 4 : Ajout de fonctionnalités
 
-* commentaires
-* web services
+* link:partie-4/1-web-service/index.html[web services]
+* link:partie-4/2-commentaires/index.html[commentaires]
+*
+
 

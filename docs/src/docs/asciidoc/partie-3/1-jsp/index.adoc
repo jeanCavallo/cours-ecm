@@ -36,7 +36,7 @@ Il devrait pointer sur /mentions-legales
 
 Le footer a été partagé entre les templates au travers d'un tag file.
 
-== [[JSP-3]]JSP-3 : Custom tag et jstl
+== [[JSP-3]]JSP-3 : Custom tags et jstl
 
 Dans la jsp qui affiche une recette, on trouve `<p>${receipe.date}</p>`
 
@@ -48,7 +48,7 @@ Comme il faut obtenir une chaîne de caractère, la jsp utilise la méthode toSt
 
 Ce n'est pas très lisible.
 
-Il faut formatter avec le pattern suivant `dd MMM yyyy` (TODO doc java patterns)
+Il faut formatter avec le pattern suivant `dd MMM yyyy` (TODO doc java date patterns)
 
 [[JSP-4]]
 

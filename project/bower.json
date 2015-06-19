@@ -5,7 +5,6 @@
   "authors": [
     "damien bourdette <dbourdette@gmail.com>"
   ],
-  "license": "MIT",
   "private": true,
   "dependencies": {
     "bootstrap-tokenfield": "https://github.com/sliptree/bootstrap-tokenfield.git#0.12.1",

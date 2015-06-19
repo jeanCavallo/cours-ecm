@@ -22,7 +22,7 @@ public class Recipe {
 
     @NotNull
     @DateTimeFormat(pattern = "yyyy-MM-dd")
-    // BUG-4 : Date Failed to convert property value of type java.lang.String to required type java.util.Date for property date; nested exception is org.springframework.core.convert.ConversionFailedException: Failed to convert from type java.lang.String to type @javax.validation.constraints.NotNull @org.springframework.format.annotation.DateTimeFormat java.util.Date for value 2015-04-02; nested exception is java.lang.IllegalArgumentException: Unable to parse 2015-04-02
+    // FIX-MVC-7
     private Date date = new Date();
 
     private String intro;

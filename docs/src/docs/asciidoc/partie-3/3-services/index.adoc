@@ -6,11 +6,11 @@ Voici la liste des bugs répertoriés en relation avec les services
 ****
 * <<SER-1>>  : 
 * <<SER-2>>  : 
-* <<SER-3>>  : 
+* <<SER-3>>  :
 * <<SER-4>>  : sécurisation
-* <<SER-5>>  : 
-* <<SER-6>>  : 
-* <<SER-7>>  :
+* <<SER-5>>  : edit button when admin
+* <<SER-6>>  : add seach by ingredients
+* <<SER-7>>  : pick a recipe depending on season
 * <<SER-8>>  :
 * <<SER-9>>  : 
 * <<SER-10>> :

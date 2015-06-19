@@ -49,7 +49,7 @@
                 <%-- FIX-MVC-2 --%>
                 <input type="text" data-role="tags" data-service-url="/tags.json" data-limit="1" class="form-control" id="tag" placeholder="Tag" name="tag" style="width: 200px;">
             </div>
-            <%-- BUG add seach by ingredients --%>
+            <%-- FIX-SER-6 --%>
             <button type="submit" class="btn btn-default">Rechercher</button>
         </form>
 

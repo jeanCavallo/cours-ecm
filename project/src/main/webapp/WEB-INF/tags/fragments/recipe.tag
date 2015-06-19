@@ -12,7 +12,7 @@
         </div>
     </div>
     <div class="col-xs-12 col-sm-8">
-        <%-- BUG : edit button when admin --%>
+        <%-- FIX-SER-5 --%>
         <h1>${fn:escapeXml(recipe.title)}</h1>
         <p>${fn:escapeXml(recipe.intro)}</p>
         <%-- FIX-JSP-4 --%>

@@ -18,7 +18,7 @@ asciidoctor {
 
     resources {
         from('src/docs/asciidoc') {
-            include '**/*.png', '**/*.jpg', '**/*.css', '**/*.otf'
+            include '**/*.png', '**/*.jpg', '**/*.css', '**/*.otf', '**/*.js', '**/*.html'
         }
     }
 
