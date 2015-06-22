@@ -1,15 +1,16 @@
 = Intellj
 :stylesheet: ../../style.css
+:experimental:
 
 Un IDE est un environnement complet qui permet de travailler plus vite en regroupant de multiples outils de développement dans une même interface.
 
-Intellij est développé par JetBrains  qui maitient tout une suite de logiciels pour divers languages : php, python, ruby...
+Intellij est développé par JetBrains qui maitient tout une suite de logiciels pour divers languages : php, python, ruby...
 
 Intellij existe en 2 versions : communautaire et ultimate.
 
 La version communautaire est suffisante pour faire du java, du groovy ou du scala.
 
-La version ultimate rajoute le web, jee et d'avantages de languages et plateformes (feature list ).
+La version ultimate rajoute le web, jee et d'avantages de languages et plateformes (https://www.jetbrains.com/idea/features/[toutes les features]).
 
 Intellij ultimate n'est pas gratuit mais ses qualités justifient amplement un tarif qui n'est pas très élevé.
 
@@ -24,7 +25,7 @@ Nous allons intégrer notre projet naissant dans Intellij
 
 Un projet est la structure de base. C'est tout ce qu'on voit dans la fenêtre.
 
-Il définit un sdk et un niveau de compatibilité du language java (1.6, 1.7...).
+Il définit un sdk et un niveau de compatibilité du language java (1.7, 1.8...).
 
 Il contient 1 ou plusieurs modules. Un module contient des fichiers sources.
 
@@ -34,20 +35,46 @@ Chaque module est indépendant et possède ses fichiers et des librairies.
 
 Les préférences sont accessibles via le menu File > Other settings > Default Settings...
 
-Elles sont aussi disponibles via l'icône settings de la barre d'outils ou bien via le raccourcis ⌘ ,
+Elles sont aussi disponibles via l'icône image:settings-icon.png[settings] de la barre d'outils ou bien via le raccourcis kbd:[⌘+,]
+
+image:prefs.png[preferences,title='Préférences']
 
 Elles permettent de régler beaucoup des aspects de l'IDE : formattage des sources, environnement java...
 
-La définition des modules est accessible via l'icône modules. On peut y voir les librairies utilisées et la configuration des modules.
+La définition du projet est accessible via l'icône image:project-icon.png[project structure]. On peut y voir les librairies utilisées et la configuration des modules.
+
+image:project.png[project,title='Projet']
 
 == Création du projet
 
+Au lancement d'Intellij, on choisit 'Import project'
 
+image::create-1.png[title='Import project',align=center]
 
-== Import du module gradle
+Puis on choisit le fichier *build.gradle* de notre test-project
+
+image::project-2.png[title='Ouvrir build.gradle',align=center]
+
+On laisse tout par défaut pour l'import gradle
+
+image::project-3.png[title='Options de l\'import gradle',align=center]
+
+Le project résultant est le suivant
+
+image::project-4.png[title='Projet et module test-project',align=center]
 
 == Mise à jour du build.gradle
 
+A chaque mise à jour du build.gradle (ajout d'une dépendance par exemple), Intellij doit prendre en compte les modifications.
+
+Soit on active la mise à jour automatique
+
+image::gradle-auto-import.png[title='auto import',align=center]
+
+Soit il faut mettre à jour à chaque modification
+
+image::refresh-gradle.png[title='refresh gradle',align=center]
+
 == Maintenant
 
-Nous allons maitenant pouvoir ajouter du code
+Notre projet de test est prêt à recevoir du code.

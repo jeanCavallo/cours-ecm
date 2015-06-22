@@ -1,6 +1,12 @@
+install java process
+
 gradlew
 gradle tR
 gradle tomcatRun debug
+
+intellij check jdk
+intellij refresh gradle project
+
 un commit par bug
 annexe.css
 
