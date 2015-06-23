@@ -1,8 +1,8 @@
-= Intellj
+= Intellij
 :stylesheet: ../../style.css
 :experimental:
 
-Un IDE est un environnement complet qui permet de travailler plus vite en regroupant de multiples outils de développement dans une même interface.
+image:intellij.jpg[Intellij, 40,40] Un IDE est un environnement complet qui permet de travailler plus vite en regroupant de multiples outils de développement dans une même interface.
 
 Intellij est développé par JetBrains qui maitient tout une suite de logiciels pour divers languages : php, python, ruby...
 
@@ -33,47 +33,73 @@ Chaque module est indépendant et possède ses fichiers et des librairies.
 
 == Préférences
 
-Les préférences sont accessibles via le menu File > Other settings > Default Settings...
+[.float-group]
+--
+image:prefs.png[preferences,width=300px,role=left,title='Préférences',link='prefs.png',target="_blank"]
 
-Elles sont aussi disponibles via l'icône image:settings-icon.png[settings] de la barre d'outils ou bien via le raccourcis kbd:[⌘+,]
+Les préférences sont accessibles via le menu menu:File[Other settings > Default Settings...]
 
-image:prefs.png[preferences,title='Préférences']
+Elles sont aussi disponibles via l'icône image:settings-icon.png[settings] de la barre d'outils et le raccourçi kbd:[⌘+,]
 
 Elles permettent de régler beaucoup des aspects de l'IDE : formattage des sources, environnement java...
+--
 
-La définition du projet est accessible via l'icône image:project-icon.png[project structure]. On peut y voir les librairies utilisées et la configuration des modules.
+[.float-group]
+--
+image:project.png[project,width=300px,role=left,title='Projet',link='project.png']
 
-image:project.png[project,title='Projet']
+La structure du projet est accessible via l'icône image:project-icon.png[project structure].
+
+On peut y voir les librairies utilisées, la configuration des modules, les dépendances...
+--
 
 == Création du projet
 
-Au lancement d'Intellij, on choisit 'Import project'
+[.float-group]
+--
+image::project-1.png[width=300px,role=left,link='project-1.png']
 
-image::create-1.png[title='Import project',align=center]
+Au lancement d'Intellij, on choisit 'Import project'
+--
+
+[.float-group]
+--
+image::project-2.png[width=300px,role=left,link='project-2.png']
 
 Puis on choisit le fichier *build.gradle* de notre test-project
+--
 
-image::project-2.png[title='Ouvrir build.gradle',align=center]
+[.float-group]
+--
+image::project-3.png[width=300px,role=left,link='project-3.png']
 
 On laisse tout par défaut pour l'import gradle
+--
 
-image::project-3.png[title='Options de l\'import gradle',align=center]
+[.float-group]
+--
+image::project-4.png[width=300px,role=left,link='project-4.png']
 
-Le project résultant est le suivant
-
-image::project-4.png[title='Projet et module test-project',align=center]
+Si tout c'est bien passé, nous avons notre projet avec le module test-project
+--
 
 == Mise à jour du build.gradle
 
 A chaque mise à jour du build.gradle (ajout d'une dépendance par exemple), Intellij doit prendre en compte les modifications.
 
-Soit on active la mise à jour automatique
+[.float-group]
+--
+image::gradle-auto-import.png[width=300px,role=left,link='gradle-auto-import.png']
 
-image::gradle-auto-import.png[title='auto import',align=center]
+Soit on active la mise à jour automatique
+--
+
+[.float-group]
+--
+image::refresh-gradle.png[width=300px,role=left,link='refresh-gradle.png']
 
 Soit il faut mettre à jour à chaque modification
-
-image::refresh-gradle.png[title='refresh gradle',align=center]
+--
 
 == Maintenant
 
