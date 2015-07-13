@@ -10,6 +10,8 @@ intellij refresh gradle project
 un commit par bug
 annexe.css
 
+lightbox pour les images (notamment pour intellij)
+
 == bug list
 
 * erreur de compilation

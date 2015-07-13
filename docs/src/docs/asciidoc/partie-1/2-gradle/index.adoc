@@ -1,5 +1,7 @@
 = Gradle
 :stylesheet: ../../style.css
+:toc: left
+:numbered:
 
 image:gradle.jpg[Gradle, 40,40] Gradle est un outils de build écrit en groovy.
 
@@ -7,27 +9,29 @@ Son rôle est de s'occuper de tout ce qui peut être automatisé lors de la cons
 
 A la sortie, il produit un *artéfact* comme par exemple une librairie, une application web, de la documentation...
 
-En java, c'est souvent un jar (java archive) ou un war (web archive).
+En java, c'est souvent un *jar* (java archive) ou un *war* (web archive).
 
 Le produit peut être numéroté (ex : mon-projet-1.1.3.zip en http://semver.org/[semver]) et archivé.
 
 Idéalement, le build éxécute les tests et produit des rapports.
 
-==== Les dépendances
-
+.Les dépendances
+****
 Pour construire le produit, on a besoin de librairies : les dépendances (.jar en java).
 
 Gradle va les chercher dans des repositories distants et compile notre code source avec.
 
 La configuration du build est dans un fichier *build.gradle* à la racine du projet.
+****
 
-==== Alternatives
-
+.Alternatives
+--
 Les principales alternatives dans le monde java sont
 
-* ant : le premier outils de build en java configuré en xml.
-* maven : aussi configuré en xml, mais apporte énormément de conventions.
-* sbt : l'outils de build du monde scala.
+* *ant* : le premier outils de build en java configuré en xml.
+* *maven* : aussi configuré en xml, mais apporte énormément de conventions.
+* *sbt* : l'outils de build du monde scala.
+--
 
 == Installation
 
@@ -190,7 +194,9 @@ test-project$ ls build/libs/
 test-project.jar
 ----
 
-== version
+== Tuning
+
+=== version
 
 Si on souhaite que notre jar soit versionné, on peut rajouter le gradle.properties.
 
@@ -208,7 +214,7 @@ test-project$ ls build/libs/
 test-project-1.0.0.jar
 ----
 
-== version de java
+=== version de java
 
 Il est aussi important d'indiquer quel est la version cible de java dans le build.gradle
 
@@ -296,14 +302,3 @@ Voici quelques https://docs.gradle.org/current/userguide/standard_plugins.html[p
 * qualité : checkstyle, codenarc, findbugs, jdepend, pmd et sonar
 
 Et bien sûr https://plugins.gradle.org/[tous les plugins]
-
-
-
-
-
-
-
-
-
-
-

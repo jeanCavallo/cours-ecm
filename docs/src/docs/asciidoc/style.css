@@ -33,6 +33,7 @@ html {
 
 body {
     margin: 0;
+
 }
 
 a {
@@ -77,7 +78,6 @@ mark {
 
 code, kbd, pre, samp {
     font-family: Monaco,Menlo,Consolas,"Courier New",monospace;
-    font-size: 1em
 }
 
 pre {
@@ -195,7 +195,6 @@ html, body {
 }
 
 body {
-    background: #858FB3;
     color: rgba(0, 0, 0, .8);
     padding: 0;
     margin: 0 0 3rem 0;
@@ -887,17 +886,17 @@ p a > code:hover {
 }
 
 .sect1 {
-    padding-bottom: .625em
+
 }
 
 @media only screen and (min-width: 768px) {
     .sect1 {
-        padding-bottom: 1.25em
+
     }
 }
 
 .sect1 + .sect1 {
-    border-top: 1px solid #efefed
+
 }
 
 #content h1 > a.anchor, h2 > a.anchor, h3 > a.anchor, #toctitle > a.anchor, .sidebarblock > .content > .title > a.anchor, h4 > a.anchor, h5 > a.anchor, h6 > a.anchor {
@@ -909,7 +908,7 @@ p a > code:hover {
     text-decoration: none !important;
     visibility: hidden;
     text-align: center;
-    font-weight: 400
+    font-weight: 400;
 }
 
 #content h1 > a.anchor:before, h2 > a.anchor:before, h3 > a.anchor:before, #toctitle > a.anchor:before, .sidebarblock > .content > .title > a.anchor:before, h4 > a.anchor:before, h5 > a.anchor:before, h6 > a.anchor:before {
@@ -1066,7 +1065,7 @@ table.tableblock #preamble > .sectionbody > .paragraph:first-of-type p {
     -webkit-border-radius: 4px;
     border-radius: 4px;
     word-wrap: break-word;
-    padding: 1em;
+    padding: 0.5em;
     font-size: .8125em
 }
 
@@ -1084,7 +1083,8 @@ table.tableblock #preamble > .sectionbody > .paragraph:first-of-type p {
 
 @media only screen and (min-width: 1280px) {
     .literalblock pre, .literalblock pre[class], .listingblock pre, .listingblock pre[class] {
-        font-size: 1em
+        font-size: 0.8em
+        line-height: 0.8em
     }
 }
 
@@ -1855,7 +1855,8 @@ b.conum * {
 }
 
 h1, h2 {
-    letter-spacing: -.01em
+    letter-spacing: -.01em;
+    border-bottom: 1px solid #efefed;
 }
 
 dt, th.tableblock, td.content {

@@ -1,5 +1,7 @@
 = Intégration continue
 :stylesheet: ../../style.css
+:toc: left
+:numbered:
 
 == Une pratique agile
 

@@ -1,8 +1,12 @@
 = Java
 :stylesheet: ../../style.css
+:toc: left
+:numbered:
 :icons: font
 
 Java est un language objet dont la synthaxe est dérivée du C.
+
+C'est un language *fortement typé* : les contrôles sont effecutés à la compilation.
 
 NOTE: ce document ne contient que quelques rappels et n'est pas du tout exhaustif
 
@@ -10,21 +14,36 @@ NOTE: ce document ne contient que quelques rappels et n'est pas du tout exhausti
 
 Les fichiers .java sont compilés en .class qui contiennent du byte code.
 
+image::compilation.png[align=center]
+
 Les fichiers .class peuvent être exécuté partout ou il y a une *Java Virtual Machine* (jvm).
 
 La commande javac de compilation fait partie du *Java Development Kit* (jdk).
 
-== packages, classes et import
+[source.terminal]
+----
+javac -classpath lib1.jar;lib2.jar Hello.java
+----
+
+== Organisation
+
+=== Types
+
+Le code est structurée en classes, interfaces, enums et annotations.
+
+=== Packages
 
 Les classes java sont organisées en *packages* (répertoires).
+
+=== Import
 
 Un `import` permet d'utiliser une autre classe depuis la classe courante.
 
 Au lancement de l'application, toutes les classes présentes dans le classpath sont disponibles à l'import.
 
-== class, interface, enum et annotation
+== Types
 
-Il existe plusieurs type d'éléments en java.
+=== class
 
 [source,java]
 .class
@@ -34,6 +53,8 @@ public class Person {
 }
 ----
 
+=== interface
+
 [source,java]
 .interface
 ----
@@ -41,6 +62,8 @@ public interface Runnable {
 
 }
 ----
+
+=== enum
 
 [source,java]
 .enum
@@ -50,20 +73,46 @@ public enum Gender {
 }
 ----
 
+=== annotation
+
 [source,java]
-.@annotation
+.@interface
 ----
-// déclaration de l'annotation
-@Retention(RetentionPolicy.RUNTIME)
-@Target(ElementType.TYPE)
+@Retention(RetentionPolicy.RUNTIME) <1>
+@Target(ElementType.TYPE) <2>
 public @interface Validate {
 
 }
+----
+<1> L'annotation sera présente au runtime
+<2> Elle est applicable sur des classes
 
-// peut être utilisé sur d'autres éléments
+Elle peut être utilisé sur d'autres éléments
+
+[source,java]
+.utilisation
+----
 @Validate
 public class MyModel {
 
+}
+----
+
+== Méthode main et exécution
+
+L'exécution d'une classe java se fait avec la commande java
+
+[source.terminal]
+----
+java -classpath lib1.jar;lib2.jar Hello
+----
+
+Afin de pouvoir être exécutée, cette classe Hello doit posséder une méthode main.
+
+[source,java]
+----
+public static void main(String[] args) {
+    ...
 }
 ----
 
@@ -85,8 +134,56 @@ Cela peut sembler un peu compact au départ mais c'est très complet.
 
 == gestion de la mémoire
 
+La machine virtuelle java réserve et libère la mémoire.
 
+Nous sommes dans un environnement managé.
+
+La mémoire est segmentée afin d'y répartir les objets chargés.
+
+Des stratégies complexes pilotent les données en mémoire.
+
+image::memory.jpg[align=center]
+
+Le *garbage collector* surveille les objets devenus inutiles et libère la mémoire correspondante.
 
 == l'évolution du language
 
+En 20 ans, le language à subit beaucoup d'évolutions :
+
+* java 1.4 (2002)
+** assert : assertion
+* java 1.5 / 5.0 (2004)
+** generiques List<T>
+** annotations @Annotation
+** autoboxing / unboxing Integer i = 10; int j = i;
+** enum enum Sign {BELIER, LION...}
+** varargs public void tags(String... tags)
+** imports statiques import static org.junit.Assert.assertEquals
+** for each loops for (String tag : tags) {...}
+* java 6.0 (2006)
+* java 7.0 (projet coin)
+** strings dans les switch
+** notation plus lisible pour les numériques int value = 100_000;
+** multi catch try { ... } catch (FirstException | SecondException ex) { ... }
+** opérateur diamant List<String> values = new ArrayList<>()
+** try with resources try (Statement stmt = con.createStatement()) { stmt.executeQuery(query); }
+** varargs simplifiés
+* java 8.0
+** lambdas (closures pour java)
+** java date and time API
+
+Malgré ces évolutions, la compatibilité avec les versions passées est bonne.
+
 == Une plateforme riche et diverse
+
+La richesse de la plateforme est essentiellement dû aux librairies issues de la communauté.
+
+Voici quelques exemples :
+
+* http://hibernate.org/[hibernate]
+* https://spring.io/[spring]
+* https://github.com/google/guice[guice]
+* https://lucene.apache.org/core/[lucene]
+* http://www.joda.org/joda-time/[joda time] qui a inspiré la java date and time API de java 8
+
+La liste est extrêmement longue, entre innnovation et reprise de ce qui se fait dans les autres languages.

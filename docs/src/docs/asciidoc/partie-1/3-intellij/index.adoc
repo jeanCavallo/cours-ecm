@@ -1,16 +1,17 @@
 = Intellij
 :stylesheet: ../../style.css
+:toc: left
+:numbered:
 :experimental:
 
 image:intellij.jpg[Intellij, 40,40] Un IDE est un environnement complet qui permet de travailler plus vite en regroupant de multiples outils de développement dans une même interface.
 
 Intellij est développé par JetBrains qui maitient tout une suite de logiciels pour divers languages : php, python, ruby...
 
-Intellij existe en 2 versions : communautaire et ultimate.
+Intellij existe en 2 versions : *communautaire* et *ultimate*.
 
-La version communautaire est suffisante pour faire du java, du groovy ou du scala.
-
-La version ultimate rajoute le web, jee et d'avantages de languages et plateformes (https://www.jetbrains.com/idea/features/[toutes les features]).
+* La version communautaire est suffisante pour faire du java, du groovy ou du scala.
+* La version ultimate rajoute le web, jee et d'avantages de languages et plateformes (https://www.jetbrains.com/idea/features/[toutes les features]).
 
 Intellij ultimate n'est pas gratuit mais ses qualités justifient amplement un tarif qui n'est pas très élevé.
 
@@ -104,3 +105,19 @@ Soit il faut mettre à jour à chaque modification
 == Maintenant
 
 Notre projet de test est prêt à recevoir du code.
+
+[source,terminal]
+----
+test-project $ tree
+.
+├── build.gradle
+├── gradle
+│   └── wrapper
+│       ├── gradle-wrapper.jar
+│       └── gradle-wrapper.properties
+├── gradle.properties
+├── gradlew
+├── gradlew.bat
+├── settings.gradle
+└── test-project.iml
+----

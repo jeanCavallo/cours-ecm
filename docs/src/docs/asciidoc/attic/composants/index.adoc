@@ -1,2 +1,0 @@
-= Les composants
-:stylesheet: ../../style.css

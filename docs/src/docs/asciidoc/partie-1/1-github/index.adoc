@@ -1,5 +1,7 @@
 = Github
 :stylesheet: ../../style.css
+:toc: left
+:numbered:
 
 image:vault.jpg[Vault, 100, float=right]
 
@@ -15,7 +17,7 @@ C'est un *distributed VCS* (DVCS) et suit donc une philosophie spéciale. Il mul
 
 En pratique, il est aussi assez simple à utiliser dans un cadre plus restreint.
 
-=== Compte github
+== Compte github
 
 image:github.png[40, 40] https://github.com/[Github] est un site web qui propose une interface web communautaire par dessus git. Github est gratuit pour les projets open source et simple à utiliser. Cela en fait un outils de référence pour les projets open source.
 
@@ -23,13 +25,15 @@ C'est l'outils que nous allons utiliser pour notre projet.
 
 Créez un compte github et configurez une clée ssh en suivant le https://help.github.com/articles/generating-ssh-keys/[tutorial github]
 
-=== Repository de test
+== Repository 'test-project'
 
 Depuis le dashboard, créez un repository test-project.
 
 On doit donc obtenir un repository de la forme `git@github.com:{user}/test-project.git`
 
 On peut choisir un autre nom pour le repository. Dans ce cas, il faut adapter les références à github pour toutes les manipulations à venir.
+
+== Commandes en local
 
 === git init
 
@@ -134,5 +138,3 @@ Maintenant `git push` et `git pull` feront automatiqment le lien avec origin. La
 ----
 test-project$ git push
 ----
-
-
