@@ -402,6 +402,18 @@ p{margin-bottom:1.25rem}
 
 /* custom */
 
+.sect1+.sect1 {
+  border-top: 0;
+}
+
+h2 {
+  margin-top: 0;
+}
+
+ol>li p {
+  margin-bottom: 0;
+}
+
 *:not(pre) > code {
     color: #C7254E;
     background-color: #F9F2F4;

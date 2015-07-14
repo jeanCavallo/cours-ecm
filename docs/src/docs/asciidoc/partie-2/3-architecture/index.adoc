@@ -27,7 +27,7 @@ image::java.png[width="100",role="left"]
 
 Java est un language de programmation orienté objet.
 
-Java c'est la jvm qui permet de faire tourner les programmes et le jdk qui contient les libraries standard et le compilateur.
+Java c'est la jvm qui permet d e faire tourner les programmes et le jdk qui contient les libraries standard et le compilateur.
 
 Java Enterprise Edition (JEE) est un ensemble de librairies et outils facilitant (?) le développement d'applications.
 --

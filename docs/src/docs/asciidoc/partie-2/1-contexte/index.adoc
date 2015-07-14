@@ -1,6 +1,8 @@
-= Bienvenu chez S4U
+= Bienvenue chez S4U
 :stylesheet: ../../style.css
 :icons: font
+
+image::banner.png[width="100%"]
 
 Vous venez de rentrer chez S4U, la SSII experte.
 
@@ -15,5 +17,3 @@ La pensée Agile peut être résumée par le http://agilemanifesto.org/[Manifest
 
 On peut aussi résumer cela par : ce sont des humains qui réalise les projets et ils doivent réfléchir.
 ====
-
-
