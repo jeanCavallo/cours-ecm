@@ -2,6 +2,7 @@
 :stylesheet: ../../style.css
 :toc: left
 :numbered:
+:icons: font
 :experimental:
 
 Le développement par les tests est une technique de développement Agile
