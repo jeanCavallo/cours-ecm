@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Asciidoctor 1.5.2">
+<title>Architecture de l&#8217;application</title>
+<link rel="stylesheet" href="./../../style.css">
+<link rel="stylesheet" href="./coderay-asciidoctor.css">
+</head>
+<body class="article">
+<div id="header">
+<h1>Architecture de l&#8217;application</h1>
+</div>
+<div id="content">
+<div class="sect1">
+<h2 id="_vision_globale">vision globale</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>L&#8217;architecture est composée d&#8217;une application web qui est reliée à une base de données mongodb.</p>
+</div>
+<div class="imageblock" style="text-align: center">
+<div class="content">
+<img src="architecture.png" alt="architecture" width="280" height="126">
+</div>
+</div>
+<div class="paragraph">
+<p>L&#8217;application est en java et est packagée sous le format standard war.</p>
+</div>
+<div class="paragraph">
+<p>Mongodb est une base nosql qui stocke des documents en format BSON (Binary JSON).</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_technology_stack">technology stack</h2>
+<div class="sectionbody">
+<div class="sidebarblock">
+<div class="content">
+<div class="openblock float-group">
+<div class="content">
+<div class="imageblock left">
+<div class="content">
+<img src="java.png" alt="java" width="100">
+</div>
+</div>
+<div class="paragraph">
+<p>Java est un language de programmation orienté objet.</p>
+</div>
+<div class="paragraph">
+<p>Java c&#8217;est la jvm qui permet de faire tourner les programmes et le jdk qui contient les libraries standard et le compilateur.</p>
+</div>
+<div class="paragraph">
+<p>Java Enterprise Edition (JEE) est un ensemble de librairies et outils facilitant (?) le développement d&#8217;applications.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="openblock float-group">
+<div class="content">
+<div class="imageblock left">
+<div class="content">
+<img src="gradle.png" alt="gradle" width="100">
+</div>
+</div>
+<div class="paragraph">
+<p><a href="https://gradle.org/">Gradle</a> est un outils de build pour beaucoup de languages (java, groovy, scala, c&#8230;&#8203;)</p>
+</div>
+<div class="paragraph">
+<p>Il est écrit en groovy et se configure à l&#8217;aide d&#8217;un language spécifique (DSL)</p>
+</div>
+<div class="paragraph">
+<p>Il est plus récent et plus souple que son concurent principal : maven</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="openblock float-group">
+<div class="content">
+<div class="imageblock left">
+<div class="content">
+<img src="tomcat.png" alt="tomcat" width="100">
+</div>
+</div>
+<div class="paragraph">
+<p><a href="http://tomcat.apache.org/">Tomcat</a> est un serveur web pouvant lancer des applications java.</p>
+</div>
+<div class="paragraph">
+<p>Il est open source et offre de très bonnes performances.</p>
+</div>
+<div class="paragraph">
+<p>C&#8217;est celui que l&#8217;on va utiliser pour le développement.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="openblock float-group">
+<div class="content">
+<div class="imageblock left">
+<div class="content">
+<img src="spring.png" alt="spring" width="100">
+</div>
+</div>
+<div class="paragraph">
+<p><a href="http://projects.spring.io/spring-framework/">Spring</a> est un framework par injection de dépendances (DI).</p>
+</div>
+<div class="paragraph">
+<p>Spring a aussi un module MVC pour le web, que nous utilisons.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="openblock float-group">
+<div class="content">
+<div class="imageblock left">
+<div class="content">
+<img src="mongo.jpg" alt="mongo" width="100">
+</div>
+</div>
+<div class="paragraph">
+<p><a href="https://www.mongodb.org/">MongoDB</a> est une base données orientée document (en opposition des tables en SQL).</p>
+</div>
+<div class="paragraph">
+<p>Un document est un arbre json qui est stocké en Binary JSON (BSON). Ce sont des structures souples, sans schéma.</p>
+</div>
+<div class="paragraph">
+<p>Mais elle n&#8217;offre pas les mêmes services que les bases SQL : transactions et intégrité référentielle.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="openblock float-group">
+<div class="content">
+<div class="imageblock left">
+<div class="content">
+<img src="bootstrap.png" alt="bootstrap" width="100">
+</div>
+</div>
+<div class="paragraph">
+<p><a href="http://getbootstrap.com/">Bootstrap</a> est un framework html, css et javascript pour développer des pages responsives.</p>
+</div>
+<div class="paragraph">
+<p>Développé par des membres de twitter, il est aujourd&#8217;hui très largement utilisé.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="openblock float-group">
+<div class="content">
+<div class="imageblock left">
+<div class="content">
+<img src="jquery.png" alt="jquery" width="100">
+</div>
+</div>
+<div class="paragraph">
+<p><a href="http://jquery.com/">jquery</a> est un framework javascript très populaire.</p>
+</div>
+<div class="paragraph">
+<p>Il est simple mais néanmoins très puissant.</p>
+</div>
+<div class="paragraph">
+<p>Il est utilisé par boostrap.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="openblock float-group">
+<div class="content">
+<div class="imageblock left">
+<div class="content">
+<img src="bower.png" alt="bower" width="100">
+</div>
+</div>
+<div class="paragraph">
+<p><a href="http://bower.io/">Bower</a> est un outils de gestion de dépendances pour librairies front (css et js).</p>
+</div>
+<div class="paragraph">
+<p>Dans notre projet, on s&#8217;en sert pour récupérer jquery et bootstrap.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_structure_de_projet_standard">structure de projet standard</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Notre projet suit le <a href="https://maven.apache.org/guides/introduction/introduction-to-the-standard-directory-layout.html">Standard Directory Layout</a> introduit par Maven</p>
+</div>
+<div class="paragraph">
+<p>par défaut, Gradle suit ce standard :</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code>src                 // toutes les sources
+├─ main             // le code de l'application
+|  ├─ [language 1]  // le code est segmenté par language
+|  ├─ [language 2]
+└─ test             // le code des test
+   ├─ [language 1]
+   ├─ [language 2]</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Dans notre cas :</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code>src
+├─ main
+|  ├─ java        // notre code en java
+|  ├─ resources   // les fichiers qui vont aussi dans le classpath
+|  └─ webapp      // les fichiers qui vont à la racine de l'application web
+|     ├─ WEB-INF  // fichiers de configuration protégés
+|     └─ META-INF // fichiers de méta données protégés
+└─ test
+   ├─ java
+   └─ resources</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_structure_de_l_app">structure de l&#8217;app</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>L&#8217;application a une structure traditionnelle MVC pour le web.</p>
+</div>
+<div class="imageblock" style="text-align: center">
+<div class="content">
+<img src="mvc.png" alt="mvc" width="1050" height="252">
+</div>
+</div>
+<div class="paragraph">
+<p>Le rôle des composants :</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>request dispatcher : il est fournit par le framework. Il 'dispatch' les requêtes entrantes vers les bons controllers / vues</p>
+</li>
+<li>
+<p>controllers : ils aiguillent la requête entre les services et la vue</p>
+</li>
+<li>
+<p>services : on y range la logique un peu plus avancée et les accès à la base.</p>
+</li>
+<li>
+<p>JSP views : ce sont les templates qui produisent le html</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_vue_séquentielle">vue séquentielle</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>dispatcher &#8594; controller &#8594; service &#8594; db &#8594; dispatcher &#8594; jsp view</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_tests_et_tdd">tests et TDD</h2>
+<div class="sectionbody">
+
+</div>
+</div>
+</div>
+</body>
+</html>

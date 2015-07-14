@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Asciidoctor 1.5.2">
+<title>Mongo db</title>
+<link rel="stylesheet" href="./../../style.css">
+<link rel="stylesheet" href="./coderay-asciidoctor.css">
+</head>
+<body class="article toc2 toc-left">
+<div id="header">
+<h1>Mongo db</h1>
+<div id="toc" class="toc2">
+<div id="toctitle">Table of Contents</div>
+<ul class="sectlevel1">
+<li><a href="#_installation">1. installation</a></li>
+<li><a href="#_lancer_la_base">2. Lancer la base</a></li>
+</ul>
+</div>
+</div>
+<div id="content">
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>Mongo db est une base de données qui contient des document BSON.</p>
+</div>
+<div class="paragraph">
+<p>Nous allons l&#8217;utiliser afin de stocker nos données.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_installation">1. installation</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Pour installer mongodb on passe par homebrew :</p>
+</div>
+<div class="listingblock terminal">
+<div class="content">
+<pre class="CodeRay highlight"><code>projects$ brew install mongodb
+... TODO</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_lancer_la_base">2. Lancer la base</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Une fois installée, il suffit de lancer la base.</p>
+</div>
+<div class="listingblock terminal">
+<div class="content">
+<pre class="CodeRay highlight"><code>projects$ mkdir mongodb-data
+projects$ mongod --dbpath mongodb-data
+2015-06-12T17:53:52.757+0200 I JOURNAL  [initandlisten] journal dir=mongodb-data/journal
+2015-06-12T17:53:52.757+0200 I JOURNAL  [initandlisten] recover : no journal files present, no recovery needed
+2015-06-12T17:53:52.783+0200 I JOURNAL  [durability] Durability thread started
+2015-06-12T17:53:52.783+0200 I CONTROL  [initandlisten] MongoDB starting : pid=3015 port=27017 dbpath=mongodb-data 64-bit host=jaadtwo.local
+2015-06-12T17:53:52.783+0200 I JOURNAL  [journal writer] Journal writer thread started
+2015-06-12T17:53:52.783+0200 I CONTROL  [initandlisten] db version v3.0.1
+2015-06-12T17:53:52.784+0200 I CONTROL  [initandlisten] git version: nogitversion
+2015-06-12T17:53:52.784+0200 I CONTROL  [initandlisten] build info: Darwin mavericksvm.local 13.4.0 Darwin Kernel Version 13.4.0: Wed Dec 17 19:05:52 PST 2014; root:xnu-2422.115.10~1/RELEASE_X86_64 x86_64 BOOST_LIB_VERSION=1_49
+2015-06-12T17:53:52.784+0200 I CONTROL  [initandlisten] allocator: system
+2015-06-12T17:53:52.784+0200 I CONTROL  [initandlisten] options: { storage: { dbPath: "mongodb-data" } }
+2015-06-12T17:53:52.850+0200 I NETWORK  [initandlisten] waiting for connections on port 27017</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>La base est prête à recevoir des connexions.</p>
+</div>
+</div>
+</div>
+</div>
+</body>
+</html>

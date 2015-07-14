@@ -1,3 +1,0 @@
-= Web service
-:stylesheet: ../../style.css
-
