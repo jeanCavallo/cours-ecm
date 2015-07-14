@@ -3,6 +3,8 @@
 :toc: left
 :numbered:
 
+image::banner.png[width=100%]
+
 image:vault.jpg[Vault, 100, float=right]
 
 Un *Versioning Control System* (VCS) permet de stocker tout son fichiers : code, configuration, scripts...

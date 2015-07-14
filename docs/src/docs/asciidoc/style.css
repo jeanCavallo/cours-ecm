@@ -410,6 +410,10 @@ h2 {
   margin-top: 0;
 }
 
+p {
+  margin-bottom: 0.8rem;
+}
+
 ol>li p {
   margin-bottom: 0;
 }
