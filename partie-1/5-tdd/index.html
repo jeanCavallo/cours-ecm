@@ -7,6 +7,7 @@
 <meta name="generator" content="Asciidoctor 1.5.2">
 <title>Test Driven Development</title>
 <link rel="stylesheet" href="./../../style.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.2.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="./coderay-asciidoctor.css">
 </head>
 <body class="article toc2 toc-left">
@@ -95,12 +96,12 @@
     <span class="directive">private</span> <span class="predefined-type">ArrayList</span> list;
 
     <span class="annotation">@Before</span>
-    <span class="directive">public</span> <span class="type">void</span> setUp() { <b class="conum">(1)</b>
+    <span class="directive">public</span> <span class="type">void</span> setUp() { <i class="conum" data-value="1"></i><b>(1)</b>
         list = <span class="keyword">new</span> <span class="predefined-type">ArrayList</span>();
     }
 
     <span class="annotation">@After</span>
-    <span class="directive">public</span> <span class="type">void</span> tearDown() { <b class="conum">(2)</b>
+    <span class="directive">public</span> <span class="type">void</span> tearDown() { <i class="conum" data-value="2"></i><b>(2)</b>
     }
 
     <span class="annotation">@Test</span>
@@ -117,14 +118,16 @@
 </div>
 </div>
 <div class="colist arabic">
-<ol>
-<li>
-<p>exécuté avant chaque test</p>
-</li>
-<li>
-<p>exécuté après chaque test</p>
-</li>
-</ol>
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>exécuté avant chaque test</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>exécuté après chaque test</td>
+</tr>
+</table>
 </div>
 </div>
 </div>
