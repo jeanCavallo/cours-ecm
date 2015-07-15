@@ -1,6 +1,9 @@
+@font-face {
+    font-family: 'lobster';
+    src: url('fonts/Lobster-1.4.otf');
+}
+
 /* Asciidoctor default stylesheet | MIT License | http://asciidoctor.org */
-/* Remove the comments around the @import statement below when using this as a custom stylesheet */
-/*@import "https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400";*/
 article, aside, details, figcaption, figure, footer, header, hgroup, main, nav, section, summary {
     display: block
 }
@@ -29,7 +32,8 @@ html {
 }
 
 body {
-    margin: 0
+    margin: 0;
+
 }
 
 a {
@@ -73,8 +77,7 @@ mark {
 }
 
 code, kbd, pre, samp {
-    font-family: monospace;
-    font-size: 1em
+    font-family: Monaco,Menlo,Consolas,"Courier New",monospace;
 }
 
 pre {
@@ -192,11 +195,10 @@ html, body {
 }
 
 body {
-    background: #fff;
     color: rgba(0, 0, 0, .8);
     padding: 0;
-    margin: 0;
-    font-family: "Noto Serif", "DejaVu Serif", serif;
+    margin: 0 0 3rem 0;
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
     font-weight: 400;
     font-style: normal;
     line-height: 1;
@@ -320,13 +322,13 @@ p aside {
 }
 
 h1, h2, h3, #toctitle, .sidebarblock > .content > .title, h4, h5, h6 {
-    font-family: "Open Sans", "DejaVu Sans", sans-serif;
+    font-family: lobster;
     font-weight: 300;
     font-style: normal;
     color: #ba3925;
     text-rendering: optimizeLegibility;
-    margin-top: 1em;
-    margin-bottom: .5em;
+    margin-top: .5em;
+    margin-bottom: .2em;
     line-height: 1.0125em
 }
 
@@ -388,7 +390,7 @@ code {
 ul, ol, dl {
     font-size: 1em;
     line-height: 1.6;
-    margin-bottom: 1.25em;
+    margin-bottom: .2em;
     list-style-position: outside;
     font-family: inherit
 }
@@ -622,17 +624,22 @@ p a > code:hover {
     color: rgba(0, 0, 0, .9)
 }
 
+#header {
+    margin-top: 1.8rem;
+    border-radius: 4px 4px 0 0;
+}
+
 #header, #content, #footnotes, #footer {
+    background: #FFF;
     width: 100%;
     margin-left: auto;
     margin-right: auto;
-    margin-top: 0;
     margin-bottom: 0;
     max-width: 62.5em;
     *zoom: 1;
     position: relative;
     padding-left: .9375em;
-    padding-right: .9375em
+    padding-right: .9375em;
 }
 
 #header:before, #header:after, #content:before, #content:after, #footnotes:before, #footnotes:after, #footer:before, #footer:after {
@@ -645,7 +652,7 @@ p a > code:hover {
 }
 
 #content {
-    margin-top: 1.25em
+    padding-top: 1rem;
 }
 
 #content:before {
@@ -654,7 +661,7 @@ p a > code:hover {
 
 #header > h1:first-child {
     color: rgba(0, 0, 0, .85);
-    margin-top: 2.25rem;
+    margin-top: 2rem;
     margin-bottom: 0
 }
 
@@ -879,17 +886,17 @@ p a > code:hover {
 }
 
 .sect1 {
-    padding-bottom: .625em
+
 }
 
 @media only screen and (min-width: 768px) {
     .sect1 {
-        padding-bottom: 1.25em
+
     }
 }
 
 .sect1 + .sect1 {
-    border-top: 1px solid #efefed
+
 }
 
 #content h1 > a.anchor, h2 > a.anchor, h3 > a.anchor, #toctitle > a.anchor, .sidebarblock > .content > .title > a.anchor, h4 > a.anchor, h5 > a.anchor, h6 > a.anchor {
@@ -901,7 +908,7 @@ p a > code:hover {
     text-decoration: none !important;
     visibility: hidden;
     text-align: center;
-    font-weight: 400
+    font-weight: 400;
 }
 
 #content h1 > a.anchor:before, h2 > a.anchor:before, h3 > a.anchor:before, #toctitle > a.anchor:before, .sidebarblock > .content > .title > a.anchor:before, h4 > a.anchor:before, h5 > a.anchor:before, h6 > a.anchor:before {
@@ -931,7 +938,7 @@ p a > code:hover {
 .admonitionblock td.content > .title, .audioblock > .title, .exampleblock > .title, .imageblock > .title, .listingblock > .title, .literalblock > .title, .stemblock > .title, .openblock > .title, .paragraph > .title, .quoteblock > .title, table.tableblock > .title, .verseblock > .title, .videoblock > .title, .dlist > .title, .olist > .title, .ulist > .title, .qlist > .title, .hdlist > .title {
     text-rendering: optimizeLegibility;
     text-align: left;
-    font-family: "Noto Serif", "DejaVu Serif", serif;
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
     font-size: 1rem;
     font-style: italic
 }
@@ -1058,7 +1065,7 @@ table.tableblock #preamble > .sectionbody > .paragraph:first-of-type p {
     -webkit-border-radius: 4px;
     border-radius: 4px;
     word-wrap: break-word;
-    padding: 1em;
+    padding: 0.5em;
     font-size: .8125em
 }
 
@@ -1076,7 +1083,8 @@ table.tableblock #preamble > .sectionbody > .paragraph:first-of-type p {
 
 @media only screen and (min-width: 1280px) {
     .literalblock pre, .literalblock pre[class], .listingblock pre, .listingblock pre[class] {
-        font-size: 1em
+        font-size: 0.8em
+        line-height: 0.8em
     }
 }
 
@@ -1403,7 +1411,7 @@ dl dd:last-child, dl dd:last-child > :last-child {
 }
 
 ol > li p, ul > li p, ul dd, ol dd, .olist .olist, .ulist .ulist, .ulist .olist, .olist .ulist {
-    margin-bottom: .625em
+    margin-bottom: .1em
 }
 
 ul.unstyled, ol.unnumbered, ul.checklist, ul.none {
@@ -1847,7 +1855,8 @@ b.conum * {
 }
 
 h1, h2 {
-    letter-spacing: -.01em
+    letter-spacing: -.01em;
+    border-bottom: 1px solid #efefed;
 }
 
 dt, th.tableblock, td.content {
@@ -1867,7 +1876,7 @@ p, blockquote, dt, td.content {
 }
 
 p {
-    margin-bottom: 1.25rem
+    margin-bottom: .5rem
 }
 
 .sidebarblock p, .sidebarblock dt, .sidebarblock td.content, p.tableblock {
