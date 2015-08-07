@@ -1,9 +1,7 @@
-= Test Driven Development
-:stylesheet: ../../style.css
-:toc: left
-:numbered:
-:icons: font
-:experimental:
+
+include::../../header.adoc[]
+
+image::banner.png[width=100%]
 
 Le développement par les tests est une technique de développement Agile
 
@@ -38,7 +36,7 @@ Le développement par les tests est une technique de développement Agile
        |                   |
        v                   |
 +--------------+           |
-|c9FA          |           |
+|c9BF          |           |
 |              |           |
 |              |           |
 |   refactor   +-----------+
@@ -181,4 +179,51 @@ image:test-result.png[]
 
 Faites ce qu'il faut pour que le test passe.
 
+image:launch-test-success.png[]
+
 Après cela, pour le moment, il n'y a pas grand chose à refactorer.
+
+=== Test suivant
+
+La soustraction n'est pas très intéressante (ce n'est qu'une addition déguisée).
+
+Faire le test et puis le code pour la multiplication `calculator.multiply(6, 4)`
+
+=== Division
+
+La division présente un petit plus, que se passe t il si on fait un `calcultator.divide(3, 0)` ?
+
+Le test est l'occation de prendre une décision sur le comportement de cette méthode `divide`.
+
+Il y a plusieurs possibilités :
+
+* lancer une exception adaptée
+* faire un `assert`
+* retourner une valeur remarquable (-1 ?)
+
+Dans notre cas, l'exception la plus adaptée est `IllegalArgumentException`
+
+Le test de la condition aux limites peut s'écrire
+
+[source,java]
+.CalculatorTest.java
+----
+@Test(expected = IllegalArgumentException.class)
+public void divideByZero() {
+    calculator.divide(3, 0);
+}
+----
+
+Ecrire les tests `divide` et `divideByZero` et le code associé.
+
+=== Lambdas
+
+Sans toucher les tests, nous allons transformer notre code.
+
+[NOTE]
+.Les lambdas
+====
+C'est une nouveauté java 8 : c'est l'arrivée d'un peu de programmation fonctionelle.
+====
+
+Les lambdas

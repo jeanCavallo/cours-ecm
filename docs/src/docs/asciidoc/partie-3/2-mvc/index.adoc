@@ -20,11 +20,11 @@ NOTE: Les modifications dans les controllers nécessitent de redémarrer le serv
 
 NOTE: link:../B-mvc/index.html[l'annexe B] résume les concepts liés au MVC pour le web
 
-== [[MVC-1]]MVC-1 : 
+== [[MVC-1]]MVC-1 :
 
 == [[MVC-2]]MVC-2 :
 
-== [[MVC-3]]MVC-3 : 
+== [[MVC-3]]MVC-3 :
 
 [[MVC-4]]
 

@@ -1,10 +1,9 @@
-= Intellij
-:stylesheet: ../../style.css
-:toc: left
-:numbered:
-:experimental:
 
-image:intellij.jpg[Intellij, 40,40] Un IDE est un environnement complet qui permet de travailler plus vite en regroupant de multiples outils de développement dans une même interface.
+include::../../header.adoc[]
+
+image::banner.png[width=100%]
+
+Un IDE est un environnement complet qui permet de travailler plus vite en regroupant de multiples outils de développement dans une même interface.
 
 Intellij est développé par JetBrains qui maitient tout une suite de logiciels pour divers languages : php, python, ruby...
 

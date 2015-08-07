@@ -1,8 +1,7 @@
-= Java
-:stylesheet: ../../style.css
-:toc: left
-:numbered:
-:icons: font
+
+include::../../header.adoc[]
+
+image::banner.png[width=100%]
 
 Java est un language objet dont la synthaxe est dérivée du C.
 
@@ -30,6 +29,8 @@ javac -classpath lib1.jar;lib2.jar Hello.java
 === Types
 
 Le code est structurée en classes, interfaces, enums et annotations.
+
+TODO : java types table
 
 === Packages
 
@@ -149,6 +150,8 @@ Le *garbage collector* surveille les objets devenus inutiles et libère la mémo
 == l'évolution du language
 
 En 20 ans, le language à subit beaucoup d'évolutions :
+
+TODO : table avec versions
 
 * java 1.4 (2002)
 ** assert : assertion

@@ -1,7 +1,7 @@
 = Cooking Miam Miam
 :stylesheet: ../../style.css
 
-C'est un site de recettes de cuisine proposant un layout moderne et responsive (un peu)
+C'est un site de recettes de cuisine proposant un layout moderne et (un peu) responsive
 
 image::site.png[]
 
@@ -10,6 +10,7 @@ image::site.png[]
 Le site est divisé en 2 parties :
 
 * publique : accès aux pages de liste et recettes
+* admin : permet l'édition des recettes
 
 [ditaa, 'public', align="center"]
 .Principales pages du site
@@ -33,14 +34,12 @@ Le site est divisé en 2 parties :
     \------------------------------/
 ....
 
-* admin : permet l'édition des recettes
-
 [ditaa, 'admin', align="center"]
 .Partie administration
 ....
 +-------+          +-------+          +-------+
 |{d}    |          |{d}    |          |{d}    |
-|       | -------->|       | -------->|       |
+|       | -------->|       | -------->|edition|
 | index |          | liste |          |recette|
 +-------+          +-------+          +-------+
 ....
@@ -49,8 +48,9 @@ Le site est divisé en 2 parties :
 
 En l'état, l'applicaton démarre en local dans un environnement de développement.
 
-Elle est fonctionnelle mais truffée de bugs.
+Elle est fonctionnelle mais truffée de bugs et incomplète.
 
-Dans un premier temps, il va donc falloir corriger tous les bugs.
+On va donc
 
-Ensuite, on rajoutera les fonctionnalités manquantes.
+* corriger tous les bugs.
+* rajouter les fonctionnalités manquantes.

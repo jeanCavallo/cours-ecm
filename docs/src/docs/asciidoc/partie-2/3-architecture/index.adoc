@@ -135,6 +135,8 @@ src                 // toutes les sources
    ├─ [language 2]
 ----
 
+IMPORTANT: *Convention over configuration* : cette arborescence est une convention, si on la suit, il n'y a pas besoin de de configuration. 
+
 Dans notre cas :
 
 [source]
@@ -185,3 +187,11 @@ Le rôle des composants :
 dispatcher -> controller -> service -> db -> dispatcher -> jsp view
 
 == tests et TDD
+
+L'application dispose de plusieurs types de tests
+
+* tests unitaires avec junit4
+* tests d'intégration avec junit4 et spring mocks
+* tests d'interface avec junit4 et selenium (+ fluentlenium)
+
+Ces tests couvrent les points importants de l'application et nous assurent un meilleur niveau de qualité.

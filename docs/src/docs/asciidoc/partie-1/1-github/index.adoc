@@ -1,21 +1,24 @@
-= Github
-:stylesheet: ../../style.css
-:toc: left
-:numbered:
+
+include::../../header.adoc[]
 
 image::banner.png[width=100%]
 
-image:vault.jpg[Vault, 100, float=right]
-
 Un *Versioning Control System* (VCS) permet de stocker tout son fichiers : code, configuration, scripts...
 
-C'est le coffre fort d'une équipe de développement.
+NOTE: C'est le coffre fort d'une équipe de développement.
 
 Il doit être simple d'interagir avec et simple de restaurer un état passé.
 
 De tous les système récents, *git* est le plus à la mode.
 
-C'est un *distributed VCS* (DVCS) et suit donc une philosophie spéciale. Il multiplie les capacités de travail dans des branches (locales ou distantes) permettant de travailler simultanément sur plusiseurs sujets en parallèle. Il est particulièrement adapté à du travail sur des projets open source où les bureaux sont dématérialisés et les collaborateurs multiples.
+.Précison
+****
+C'est un *distributed VCS* (DVCS) et suit donc une philosophie particulière.
+
+Il multiplie les capacités de travail dans des branches (locales ou distantes) permettant de travailler simultanément sur plusiseurs sujets en parallèle.
+****
+
+Il est particulièrement adapté aux projets open source avec des bureaux dématérialisés et les collaborateurs multiples.
 
 En pratique, il est aussi assez simple à utiliser dans un cadre plus restreint.
 
@@ -140,3 +143,16 @@ Maintenant `git push` et `git pull` feront automatiqment le lien avec origin. La
 ----
 test-project$ git push
 ----
+
+.Pour aller plus loin
+****
+image:pro-git.jpg[pro git,100,role=right]
+
+Les systèmes de versioning viennent avec leur complexité mais sont *obligatoires*
+
+git offre beaucoup de richesse que l'on découvre au fil du temps.
+
+Le système décentralisé, nécessaire pour certaines types d'organisations, apporte une complexité initiale difficle à cerner.
+
+http://www.amazon.fr/Pro-Git-Scott-Chacon/dp/1484200772/ref=sr_1_1?ie=UTF8&qid=1438869528&sr=8-1&keywords=git[Pro Git] permet de comprendre les mécaniques et la philosophie de git.
+****

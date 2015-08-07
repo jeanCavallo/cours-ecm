@@ -6,7 +6,7 @@ image::banner.png[width="100%"]
 
 Vous venez de rentrer chez S4U, la SSII experte.
 
-Vous avez été accueilli par Jack Puissant, le CEO, et la responsable des ressources humaines.
+Vous avez été accueilli par Jack Power, le CEO, et la responsable des ressources humaines.
 
 Vous avez le droit à cette magnifique link:welcome.html[Présentation]
 
@@ -15,5 +15,5 @@ Vous avez le droit à cette magnifique link:welcome.html[Présentation]
 ====
 La pensée Agile peut être résumée par le http://agilemanifesto.org/[Manifeste Agile]
 
-On peut aussi résumer cela par : ce sont des humains qui réalise les projets et ils doivent réfléchir.
+On peut aussi résumer cela par : ce sont des humains qui réalisent les projets et ils doivent réfléchir.
 ====

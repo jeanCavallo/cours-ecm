@@ -3,8 +3,10 @@
 image::banner.png[alt='Applications web en java']
 
 Java est un language *fortement typé*.
+
 Accompagné d'une certaine lourdeur, il semble peu adapté au web.
-Pourtant, les nombreux *frameworks* et son *modèle de programmation* le rendent incontournable.
+
+Pourtant, les nombreux *frameworks* et la *richesse de son environnement* le rendent incontournable.
 
 == Partie 1 : la forge logicielle : pratiques et outils
 
@@ -13,7 +15,7 @@ Pourtant, les nombreux *frameworks* et son *modèle de programmation* le rendent
 . link:partie-1/3-intellij/index.html[Intellij]
 . link:partie-1/4-java/index.html[Java]
 . link:partie-1/5-tdd/index.html[TDD]
-. link:partie-1/5-ci/index.html[Intégration continue]
+. link:partie-1/6-mongodb/index.html[mongodb]
 
 == Partie 2 : Bienvenue chez S4U
 
@@ -22,11 +24,15 @@ Pourtant, les nombreux *frameworks* et son *modèle de programmation* le rendent
 . link:partie-2/3-architecture/index.html[Architecture logicielle]
 . link:partie-2/4-fork-and-clone/index.html[Récupération du projet]
 
-== Partie 3 : Les bugs
+== Partie 3 : Tripalium
 
 . link:partie-3/1-jsp/index.html[Templates jsp]
 . link:partie-3/2-mvc/index.html[Le MVC]
 . link:partie-3/3-services/index.html[Les services]
+
+== Partie 4 : installation
+
+. dans le cloud ?
 
 .Annexes
 ****

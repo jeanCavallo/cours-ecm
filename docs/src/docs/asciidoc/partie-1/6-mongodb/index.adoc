@@ -1,7 +1,7 @@
+
+include::../../header.adoc[]
+
 = Mongo db
-:stylesheet: ../../style.css
-:toc: left
-:numbered:
 
 Mongo db est une base de données qui contient des document BSON.
 

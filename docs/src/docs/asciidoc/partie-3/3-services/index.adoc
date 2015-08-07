@@ -4,33 +4,37 @@
 Voici la liste des bugs répertoriés en relation avec les services
 
 ****
-* <<SER-1>>  : 
-* <<SER-2>>  : 
-* <<SER-3>>  :
+* <<SER-1>>  :
+* <<SER-2>>  :
+* <<SER-3>>  : pick a recipe depending on season
 * <<SER-4>>  : sécurisation
 * <<SER-5>>  : edit button when admin
 * <<SER-6>>  : add seach by ingredients
-* <<SER-7>>  : pick a recipe depending on season
-* <<SER-8>>  :
-* <<SER-9>>  : 
+* <<SER-7>>  : notation
+* <<SER-8>>  : commentaires
+* <<SER-9>>  :
 * <<SER-10>> :
 ****
 
 NOTE: link:../C-DI/index.html[l'annexe C] explique le principe de l'injection de dépendances
 
-== [[SER-1]]SER-1 : 
+== [[SER-1]]SER-1 :
 
 == [[SER-2]]SER-2 :
 
-== [[SER-3]]SER-3 : 
+== [[SER-3]]SER-3 :
 
-[[SER-4]]
+== [[SER-4]]SER-4 :
 
-[[SER-5]]
+== [[SER-5]]SER-5 :
 
-[[SER-6]]
+== [[SER-6]]SER-6 :
 
-[[SER-7]]
+== [[SER-7]]SER-7 :
+
+* système de like / dislike (+ / -)
+* pas possible de voter plus d'un fois par jour (cookie).
+* pas afficher le vote possible au chargement si déjà voté
 
 [[SER-8]]
 
