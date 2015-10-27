@@ -1,11 +1,111 @@
 
 include::../../header.adoc[]
 
-= Mongo db
+image::banner.png[width=100%]
 
-Mongo db est une base de données qui contient des document BSON.
+Mongo db est une base de données qui contient des documents.
+
+Les données sont stockées en Binary JSON (BSON).
 
 Nous allons l'utiliser afin de stocker nos données.
+
+== Des documents
+
+Un document est une structure de données flexible. La tructure peut être riche, par opposition à des clés-valeurs.
+
+Les documents Mongo db sont des structures arborescentes pouvant contenir des tableaux.
+
+[source]
+.exemple
+----
+{
+   _id: ObjectId("5099803df3f4948bd2f98391"),
+   name: { first: "Alan", last: "Turing" },
+   birth: new Date('Jun 23, 1912'),
+   death: new Date('Jun 07, 1954'),
+   contribs: [ "Turing machine", "Turing test", "Turingery" ],
+   views : NumberLong(1250000)
+}
+----
+
+C'est un arbre classique JSON avec un attribut _id de type ObjectId.
+
+.Not Only SQL (wikipedia)
+****
+En informatique, NoSQL (Not only SQL en anglais) désigne une catégorie de systèmes de gestion de base de données (SGBD) qui n'est plus fondée sur l'architecture classique des bases relationnelles. L'unité logique n'y est plus la table, et les données ne sont en général pas manipulées avec SQL.
+****
+
+== Collections
+
+Les documents sont rangés dans des *collections* l'équivalent des tables sql.
+
+Cependant, les collections sont beaucoup moins rigides que les tables.
+Chaque document peut avoir sa propre structure.
+
+Cela n'empêche pas les collections de gérer des index afin d'assurer la performance.
+
+== Replica Sets
+
+L'origine des bases NoSql vise la performance sur des volumes de données importants.
+
+Dans ce cadre, mongodb propose des replica sets : un groupe de process qui maintiennent le même jeu de données.
+
+Cela apporte haute disponibilité (tolérance à la panne) et redondance (tolérance à la perte de données sur un noeud).
+
+Un replica set contient toujours un serveur primaire et des secondaires.
+
+.Replicat set
+image::replica-set.png[align="center"]
+
+Pour augmenter la performance, il est possible que les clients viennent lire sur les secondaires.
+Il se peut donc qu'au moment de la lecture, les données ne soient pas encore répliquées vers les secondaires.
+
+[quote, Amazon, Eventual Consistency]
+the storage system guarantees that if no new updates are made to the object, eventually all accesses will return the last updated value.
+
+== Sharding
+
+Le sharding est l'éclatement de l'ensemble des données en sous ensemble.
+
+Cela permet de répartir la charge des requêtes entres plusieurs serveurs.
+
+.Shards
+image::shards.png[align="center"]
+
+Afin de pouvoir répartir une collection sur plusieurs serveurs, il faut définir une clé de sharding.
+
+Les données seront alors réparties en fonction de cette clé.
+
+.Logs
+****
+Un exemple de sharding pourrait concerner les logs : le volume est souvent imposant.
+
+Il serait possible de diviser les logs en se basant sur la date du log.
+
+Ainsi, les requêtes seraient réparties entre les noeuds pour plus de perfomance.
+****
+
+== Map reduce
+
+Une des opération qui a rendu célèbre les bases NoSQL est le map-reduce : c'est un mécanisme de traitement en masse des données afin de fournir un résultat aggrégé.
+
+.Map reduce
+image::map-reduce.png[]
+
+Le principe se marie idéalement avec du sharding où les opération peuvent opérer sur tous les noeuds en même temps avant que le résultat final soit aggrégé.
+
+== SQL vs MongoDB
+
+Les qualités d'une base SQL sont :
+
+* *A* tomicité : une transaction se fait au complet ou pas du tout
+* *C* ohérence : chaque transaction amènera le système d'un état valide à un autre état valide
+* *I* solation : toute transaction doit s'exécuter comme si elle était la seule sur le système
+* *D* urabilité : une transaction finalisée altère les données façon permanente et resistante à la panne
+
+Or mongodb ne supporte ni transaction, ni clé étrangère. Donc pas d'ACIDité.
+
+En contrepartie de ces défauts, mongodb apporte plus de perfomance, plus de souplesse et plus de simplicité.
 
 == installation
 
@@ -39,3 +139,7 @@ projects$ mongod --dbpath mongodb-data
 ----
 
 La base est prête à recevoir des connexions.
+
+== Robomongo
+
+http://robomongo.org/

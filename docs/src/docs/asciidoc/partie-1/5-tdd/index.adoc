@@ -179,8 +179,6 @@ image:test-result.png[]
 
 Faites ce qu'il faut pour que le test passe.
 
-image:launch-test-success.png[]
-
 Après cela, pour le moment, il n'y a pas grand chose à refactorer.
 
 === Test suivant
