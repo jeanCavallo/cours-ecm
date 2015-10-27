@@ -90,7 +90,7 @@ Ainsi, les requêtes seraient réparties entre les noeuds pour plus de perfomanc
 Une des opération qui a rendu célèbre les bases NoSQL est le map-reduce : c'est un mécanisme de traitement en masse des données afin de fournir un résultat aggrégé.
 
 .Map reduce
-image::map-reduce.png[]
+image::map-reduce.png[align="center"]
 
 Le principe se marie idéalement avec du sharding où les opération peuvent opérer sur tous les noeuds en même temps avant que le résultat final soit aggrégé.
 
