@@ -44,6 +44,26 @@ Chaque document peut avoir sa propre structure.
 
 Cela n'empêche pas les collections de gérer des index afin d'assurer la performance.
 
+== Shell & Javascript
+
+Pour interagir avec la base, il est possible d'utiliser le shell mongo.
+
+****
+The mongo shell is an interactive *JavaScript* interface to MongoDB and is a component of the MongoDB package.
+You can use the mongo shell to query and update data as well as perform administrative operations.
+****
+
+L'api mongo est riche et bien documentée.
+
+.Exemple de requête
+----
+db.inventory.find( { type: 'food', price: { $lt: 9.95 } } ) <1>
+----
+<1> on cherche les documents de type 'food' avec un prix inférieur à 9.95 dans la collection 'inventory'
+
+Lorsque l'on construit une application, on utilise un driver.
+Selon le language et les frameworks, la façon d'utiliser mongo peut varier.
+
 == Replica Sets
 
 L'origine des bases NoSql vise la performance sur des volumes de données importants.
@@ -114,8 +134,27 @@ Pour installer mongodb on passe par homebrew :
 [source.terminal]
 ----
 projects$ brew install mongodb
-... TODO
+==> Downloading https://homebrew.bintray.com/bottles/mongodb-3.0.6.yosemite.bottle.tar.gz
+######################################################################## 100,0%
+==> Pouring mongodb-3.0.6.yosemite.bottle.tar.gz
+==> Caveats
+To have launchd start mongodb at login:
+  ln -sfv /usr/local/opt/mongodb/*.plist ~/Library/LaunchAgents
+Then to load mongodb now:
+  launchctl load ~/Library/LaunchAgents/homebrew.mxcl.mongodb.plist
+Or, if you don't want/need launchctl, you can just run:
+  mongod --config /usr/local/etc/mongod.conf
+==> Summary
+🍺  /usr/local/Cellar/mongodb/3.0.6: 17 files, 159M
 ----
+
+== Création du répertoire de données
+
+[source.terminal]
+----
+projects$ mkdir mongodb-data <1>
+----
+<1> ce répertoire contiendra les données de la base
 
 == Lancer la base
 
@@ -123,7 +162,6 @@ Une fois installée, il suffit de lancer la base.
 
 [source.terminal]
 ----
-projects$ mkdir mongodb-data
 projects$ mongod --dbpath mongodb-data
 2015-06-12T17:53:52.757+0200 I JOURNAL  [initandlisten] journal dir=mongodb-data/journal
 2015-06-12T17:53:52.757+0200 I JOURNAL  [initandlisten] recover : no journal files present, no recovery needed
@@ -142,4 +180,8 @@ La base est prête à recevoir des connexions.
 
 == Robomongo
 
-http://robomongo.org/
+On pourrait utiliser le shell mais une interface graphique est plus accessible pour débuter.
+
+Malheureusement, il n'existe pas beaucoup de clients graphiques à la hauteur.
+
+Nous utiliserons http://robomongo.org/[robomongo].
