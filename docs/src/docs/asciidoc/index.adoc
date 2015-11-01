@@ -6,7 +6,7 @@ Java est un language *fortement typé*.
 
 Accompagné d'une certaine lourdeur, il semble peu adapté au web.
 
-Pourtant, les nombreux *frameworks* et la *richesse de son environnement* le rendent incontournable.
+Ses nombreux *frameworks* et la *richesse de son environnement* le rendent pourtant incontournable.
 
 == Partie 1 : la forge logicielle : pratiques et outils
 

@@ -1,3 +1,5 @@
+include::../../header.adoc[]
+
 = Architecture de l'application
 :stylesheet: ../../style.css
 
@@ -14,11 +16,13 @@ L'architecture est composée d'une application web qui est reliée à une base d
 \-------/      +-------+
 ....
 
-L'application est en java et est packagée sous le format standard war.
+L'application est en java et est packagée sous le format standard *war*.
 
-Mongodb est une base nosql qui stocke des documents en format BSON (Binary JSON).
+Mongodb est une base NOSQL qui stocke des documents en format BSON (Binary JSON).
 
 == technology stack
+
+Voici la liste des principales technologies utilisées dans notre projet.
 
 ****
 [.float-group]
@@ -27,7 +31,7 @@ image::java.png[width="100",role="left"]
 
 Java est un language de programmation orienté objet.
 
-Java c'est la jvm qui permet d e faire tourner les programmes et le jdk qui contient les libraries standard et le compilateur.
+Java c'est aussi la jvm qui permet de faire tourner les programmes et le jdk qui contient les libraries standard et le compilateur.
 
 Java Enterprise Edition (JEE) est un ensemble de librairies et outils facilitant (?) le développement d'applications.
 --
@@ -75,11 +79,9 @@ Spring a aussi un module MVC pour le web, que nous utilisons.
 --
 image::mongo.jpg[width="100",role="left"]
 
-https://www.mongodb.org/[MongoDB] est une base données orientée document (en opposition des tables en SQL).
+https://www.mongodb.org/[MongoDB] est une base données NOSQL orientée document.
 
 Un document est un arbre json qui est stocké en Binary JSON (BSON). Ce sont des structures souples, sans schéma.
-
-Mais elle n'offre pas les mêmes services que les bases SQL : transactions et intégrité référentielle.
 --
 ****
 
@@ -90,7 +92,7 @@ image::bootstrap.png[width="100",role="left"]
 
 http://getbootstrap.com/[Bootstrap] est un framework html, css et javascript pour développer des pages responsives.
 
-Développé par des membres de twitter, il est aujourd'hui très largement utilisé.
+Développé initialement en interne chez twitter, il est aujourd'hui très largement utilisé.
 --
 ****
 
@@ -103,7 +105,7 @@ http://jquery.com/[jquery] est un framework javascript très populaire.
 
 Il est simple mais néanmoins très puissant.
 
-Il est utilisé par boostrap.
+Il est utilisé par certaines fonctionnalités de boostrap.
 --
 ****
 
@@ -126,16 +128,20 @@ par défaut, Gradle suit ce standard :
 
 [source]
 ----
-src                 // toutes les sources
-├─ main             // le code de l'application
-|  ├─ [language 1]  // le code est segmenté par language
+src <1>
+├─ main <2>
+|  ├─ [language 1] <3>
 |  ├─ [language 2]
-└─ test             // le code des test
+└─ test <4>
    ├─ [language 1]
    ├─ [language 2]
 ----
+<1> toutes les sources
+<2> le code de l'application
+<3> le code est segmenté par language
+<4> le code des test
 
-IMPORTANT: *Convention over configuration* : cette arborescence est une convention, si on la suit, il n'y a pas besoin de de configuration. 
+IMPORTANT: *Convention over configuration* : cette arborescence est une convention, si on la suit, il n'y a pas besoin de configuration.
 
 Dans notre cas :
 
@@ -143,15 +149,20 @@ Dans notre cas :
 ----
 src
 ├─ main
-|  ├─ java        // notre code en java
-|  ├─ resources   // les fichiers qui vont aussi dans le classpath
-|  └─ webapp      // les fichiers qui vont à la racine de l'application web
-|     ├─ WEB-INF  // fichiers de configuration protégés
-|     └─ META-INF // fichiers de méta données protégés
+|  ├─ java <1>
+|  ├─ resources <2>
+|  └─ webapp <3>
+|     ├─ WEB-INF <4>
+|     └─ META-INF <5>
 └─ test
    ├─ java
    └─ resources
 ----
+<1> notre code en java
+<2> les fichiers qui vont aussi dans le classpath
+<3> les fichiers qui vont à la racine de l'application web
+<4> fichiers de configuration protégés
+<5> fichiers de méta données protégés
 
 == structure de l'app
 
@@ -182,9 +193,28 @@ Le rôle des composants :
 * services : on y range la logique un peu plus avancée et les accès à la base.
 * JSP views : ce sont les templates qui produisent le html
 
+Cette division permet d'utiliser le language ou la technologie la plus adaptée pour chaque partie de l'application.
+
 == vue séquentielle
 
-dispatcher -> controller -> service -> db -> dispatcher -> jsp view
+En pratique chaque composant est appelé dans un ordre bien précis afin de remplir son role.
+
+Voici la vision complète
+
+image::sequence.png[width=100%]
+
+* La DispatcherServlet reçoit la requête.
+* La DispatcherServlet demande au HandlerMapping de choisir la bonne méthode (handler) sur le bon Controller.
+* La DispatcherServlet demande à un HandlerAdapter d'appeler le Controller.
+* Le HandlerAdapter appelle le Controller.
+* Le Controller fait son travail avec l'aide des services et retourne le modèle de données et une référence à la vue qui doit s'exécuter.
+* La DispatcherServlet demande au ViewResolver de résoudre la référence vers la View.
+* La DispatcherServlet exécute la View.
+* La View crée le rendu final de la page.
+
+http://terasolunaorg.github.io/guideline/1.0.1.RELEASE/en/Overview/SpringMVCOverview.html[source sur http://terasolunaorg.github.io]
+
+NOTE: Certaines étapes de ce cheminement sont optionnelles.
 
 == tests et TDD
 

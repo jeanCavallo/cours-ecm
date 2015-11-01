@@ -1,10 +1,12 @@
+include::../../header.adoc[]
+
 = Bienvenue chez S4U
 :stylesheet: ../../style.css
 :icons: font
 
 image::banner.png[width="100%"]
 
-Vous venez de rentrer chez S4U, la SSII experte.
+Vous venez de signer votre premier contrat chez S4U, la SSII experte.
 
 Vous avez été accueilli par Jack Power, le CEO, et la responsable des ressources humaines.
 

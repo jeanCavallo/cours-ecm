@@ -1,15 +1,17 @@
+
+include::../../header.adoc[]
+
 = Templates JSP
-:stylesheet: ../../style.css
 
 Voici la liste des bugs répertoriés en relation avec les JSP
 
 ****
-* <<JSP-1>>  : Il manque un 's' dans l'entrée "Toutes les recette" du menu
+* <<JSP-1>>  : il manque un 's' dans l'entrée "Toutes les recette" du menu
 * <<JSP-2>>  : le lien vers les mentions légales est incorrect
-* <<JSP-3>>  : format date in recette.jsp
-* <<JSP-4>>  : format tags with for each
-* <<JSP-5>>  : include header with params
-* <<JSP-6>>  : format text with function
+* <<JSP-3>>  : format de la date dans recette.tag
+* <<JSP-4>>  : liste des tags avec forEach
+* <<JSP-5>>  : factorisation du header
+* <<JSP-6>>  : format du texte dans recette.tag
 * <<JSP-7>>  : auto complétion : data-service-url
 * <<JSP-8>>  : add sel / poivre
 * <<JSP-9>>  : delete then add, index is wrong
@@ -18,7 +20,9 @@ Voici la liste des bugs répertoriés en relation avec les JSP
 
 NOTE: Il n'est pas nécessaire de redémarrer le serveur tomcat avec `gradle tomcatRun` pour que les modifications soient prise en compte
 
-NOTE: link:../A-jsp/index.html[l'annexe A] couvre ce qu'il est possible de faire dans les jsp
+NOTE: link:../A-jsp/index.html[L'annexe A] couvre ce qu'il est possible de faire dans les jsp
+
+NOTE: Afin d'éditer les recettes, il faut utiliser l'interface d'admin sur /admin
 
 == [[JSP-1]]JSP-1 : Typo
 
@@ -48,17 +52,37 @@ Comme il faut obtenir une chaîne de caractère, la jsp utilise la méthode toSt
 
 Ce n'est pas très lisible.
 
-Il faut formatter avec le pattern suivant `dd MMM yyyy` (TODO doc java date patterns)
+Il faut formatter avec le pattern suivant `dd MMM yyyy` (voir les http://docs.oracle.com/javase/7/docs/api/java/text/SimpleDateFormat.html[patterns pour les dates])
 
-[[JSP-4]]
+Regardez dans link:../A-jsp/index.html[l'annexe A] le custom tag formatDate de la JSTL. Vous pouvez aussi chercher sur le web.
 
-[[JSP-5]]
+== [[JSP-4]]JSP-4 :
+
+Dans la jsp qui affiche une recette, il y a la liste des tags associés à une recette.
+
+Actuellement, la liste est affiché comme cela : `<span class="label label-primary">${fn:escapeXml(recipe.tags)}</span>`.
+
+La propriété tags d'une recette est une liste.
+
+Cela donne donc quelque chose comme image:tags.png[] si il y a plusieurs tags.
+
+On voudrait plutôt faire une boucle sur les tags afin d'obtenir le code suivant :
+
+[source,html]
+----
+<span class="label label-primary">choucoute</span
+<span class="label label-primary">alsace</span
+----
+
+Pour cela, utilisez le custom tag forEach de la librairie c (voir link:../A-jsp/index.html[l'annexe A] et le web)
+
+== [[JSP-5]]JSP-5 :
 
 Le footer est produit par le tag file footer.tag.
 
-On peut voir que ce n'est pas le cas pour le header.
+On peut voir que ce n'est pas le cas pour le header qui est répété plusieurs fois.
 
-[source,jsp]
+[source,html]
 ----
 <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container-fluid">
@@ -84,9 +108,51 @@ On peut voir que ce n'est pas le cas pour le header.
 
 Ce n'est pas bien car si on le change, il faut le faire dans tous les fichiers.
 
-Il faut trouver le meilleur moyen de partager ce morceau entre les templates.
+La meilleure façon de factoriser est via un tag file comme pour le header.
 
-[[JSP-6]]
+Au passage, il est même possible de passer un paramètre depuis chaque page afin de rendre actif un élément de la navigation.
+
+link:../A-jsp/index.html[L'annexe A] décrit le fonctionnement des tag files.
+
+Voir également la doc http://getbootstrap.com/components/#navbar[Bootstrap] afin de rendre un élément actif.
+
+== [[JSP-6]]JSP-6
+
+Dans la page de recette, si la recette possède un texte sur plusieurs lignes comme ceci :
+
+.exemple de texte sur plusieurs lignes
+----
+du texte
+du texte
+du texte
+et encore du texte.
+----
+
+Il s'affiche sur une seule ligne dans le navigateur.
+
+Le code responsable dans la jsp est `<p>${fn:escapeXml(recipe.text)}</p>`
+
+La fonction escapeXml nous permet de bien afficher les <, > et & qui sinon risqueraient de casser notre code html.
+
+Mais elle ne transforme pas les retours chariot en <br>.
+
+Il est possible de chainer les opérations afin d'arriver au résultat en utilisant une fonction replace.
+
+Cependant, il serait mieux de créer notre propre fonction qui fait les 2 opérations pour un seul appel depuis la jsp.
+
+Pour faire cela :
+
+* il faut ajouter un package fr.cmm.tags dans src/main/java
+* il faut ajouter une classe Functions.java (au choix) dans le package
+* il faut ajouter une méthode *statique* dans la classe java qui prend un String en paramètre et renvoie un String
+* il faut ajouter une tld dans WEB-INF-tld
+* il faut déclarer la tld dans la jsp
+* il faut changer l'appel de excapeXml par notre méthode
+
+Pour l'impémentation, on peut utiliser https://commons.apache.org/proper/commons-lang/javadocs/api-3.1/org/apache/commons/lang3/StringEscapeUtils.html[StringEscapeUtils] qui est déjà présent dans notre projet.
+Pour les retours chariots, il faut faire un replace des `"\n"` par des `<br>`
+
+link:../A-jsp/index.html[L'annexe A] décrit le fonctionnement des fichiers tld et des fonctions.
 
 [[JSP-7]]
 
@@ -94,4 +160,14 @@ Il faut trouver le meilleur moyen de partager ce morceau entre les templates.
 
 [[JSP-9]]
 
-[[JSP-10]]
+== [[JSP-10]]JSP-10
+
+Dans recettes.jsp il y a une pagination qui n'est pas fonctionnelle pour le moment.
+
+Le code est `${pagination.pages}`.
+
+La classe `Pagination` est dans le package `fr.cmm.helper` (elle ne fonctionne pas bien, mais ce n'est pas le sujet pour le moment).
+
+En se servant de tout ce qui a été vu précédemment, formattez cette pagination en utilisant le http://getbootstrap.com/components/#pagination[composant pagination de bootstrap]
+
+image::pagination.png[align=center]

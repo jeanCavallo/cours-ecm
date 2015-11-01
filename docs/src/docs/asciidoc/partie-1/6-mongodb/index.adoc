@@ -173,15 +173,22 @@ projects$ mongod --dbpath mongodb-data
 2015-06-12T17:53:52.784+0200 I CONTROL  [initandlisten] build info: Darwin mavericksvm.local 13.4.0 Darwin Kernel Version 13.4.0: Wed Dec 17 19:05:52 PST 2014; root:xnu-2422.115.10~1/RELEASE_X86_64 x86_64 BOOST_LIB_VERSION=1_49
 2015-06-12T17:53:52.784+0200 I CONTROL  [initandlisten] allocator: system
 2015-06-12T17:53:52.784+0200 I CONTROL  [initandlisten] options: { storage: { dbPath: "mongodb-data" } }
-2015-06-12T17:53:52.850+0200 I NETWORK  [initandlisten] waiting for connections on port 27017
+2015-06-12T17:53:52.850+0200 I NETWORK  [initandlisten] waiting for connections on port 27017 <1>
 ----
+<1> La base écoute sur le port 27017
 
 La base est prête à recevoir des connexions.
 
 == Robomongo
 
-On pourrait utiliser le shell mais une interface graphique est plus accessible pour débuter.
+On pourrait utiliser le shell mais une interface graphique est plus simple pour débuter.
 
-Malheureusement, il n'existe pas beaucoup de clients graphiques à la hauteur.
+Il existe beaucoup de https://docs.mongodb.org/ecosystem/tools/administration-interfaces/[clients graphique]
 
 Nous utiliserons http://robomongo.org/[robomongo].
+
+Installez ce logiciel et connectez vous à la base en local sur le port 27017.
+
+Une fois connecté, vous pouvez créer une base, des collections et faire de multiples https://docs.mongodb.org/manual/tutorial/query-documents/[requêtes].
+
+image::robomongo.png[]

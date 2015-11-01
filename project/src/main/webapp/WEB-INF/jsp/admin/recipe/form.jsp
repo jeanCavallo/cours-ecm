@@ -98,7 +98,7 @@
                             <div class="form-group ${status.error ? 'has-error' : ''}">
                                 <label class="control-label" for="tags">Tags ${status.errorMessage}</label>
                                 <%-- FIX-JSP-7 --%>
-                                <form:input cssClass="form-control" id="tags" data-role="tags" placeholder="Tags" path="tagsAsString" />
+                                <form:input cssClass="form-control" id="tags" data-role="tags" placeholder="tag1,tag2" path="tagsAsString" />
                             </div>
                         </spring:bind>
                     </div>

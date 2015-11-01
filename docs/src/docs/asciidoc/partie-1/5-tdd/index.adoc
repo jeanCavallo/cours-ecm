@@ -224,4 +224,4 @@ Sans toucher les tests, nous allons transformer notre code.
 C'est une nouveauté java 8 : c'est l'arrivée d'un peu de programmation fonctionelle.
 ====
 
-Les lambdas
+TODO

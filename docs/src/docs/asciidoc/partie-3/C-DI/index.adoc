@@ -1,6 +1,6 @@
+include::../../header.adoc[]
+
 = Annexe C : L'injection de dépendances
-:stylesheet: ../../style.css
-:icons: font
 
 Une application est un réseau riche de composants qui dépendent les uns des autres.
 

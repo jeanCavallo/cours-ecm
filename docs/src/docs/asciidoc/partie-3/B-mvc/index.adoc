@@ -1,5 +1,6 @@
+include::../../header.adoc[]
+
 = Annexe B : L'architecture MVC
-:stylesheet: ../../style.css
 
 L'architecture MVC repose sur la séparation des responsabilités.
 
