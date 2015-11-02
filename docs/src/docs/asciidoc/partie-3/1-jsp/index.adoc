@@ -12,9 +12,9 @@ Voici la liste des bugs répertoriés en relation avec les JSP
 * <<JSP-4>>  : liste des tags avec forEach
 * <<JSP-5>>  : factorisation du header
 * <<JSP-6>>  : format du texte dans recette.tag
-* <<JSP-7>>  : auto complétion : data-service-url
-* <<JSP-8>>  : add sel / poivre
-* <<JSP-9>>  : delete then add, index is wrong
+* <<JSP-7>>  : auto complétion des tags
+* <<JSP-8>>  : ajouter du sel et du poivre
+* <<JSP-9>>  : index dans les tableaux d'ingrédients
 * <<JSP-10>> : pagination
 ****
 
@@ -108,7 +108,16 @@ On peut voir que ce n'est pas le cas pour le header qui est répété plusieurs 
 
 Ce n'est pas bien car si on le change, il faut le faire dans tous les fichiers.
 
-La meilleure façon de factoriser est via un tag file comme pour le header.
+.DRY
+****
+La duplication de code est l'un des pire enemis du développeur.
+
+Le principe *DRY* (Don't Repeat Yourself) énonce que "Every piece of knowledge must have a single, unambiguous, authoritative representation within a system."
+
+Sans cela, la maintenance d'un logiciel est un enfer.
+****
+
+La meilleure façon de factoriser est via un *fichier tag* comme pour le header.
 
 Au passage, il est même possible de passer un paramètre depuis chaque page afin de rendre actif un élément de la navigation.
 
@@ -154,11 +163,107 @@ Pour les retours chariots, il faut faire un replace des `"\n"` par des `<br>`
 
 link:../A-jsp/index.html[L'annexe A] décrit le fonctionnement des fichiers tld et des fonctions.
 
-[[JSP-7]]
+== [[JSP-7]]JSP-7
 
-[[JSP-8]]
+Lorsqu'on édite une recette, il devrait y avoir de l'autocomplétion sur le champs tags.
 
-[[JSP-9]]
+Cette fonctionnalité est mise en place au chargement de la page dans le code javascript présent dans le projet.
+
+La liste complète des tags est un service offert par l'IndexController via le mapping '/tags.json'.
+
+En étudiant le javascript, faites fonctionner l'autocomplétion sur les tags.
+
+.data-* attributes
+****
+Les https://developer.mozilla.org/en-US/docs/Web/Guide/HTML/Using_data_attributes[data-* attributes] permettent de stocker de l'information en respect des normes.
+
+Ils sont pratiques afin de ranger des données qui ne correspondent à aucun attribut standard.
+****
+
+== [[JSP-8]]JSP-8
+
+Pour gagner du temps, dans l'interface d'édition, le client aurait voulu un bouton 'ajouter du sel' et 'ajouter du poivre'.
+
+En étudiant le javascript du site et le fichier ingredient-form-row.jsp, ajoutez les boutons 'sel' et 'poivre' nécessaires.
+
+== [[JSP-9]]JSP-9
+
+Lorsque l'on ajoute des ingrédients puis on en retire, on arrive avec le html suivant :
+
+[source,html]
+.ingredients
+----
+<div id="ingredients">
+ <div></div>
+ <div></div>
+ <div></div>
+ <div>
+  <div class="row">
+   <div class="col-xs-6">
+    <input type="text" class="form-control" placeholder="Nom" name="ingredients[3].name" value="">
+   </div>
+   <div class="col-xs-2">
+    <input type="text" class="form-control" placeholder="Quantité" name="ingredients[3].quantity" value="">
+   </div>
+   <div class="col-xs-2">
+    <input type="text" class="form-control" placeholder="Unité" name="ingredients[3].unit" value="">
+   </div>
+   <div class="col-xs-1">
+    <button type="button" class="btn btn-default" data-role="removeIngredient"><span class="glyphicon glyphicon-minus" aria-hidden="true"></span></button>
+   </div>
+  </div>
+ </div>
+ <div>
+  <div class="row">
+   <div class="col-xs-6">
+    <input type="text" class="form-control" placeholder="Nom" name="ingredients[5].name" value="">
+   </div>
+   <div class="col-xs-2">
+    <input type="text" class="form-control" placeholder="Quantité" name="ingredients[5].quantity" value="">
+   </div>
+   <div class="col-xs-2">
+    <input type="text" class="form-control" placeholder="Unité" name="ingredients[5].unit" value="">
+   </div>
+   <div class="col-xs-1">
+    <button type="button" class="btn btn-default" data-role="removeIngredient"><span class="glyphicon glyphicon-minus" aria-hidden="true"></span></button>
+   </div>
+  </div>
+ </div>
+ <div>
+  <div class="row">
+   <div class="col-xs-6">
+    <input type="text" class="form-control" placeholder="Nom" name="ingredients[6].name" value="">
+   </div>
+   <div class="col-xs-2">
+    <input type="text" class="form-control" placeholder="Quantité" name="ingredients[6].quantity" value="">
+   </div>
+   <div class="col-xs-2">
+    <input type="text" class="form-control" placeholder="Unité" name="ingredients[6].unit" value="">
+   </div>
+   <div class="col-xs-1">
+    <button type="button" class="btn btn-default" data-role="removeIngredient"><span class="glyphicon glyphicon-minus" aria-hidden="true"></span></button>
+   </div>
+  </div>
+ </div>
+</div>
+----
+
+On peut voir que le tableau d'ingrédients à des trous (ici on a encore les index 3, 5 et 6)
+
+Ces données vont partir vers le serveur qui va remplir une liste de 6 éléments avec 3 trous.
+
+Si on sauve, on va donc récupérer 3 lignes de données vides :
+
+image::ingredients-index.png[align=center]
+
+Que faudrait il faire pour corriger ce problème ?
+
+.RIA
+****
+Ce petit exemple de liste dynamique démontre que les frameworks classiques comme Spring MVC sont mal à l'aise avec ce genre de problème.
+
+Les frameworks pour les Rich Internet Applications (RIA) comme AngularJS traiteraient de ce problème beaucoup plus aisément.
+****
 
 == [[JSP-10]]JSP-10
 
