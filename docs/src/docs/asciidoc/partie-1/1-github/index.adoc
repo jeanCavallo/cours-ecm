@@ -7,7 +7,7 @@ Un *Versioning Control System* (VCS) permet de stocker tout son fichiers : code,
 
 NOTE: C'est le coffre fort d'une équipe de développement.
 
-Il doit être simple d'interagir avec et simple de restaurer un état passé.
+Il doit être simple d'utilisation et facile de naviguer dans l'historique.
 
 De tous les système récents, *git* est le plus à la mode.
 

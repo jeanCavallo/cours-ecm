@@ -1,3 +1,6 @@
+
+include::../../header.adoc[]
+
 = Le MVC
 :stylesheet: ../../style.css
 
@@ -20,7 +23,15 @@ NOTE: Les modifications dans les controllers nécessitent de redémarrer le serv
 
 NOTE: link:../B-mvc/index.html[l'annexe B] résume les concepts liés au MVC pour le web
 
-== [[MVC-1]]MVC-1 :
+== [[MVC-1]]MVC-1 : forward vers la jsp contact.jsp
+
+Le lien "Nous contacter" dans le footer fait une 404
+
+image::404.png[align=center]
+
+Corrigez la classe `IndexController` afin que ce lien fonctionne.
+
+TODO : tests unitaires
 
 == [[MVC-2]]MVC-2 :
 

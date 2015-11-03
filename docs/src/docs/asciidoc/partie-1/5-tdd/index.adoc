@@ -100,7 +100,7 @@ public class ArrayListTest {
 
 Dans notre 'test-project' nous ajoutons les répertoires suivants :
 
-[source,terminal]
+[source.terminal]
 ----
 test-project$ mkdir -p src/main/java src/test/java
 ----
@@ -225,3 +225,10 @@ C'est une nouveauté java 8 : c'est l'arrivée d'un peu de programmation fonctio
 ====
 
 TODO
+
+.Pour aller plus loin
+****
+image:pro-git.jpg[pro git,100,role=right]
+
+TODO Test Driven Development
+****

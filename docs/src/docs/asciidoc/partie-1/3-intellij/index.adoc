@@ -108,7 +108,7 @@ Soit il faut mettre à jour à chaque modification
 
 Notre projet de test est prêt à recevoir du code.
 
-[source,terminal]
+[source.terminal]
 ----
 test-project $ tree
 .

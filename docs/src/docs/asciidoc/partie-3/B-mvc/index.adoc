@@ -1,3 +1,4 @@
+
 include::../../header.adoc[]
 
 = Annexe B : L'architecture MVC
@@ -296,3 +297,7 @@ Il est donc impératif que le contrôleur fasse un redirect après une modificat
 Ce pattern est appelé redirect after POST
 
 Cela permet d'éviter l'insert de doublons en base et d'assurer le fonctionnement normal du bouton back du navigateur.
+
+== Tests
+
+TODO
