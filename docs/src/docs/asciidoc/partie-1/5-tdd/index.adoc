@@ -228,7 +228,13 @@ TODO
 
 .Pour aller plus loin
 ****
-image:pro-git.jpg[pro git,100,role=right]
+image:tdd.jpg[TDD,100,role=right]
 
-TODO Test Driven Development
+Le Test Driven Development (TDD) est une pratique simple et extraordinairement enrichissante.
+
+Elle simplifie l'activité de coding et aide à produire du code plus ouvert.
+
+Le TDD n'est pas une spécificité java, cela s'applique à tous les languages.
+
+http://www.amazon.fr/Test-Driven-Development-Kent-Beck/dp/0321146530[Test Driven Development: By Example] explique les mécaniques du développement par les tests.
 ****

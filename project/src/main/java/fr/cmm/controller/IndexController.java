@@ -87,7 +87,7 @@ public class IndexController {
 
     @RequestMapping("/mentions-legales")
     public String mentionsLegales() {
-        return "/mentions-legales";
+        return "mentions-legales";
     }
 }
 

@@ -31,9 +31,14 @@ image::404.png[align=center]
 
 Corrigez la classe `IndexController` afin que ce lien fonctionne.
 
-TODO : tests unitaires
+Il y a des tests en place pour `IndexController` dans la classe `IndexControllerTest`, profitez en pour rajouter un test pour cette méthode `contact()`.
+
+NOTE: link:../B-mvc/index.html[L'annexe B] couvre les tests des Controllers avec MockMvc.
+Pour `IndexControllerTest` on a aussi utilisé une librairie de mock : http://mockito.org/[Mockito].
+Elle permet de simuler RecipeService et donc, de ne pas avoir besoin d'une connexion à la base pour le test.
 
 == [[MVC-2]]MVC-2 :
+
 
 == [[MVC-3]]MVC-3 :
 

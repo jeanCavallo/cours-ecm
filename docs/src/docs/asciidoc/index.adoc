@@ -4,7 +4,7 @@ image::banner.png[alt='Applications web en java']
 
 Java est un language *fortement typé*.
 
-Accompagné d'une certaine lourdeur, il semble peu adapté au web.
+Avec une certaine lourdeur syntaxique, il semble peu adapté au web.
 
 Ses nombreux *frameworks* et la *richesse de son environnement* le rendent pourtant incontournable.
 
@@ -15,7 +15,7 @@ Ses nombreux *frameworks* et la *richesse de son environnement* le rendent pourt
 . link:partie-1/3-intellij/index.html[Intellij]
 . link:partie-1/4-java/index.html[Java]
 . link:partie-1/5-tdd/index.html[TDD]
-. link:partie-1/6-mongodb/index.html[mongodb]
+. link:partie-1/6-mongodb/index.html[Mongodb]
 
 == Partie 2 : Bienvenue chez S4U
 
