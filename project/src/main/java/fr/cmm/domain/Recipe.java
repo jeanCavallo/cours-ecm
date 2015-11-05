@@ -22,7 +22,7 @@ public class Recipe {
 
     @NotNull
     @DateTimeFormat(pattern = "yyyy-MM-dd")
-    // FIX-MVC-7
+    // FIX-MVC-8
     private Date date = new Date();
 
     private String intro;

@@ -1,29 +1,15 @@
 
 include::../../header.adoc[]
 
-= Le MVC
-:stylesheet: ../../style.css
+= Bugs dans les controllers MVC
 
 Voici la liste des bugs répertoriés en relation avec le MVC
-
-****
-* <<MVC-1>>  : forward vers la jsp contact.jsp
-* <<MVC-2>>  : keep tag in input after search in recettes.jsp
-* <<MVC-3>>  : SearchForm what about invalid page index ?
-* <<MVC-4>>  : Pagination unit test : wrong page count
-* <<MVC-5>>  : Pagination unit test : getPages() pages are hardcoded
-* <<MVC-6>>  : IndexController : handle not found and create page 404 on unknow recipe
-* <<MVC-7>>  : Date Failed to convert property value of type java.lang.String to required type java.util.Date for property date; nested exception is org.springframework.core.convert.ConversionFailedException: Failed to convert from type java.lang.String to type @javax.validation.constraints.NotNull @org.springframework.format.annotation.DateTimeFormat java.util.Date for value 2015-04-02; nested exception is java.lang.IllegalArgumentException: Unable to parse 2015-04-02
-* <<MVC-8>>  :
-* <<MVC-9>>  : randomColumns() column height are too random ?
-* <<MVC-10>> :
-****
 
 NOTE: Les modifications dans les controllers nécessitent de redémarrer le serveur `gradle tomcatRun`
 
 NOTE: link:../B-mvc/index.html[l'annexe B] résume les concepts liés au MVC pour le web
 
-== [[MVC-1]]MVC-1 : forward vers la jsp contact.jsp
+== MVC-1 : Page contact cassée
 
 Le lien "Nous contacter" dans le footer fait une 404
 
@@ -37,21 +23,235 @@ NOTE: link:../B-mvc/index.html[L'annexe B] couvre les tests des Controllers avec
 Pour `IndexControllerTest` on a aussi utilisé une librairie de mock : http://mockito.org/[Mockito].
 Elle permet de simuler RecipeService et donc, de ne pas avoir besoin d'une connexion à la base pour le test.
 
-== [[MVC-2]]MVC-2 :
+== MVC-2 : La recherche est perdue
+
+Dans la page /recettes, si je fais une recherche les résultats s'affichent bien.
+
+Par contre, la boite de recherche est vidée.
+
+Par exemple sur /recettes?tag=alsace la boite de recherche est :
+
+image::search-form.png[align=center]
+
+Que faut il faire dans `IndexController` et dans `recettes.jsp` afin que le contenu de l'input soit correct ?
+
+== MVC-3 : pageIndex invalide
+
+Lors de la recherche sur /recettes, le `SearchForm` possède un paramètre `pageIndex`.
+
+Ainsi, on peut faire aller sur la page 2 via la requête /recettes?pageIndex=2
+
+.1 based ou 0 based
+****
+Nous avons choisi d'utiliser un index partant de 1 pour la première page.
+
+Nous avons fait cela car l'index est visible pour l'utilisateur et que commencer à 1 est plus logique pour un humain.
+
+Attention, cela l'API, cela peut varier, ce qui engendre bon nombre de problèmes.
+****
+
+Cependant, que se passe t il si un utilisateur change l'index à la main en mettant 0 ou un nombre négatif ?
+
+.Une erreur affreuse
+image::500-bad-index.png[align=center]
+
+Notre code n'est pas du tout protégé...
+
+Que peut on faire ?
+
+== MVC-4 : Problème de pagination
+
+La pagination semble avoir un problème, elle ne semble pas indiquer toujours le bon nombre de pages.
+
+Le code pour compter le nombre de pages est le suivant :
+
+[source,java]
+----
+public int getPageCount() {
+  return (int) count / pageSize;
+}
+----
+
+Par exemple, si il y a 20 éléments en base et que pageSize vaut 50, `getPageCount()` va donner 0.
+
+Aujoutez et faites passer des tests unitaires afin de couvrir les cas suivants :
+- count multiple de pageSize
+- count non multiple de pageSize
+- condition aux limites : count == 0
+
+Doit on tester le cas pageSize == 0 ?
+
+.Test driven
+****
+Certains tests peuvent paraitre inutiles puisque le code fonctionne déjà.
+
+Oui mais une fois les tests en place, ils assureront qu'il n'y a pas de régression.
+
+Combiner avec de l'intégration continue, on sera averti très rapidement qu'un commit a casser le projet.
+****
+
+== MVC-5 : getPages() dans Pagination
+
+En corrigent le problème de pagination dans MVC-4, on a pu voir que le résultat de `getPages()` était hardcodé.
+
+En passant par des tests unitaires, faire une impémentation correcte de cette méthode.
+
+Le fonctionnement le plus logique pour une navigation est de se contruire autour de l'index courant en essayant de mettre jusqu'a 10 éléments.
+
+== MVC-6 : Recette inconnue
+
+Pour le moment, on a très peu de gestion d'erreur.
+
+Si on va sur http://localhost:8080/recette/56375619d4c603aa4eb412dd on obtient une page très vide et cassée.
+
+Dans ce cas, on devrait obtenir une 404.
+
+En passant par les tests, s'assurer que l'obtient bien une 404 lorsque la recette n'existe pas.
+
+.Mockito
+****
+Afin de ne pas avoir à remplir la base pour les tests, on utilise la librairie Mockito.
+
+Elle permet d'obtenir une fausse RecipeService que l'on va pouvoir piloter depuis le test.
+
+Cela permet donc de tester notre IndexController en isolation du reste de notre code.
+****
+
+== MVC-7 : Pages 404 et 500
+
+Actuellement, nos pages 404 (ex: /plop) et 500 (ex: /recette/plop) sont affreuses : ce sont les pages par défaut de tomcat.
+
+Elles affichent les stacktraces, ce qui est bien pratique, mais pour le visiteur du site, c'est affreux.
+
+Nous allons donc ajouter des pages d'erreur plus jolies.
+
+[source,xml]
+.Gestion d'erreur dans le web.xml
+----
+<!-- Error pages handling -->
+<error-page>
+    <error-code>404</error-code> <1>
+    <location>/404</location>
+</error-page>
+<error-page>
+    <error-code>500</error-code> <2>
+    <location>/500</location>
+</error-page>
+----
+<1> En cas d'erreur 404, on redirige vers la page /404
+<2> En cas d'erreur 500, on redirige vers la page /500
+
+Comme cette gestion d'erreur se fait au niveau conteneur de Servlet (tomcat), il se peut que le rerouting vers Spring ne se passe pas.
+
+Pour aider le conteneur, on ajoute les mappings /404 et /500 sur la `DispatcherServlet`.
+
+[source,xml]
+.Mapping supplémentaire pour la Servlet Spring
+----
+<servlet>
+  <servlet-name>spring</servlet-name>
+  <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+  <load-on-startup>1</load-on-startup>
+</servlet>
+<servlet-mapping>
+  <servlet-name>spring</servlet-name>
+  <url-pattern>/</url-pattern>
+</servlet-mapping>
+<!-- nouveaux mappings-->
+<servlet-mapping>
+  <servlet-name>spring</servlet-name>
+  <url-pattern>/404</url-pattern>
+</servlet-mapping>
+<servlet-mapping>
+  <servlet-name>spring</servlet-name>
+  <url-pattern>/500</url-pattern>
+</servlet-mapping>
+----
+
+Ajoutez ces configurations ainsi que les mappings correspondant dans `IndexController`
+
+Enfin, ajoutez le fichier jsp qui affiche un message d'excuse. Un seul fichier jsp peut servir pour les 2 cas.
+
+== MVC-8 : Messages de validation
+
+A l'édition d'une recette, si on omet le titre ou la date, on obtient une erreur :
+
+image::validation-error.png[align=center]
+
+Tout d'abord le Controller fait de la gestion d'erreurs.
+
+[source,java]
+.Handler de post du formulaire
+----
+@RequestMapping(value = "/recettes/edit", method = POST)
+public String post(@ModelAttribute("command") @Valid Recipe recipe, BindingResult result, RedirectAttributes redirectAttributes) {
+  if (result.hasErrors()) { <1>
+    return "admin/recipe/form";
+  }
+
+  recipeService.save(recipe);
+
+  redirectAttributes.addFlashAttribute("flashMessage", "La recette a été sauvée"); <2>
+
+  return "redirect:/admin/recettes/edit?id=" + recipe.getId(); <3>
+}
+----
+<1> En cas d'erreur, on redirige vers la vue
+<2> En cas de succès, on ajoute un message flash
+<3> Redirect after POST
+
+Puis la jsp affiche les erreurs présentes
+
+[source,xml]
+.Affichage de l'erreur pour le title
+----
+<spring:bind path="title"> <1>
+  <div class="form-group ${status.error ? 'has-error' : ''}"> <2>
+    <label class="control-label" for="title">Titre ${fn:escapeXml(status.errorMessage)}</label> <3>
+    <form:input cssClass="form-control" id="title" placeholder="Titre" path="title" />
+  </div>
+</spring:bind>
+----
+<1> On indique a spring qu'on va travailler sur le champs title afin d'avoir accès aux erreurs de ce champs
+<2> Classe css en cas d'erreur
+<3> Le message d'erreur à coté du nom du champs
+
+Mais d'où vient le message "ne peut pas être vide" qui apparait ?
+
+Il serait possible d'utiliser l'objet http://docs.spring.io/spring/docs/current/javadoc-api/org/springframework/validation/BindingResult.html[`BindingResult`] afin de gérer la validation nous même.
+
+[source,java]
+.Validation Manuelle
+----
+if (title == null || "".equals(title)) {
+  result.rejectValue("title", "notEmpty", "est obligatoire");
+}
+----
+
+Cependant nous avons choisi d'utiliser `@Valid` dans notre Controller. Cela permet d'utiliser les annotionas de http://beanvalidation.org/[Bean Validation].
+
+Dans notre `Recipe` nous avons donc :
+
+[source,java]
+.Bean Validation dans le modèle
+----
+@NotEmpty <1>
+private String title;
+
+@NotNull <2>
+private Date date = new Date();
+----
+<1> Le titre ne peut pas être null ou vide
+<2> La date ne peut pas être null
+
+Les 2 approches (manuelle et Bean Validation) peuvent être combinées en fonction des besoins.
+
+Trouvez comment avoir les messages d'erreur suivant : "Titre est obligatoire" et "Date est obligatoire".
+
+Comment pourrait on faire si on souhaite ne pas pouvoir anti dater une recette uniquement à la création de celle ci ?
+
+== MVC-9 : randomColumns() column height are too random ?
 
 
-== [[MVC-3]]MVC-3 :
 
-[[MVC-4]]
-
-[[MVC-5]]
-
-[[MVC-6]]
-
-[[MVC-7]]
-
-[[MVC-8]]
-
-[[MVC-9]]
-
-[[MVC-10]]
+== MVC-10 : Logs

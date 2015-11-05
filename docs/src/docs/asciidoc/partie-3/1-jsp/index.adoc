@@ -1,22 +1,9 @@
 
 include::../../header.adoc[]
 
-= Templates JSP
+= Erreurs dans les templates JSP
 
 Voici la liste des bugs répertoriés en relation avec les JSP
-
-****
-* <<JSP-1>>  : il manque un 's' dans l'entrée "Toutes les recette" du menu
-* <<JSP-2>>  : le lien vers les mentions légales est incorrect
-* <<JSP-3>>  : format de la date dans recette.tag
-* <<JSP-4>>  : liste des tags avec forEach
-* <<JSP-5>>  : factorisation du header
-* <<JSP-6>>  : format du texte dans recette.tag
-* <<JSP-7>>  : auto complétion des tags
-* <<JSP-8>>  : ajouter du sel et du poivre
-* <<JSP-9>>  : index dans les tableaux d'ingrédients
-* <<JSP-10>> : pagination
-****
 
 NOTE: Il n'est pas nécessaire de redémarrer le serveur tomcat avec `gradle tomcatRun` pour que les modifications soient prise en compte
 
@@ -24,7 +11,7 @@ NOTE: link:../A-jsp/index.html[L'annexe A] couvre ce qu'il est possible de faire
 
 NOTE: Afin d'éditer les recettes, il faut utiliser l'interface d'admin sur /admin
 
-== [[JSP-1]]JSP-1 : il manque un 's' dans l'entrée "Toutes les recette" du menu
+== JSP-1 : il manque un 's' dans l'entrée "Toutes les recette" du menu
 
 Il manque un 's' à "Toutes les recette" dans le menu de toutes les pages.
 
@@ -32,7 +19,7 @@ Les templates jsp sont dans src/main/webapp/WEB-INF/jsp
 
 Il faut donc trouver tous les templates concernés et corriger.
 
-== [[JSP-2]]JSP-2 : le lien vers les mentions légales est incorrect
+== JSP-2 : le lien vers les mentions légales est incorrect
 
 Dans le footer, le lien vers les mentions légales n'est pas bon.
 
@@ -40,7 +27,7 @@ Il devrait pointer sur /mentions-legales
 
 Le footer a été partagé entre les templates au travers d'un tag file.
 
-== [[JSP-3]]JSP-3 : format de la date dans recette.tag
+== JSP-3 : format de la date dans recette.tag
 
 Dans la jsp qui affiche une recette, on trouve `<p>${receipe.date}</p>`
 
@@ -56,7 +43,7 @@ Il faut formatter avec le pattern suivant `dd MMM yyyy` (voir les http://docs.or
 
 Regardez dans link:../A-jsp/index.html[l'annexe A] le custom tag formatDate de la JSTL. Vous pouvez aussi chercher sur le web.
 
-== [[JSP-4]]JSP-4 : liste des tags avec forEach
+== JSP-4 : liste des tags avec forEach
 
 Dans la jsp qui affiche une recette, il y a la liste des tags associés à une recette.
 
@@ -76,7 +63,7 @@ On voudrait plutôt faire une boucle sur les tags afin d'obtenir le code suivant
 
 Pour cela, utilisez le custom tag forEach de la librairie c (voir link:../A-jsp/index.html[l'annexe A] et le web)
 
-== [[JSP-5]]JSP-5 : factorisation du header
+== JSP-5 : factorisation du header
 
 Le footer est produit par le tag file footer.tag.
 
@@ -125,7 +112,7 @@ link:../A-jsp/index.html[L'annexe A] décrit le fonctionnement des tag files.
 
 Voir également la doc http://getbootstrap.com/components/#navbar[Bootstrap] afin de rendre un élément actif.
 
-== [[JSP-6]]JSP-6 : format du texte dans recette.tag
+== JSP-6 : format du texte dans recette.tag
 
 Dans la page de recette, si la recette possède un texte sur plusieurs lignes comme ceci :
 
@@ -163,7 +150,7 @@ Pour les retours chariots, il faut faire un replace des `"\n"` par des `<br>`
 
 link:../A-jsp/index.html[L'annexe A] décrit le fonctionnement des fichiers tld et des fonctions.
 
-== [[JSP-7]]JSP-7 : auto complétion des tags
+== JSP-7 : auto complétion des tags
 
 Lorsqu'on édite une recette, il devrait y avoir de l'autocomplétion sur le champs tags.
 
@@ -180,13 +167,13 @@ Les https://developer.mozilla.org/en-US/docs/Web/Guide/HTML/Using_data_attribute
 Ils sont pratiques afin de ranger des données qui ne correspondent à aucun attribut standard.
 ****
 
-== [[JSP-8]]JSP-8 : ajouter du sel et du poivre
+== JSP-8 : ajouter du sel et du poivre
 
 Pour gagner du temps, dans l'interface d'édition, le client aurait voulu un bouton 'ajouter du sel' et 'ajouter du poivre'.
 
 En étudiant le javascript du site et le fichier ingredient-form-row.jsp, ajoutez les boutons 'sel' et 'poivre' nécessaires.
 
-== [[JSP-9]]JSP-9 : index dans les tableaux d'ingrédients
+== JSP-9 : index dans les tableaux d'ingrédients
 
 Lorsque l'on ajoute des ingrédients puis on en retire, on arrive avec le html suivant :
 
@@ -265,7 +252,7 @@ Ce petit exemple de liste dynamique démontre que les frameworks classiques comm
 Les frameworks pour les Rich Internet Applications (RIA) comme AngularJS traiteraient de ce problème beaucoup plus aisément.
 ****
 
-== [[JSP-10]]JSP-10 : pagination
+== JSP-10 : pagination
 
 Dans recettes.jsp il y a une pagination qui n'est pas fonctionnelle pour le moment.
 

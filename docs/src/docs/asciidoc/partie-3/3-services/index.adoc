@@ -4,7 +4,7 @@
 Voici la liste des bugs répertoriés en relation avec les services
 
 ****
-* <<SER-1>>  :
+* <<SER-1>>  : invalide object id in RecipeService.findById(String id)
 * <<SER-2>>  :
 * <<SER-3>>  : pick a recipe depending on season
 * <<SER-4>>  : sécurisation

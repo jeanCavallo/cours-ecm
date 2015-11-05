@@ -68,7 +68,7 @@
                     <div class="col-xs-12 col-sm-8">
                         <spring:bind path="title">
                             <div class="form-group ${status.error ? 'has-error' : ''}">
-                                <label class="control-label" for="title">Titre ${status.errorMessage}</label>
+                                <label class="control-label" for="title">Titre ${fn:escapeXml(status.errorMessage)}</label>
                                 <form:input cssClass="form-control" id="title" placeholder="Titre" path="title" />
                             </div>
                         </spring:bind>
@@ -76,7 +76,7 @@
                     <div class="col-xs-12 col-sm-4">
                         <spring:bind path="date">
                             <div class="form-group ${status.error ? 'has-error' : ''}">
-                                <label class="control-label" for="date">Date ${status.errorMessage}</label>
+                                <label class="control-label" for="date">Date ${fn:escapeXml(status.errorMessage)}</label>
                                 <form:input type="date" cssClass="form-control" id="date" placeholder="Date" path="date" />
                             </div>
                         </spring:bind>
@@ -86,7 +86,7 @@
                     <div class="col-xs-12">
                         <spring:bind path="intro">
                             <div class="form-group ${status.error ? 'has-error' : ''}">
-                                <label class="control-label" for="intro">Intro ${status.errorMessage}</label>
+                                <label class="control-label" for="intro">Intro ${fn:escapeXml(status.errorMessage)}</label>
                                 <form:input cssClass="form-control" id="intro" placeholder="Intro" path="intro" />
                             </div>
                         </spring:bind>
@@ -96,7 +96,7 @@
                     <div class="col-xs-12">
                         <spring:bind path="tags">
                             <div class="form-group ${status.error ? 'has-error' : ''}">
-                                <label class="control-label" for="tags">Tags ${status.errorMessage}</label>
+                                <label class="control-label" for="tags">Tags ${fn:escapeXml(status.errorMessage)}</label>
                                 <%-- FIX-JSP-7 --%>
                                 <form:input cssClass="form-control" id="tags" data-role="tags" placeholder="tag1,tag2" path="tagsAsString" />
                             </div>
@@ -107,7 +107,7 @@
                     <div class="col-xs-12">
                         <spring:bind path="text">
                             <div class="form-group ${status.error ? 'has-error' : ''}">
-                                <label class="control-label" for="text">Texte ${status.errorMessage}</label>
+                                <label class="control-label" for="text">Texte ${fn:escapeXml(status.errorMessage)}</label>
                                 <form:textarea cssClass="form-control" id="text" placeholder="Texte" path="text" rows="10" />
                             </div>
                         </spring:bind>
@@ -118,7 +118,7 @@
                         <spring:bind path="ingredients">
                             <div class="form-group ${status.error ? 'has-error' : ''}">
                                 <%-- FIX-JSP-8 --%>
-                                <label class="control-label">Ingredients ${status.errorMessage} <button type="button" class="btn btn-default btn-xs" data-role="addIngredient"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></button></label>
+                                <label class="control-label">Ingredients ${fn:escapeXml(status.errorMessage)} <button type="button" class="btn btn-default btn-xs" data-role="addIngredient"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></button></label>
                                 <div id="ingredients">
                                     <c:forEach var="ingredient" varStatus="loopStatus" items="${command.ingredients}">
                                         <jsp:include page="ingredient-form-row.jsp">
