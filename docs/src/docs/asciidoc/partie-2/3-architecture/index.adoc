@@ -143,7 +143,7 @@ src <1>
 
 IMPORTANT: *Convention over configuration* : cette arborescence est une convention, si on la suit, il n'y a pas besoin de configuration.
 
-Dans notre cas :
+Dans notre cas pour une application web JEE :
 
 [source]
 ----
@@ -163,6 +163,17 @@ src
 <3> les fichiers qui vont à la racine de l'application web
 <4> fichiers de configuration protégés
 <5> fichiers de méta données protégés
+
+.WEB-INF/classes
+****
+
+Au lancement, WEB-INF/classes sera ajouté au classpath.
+
+WEB-INF/classes ne fait pas partie des sources mais est généré au build.
+
+WEB-INF/classes contiendra les classes java et tous les fichiers présents dans main/resources
+
+****
 
 == structure de l'app
 

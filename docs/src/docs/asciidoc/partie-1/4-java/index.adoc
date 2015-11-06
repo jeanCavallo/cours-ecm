@@ -24,6 +24,11 @@ La commande javac de compilation fait partie du *Java Development Kit* (jdk).
 javac -classpath lib1.jar;lib2.jar Hello.java
 ----
 
+.classpath
+****
+C'est dans le classpath que la jvm va chercher les Classes java nécessaire à l'exécution d'un programme java.
+****
+
 == Organisation
 
 === Types

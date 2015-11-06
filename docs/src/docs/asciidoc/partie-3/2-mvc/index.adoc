@@ -250,8 +250,188 @@ Trouvez comment avoir les messages d'erreur suivant : "Titre est obligatoire" et
 
 Comment pourrait on faire si on souhaite ne pas pouvoir anti dater une recette uniquement à la création de celle ci ?
 
-== MVC-9 : randomColumns() column height are too random ?
+== MVC-9 : Logs
 
+Actuellement, nous n'avons rien fait afin de configurer les logs.
 
+Lorsqu'on lance un test unitaire, on peut voir les lignes suivantes :
 
-== MVC-10 : Logs
+image::logs.png[align=center]
+
+C'est très verbeux car on a toutes les traces à partir du niveau INFO.
+
+C'est en rouge parce que le code utilise la sortie error (stderr via `System.err`) par défaut.
+
+Le problème en java est qu'il existe plusieurs librairies de log (java.util.logging, log4j...).
+
+Pour faire simple, il y a aussi des wrappeurs comme http://www.slf4j.org/[SLF4J] (Simple Logging Facade for Java) ou https://commons.apache.org/proper/commons-logging/[commons-logging]
+
+.Librairies et wrappers
+****
+
+Il n'y avait pas de librairie standard de log aux débuts de java. Beaucoup de librairies existent donc aujourd'hui.
+
+Comme chaque librairie utilisée a fait un choix, il faudrait s'aligner dans son projet.
+
+Pour ne pas avoir à subir cela, on peut utiliser un wrapper qui va s'adapter à la situation.
+
+****
+
+Pour résumer, c'est joyeusement compliqué juste pour gérer les logs.
+
+java.util.logging étant plus pauvre que log4j, la plupart des librairies utilisent log4j (ou log4j2) ou un wrapper (slf4j ou commons-logging).
+
+=== Ajout de log4j
+
+On commence par ajouter log4j à nos librairies
+
+image::add-log4j.png[]
+
+Il faut bien s'assurer que la librairie est bien présente ensuite dans la liste des dépendances du projet.
+
+Si on relance notre test, on devrait voir :
+
+image::logs-log4j.png[align=center]
+
+Log4j est actif mais mal configuré.
+
+=== Configuration
+
+Il existe plusieurs façon de configurer log4j.
+
+On va passer par un fichier log4j.properties à la racine du classpath.
+
+Il suffit donc de rajouter ce fichier dans src/test/resources :
+
+.log4j.properties
+----
+log4j.rootLogger=ERROR, console <1>
+
+log4j.appender.console=org.apache.log4j.ConsoleAppender <2>
+log4j.appender.console.layout=org.apache.log4j.PatternLayout <3>
+
+log4j.appender.console.layout.ConversionPattern=%5p [%t] (%F:%L) - %m%n <4>
+
+----
+<1> Définition du root logger avec 'console' comme appender (sortie)
+<2> L'appender 'console' va écrire via le ConsoleAppender (System.out et System.err)
+<3> la sortie de 'console' est formattée
+<4> Format de la sortie
+
+.Configuration
+****
+
+Il existe de très nombreuses options de Configurartion.
+
+Par exemple, pour les Appenders, on trouve un FileAppender, un RollingFileAppender et même des Appenders capables d'écrire en base ou vers un service réseau.
+
+****
+
+Les logs en rouge doivent avoir disparu.
+
+Il est possible (et recommandé) de faire de même pour l'application en production.
+Par exemple, on pourrait mettre un fichier de configuration log4j dans src/main/resources.
+
+== MVC-10 : Sécurisation
+
+Actuellement, tout le monde peut accéder à /admin et donc administrer notre site.
+
+La librairie la plus complète pour ce genre de besoin est http://projects.spring.io/spring-security/[spring security].
+
+=== Ajout de spring-security
+
+Comme pour log4j, on rajoute la librairie
+
+[source,groovy]
+.build.gradle
+----
+compile 'org.springframework.security:spring-security-core:4.0.3.RELEASE'
+compile 'org.springframework.security:spring-security-config:4.0.3.RELEASE'
+compile 'org.springframework.security:spring-security-web:4.0.3.RELEASE'
+----
+
+Il faut penser à recharger le projet dans l'onglet gradle.
+
+=== Ajout de l'intercepteur
+
+Il faut faire en sorte que spring security intercepte toutes les requêtes.
+
+[source,xml]
+.web.xml
+----
+<filter>
+    <filter-name>springSecurityFilterChain</filter-name>
+    <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
+</filter>
+<filter-mapping>
+    <filter-name>springSecurityFilterChain</filter-name>
+    <url-pattern>/*</url-pattern>
+</filter-mapping>
+----
+
+Ainsi, avant d'arriver sur la `DispatcherServlet`, les requêtes passeront au travers du `DelegatingFilterProxy`.
+
+=== Ajout de la configuration
+
+Il reste a configurer spring security.
+
+[source,xml]
+.web.xml
+----
+<listener>
+    <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+</listener>
+<context-param>
+    <param-name>contextClass</param-name>
+    <param-value>org.springframework.web.context.support.AnnotationConfigWebApplicationContext</param-value>
+</context-param>
+<context-param>
+    <param-name>contextConfigLocation</param-name>
+    <param-value>fr.cmm.SpringConfig, fr.cmm.SpringSecurity</param-value>
+</context-param>
+----
+
+Et la classe java correspondante
+
+[source,java]
+.SpringSecurity
+----
+@Configuration
+@EnableWebSecurity
+public class SpringSecurity extends WebSecurityConfigurerAdapter {
+    @Inject
+    public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception { <1>
+        auth
+            .inMemoryAuthentication() <2>
+                .withUser("user").password("password").roles("ADMIN"); <3>
+    }
+
+    @Override
+    protected void configure(HttpSecurity http) throws Exception {
+        http
+                .authorizeRequests()
+                    .antMatchers("/admin").authenticated()
+                    .and()
+                .formLogin()
+                    .loginPage("/login")
+                    .permitAll()
+                .and()
+                    .logout()
+                    .permitAll();
+    }
+}
+----
+<1> Configuration globale
+<2> La base des utilisateurs est en mémoire
+<3> On ajoute un utilisateur
+
+TODO
+
+=== MVC-11 Bouton 'éditer'
+
+TODO
+
+=== MVC-12 Formulaire de login
+
+TODO
+

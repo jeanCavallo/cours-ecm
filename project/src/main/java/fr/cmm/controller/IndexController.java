@@ -61,7 +61,6 @@ public class IndexController {
     }
 
     private Columns randomColumns() {
-        // FIX-MVC-9 : column height are too random ?
         Columns columns = new Columns();
 
         columns.add(recipeService.findRandom(10));
