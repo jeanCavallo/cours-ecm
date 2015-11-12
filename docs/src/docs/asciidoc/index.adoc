@@ -29,15 +29,10 @@ Ses nombreux *frameworks* et la *richesse de son environnement* le rendent pourt
 . link:partie-3/1-jsp/index.html[Templates jsp]
 . link:partie-3/2-mvc/index.html[Le MVC]
 . link:partie-3/3-services/index.html[Les services]
+. link:partie-3/4-wish-list/index.html[Wish list]
 
 == Annexes
 * A : link:partie-3/A-jsp/index.html[Les Java Server Pages] (JSP)
 * B : link:partie-3/B-mvc/index.html[Le MVC]
 * C : link:partie-3/C-di/index.html[L'injection de dépendances]
 * D : link:partie-3/D-intellij/index.html[Les raccourcis ]
-
-== Partie 4 : More ?
-
-* dans le cloud ?
-* link:partie-4/1-web-service/index.html[web services]
-* link:partie-4/2-commentaires/index.html[commentaires]

@@ -1,0 +1,59 @@
+
+include::../../header.adoc[]
+
+= Wish list
+
+Voici ce que l'on pourrait rajouter.
+
+NOTE: link:../C-DI/index.html[l'annexe C] explique le principe de l'injection de dépendances
+
+== Web service
+
+Nous aimerions disposer de la liste des recettes via un service REST
+
+.REST (Representational state transfer)
+****
+REST est un pattern de construction de service web basé sur un travail universitaire (pas de norme ou spécification).
+
+Il repose intensivement sur le protocol HTTP et notamment sur ses méthodes GET, POST, PUT et DELETE.
+
+La construction des mappings d'url est aussi contrainte afin de facilité la compréhension du modèle de données.
+
+Plus de détails dans http://www.amazon.fr/RESTful-Web-Services-Leonard-Richardson/dp/0596529260[RESTful Web Services].
+****
+
+On souhaite donc avoir les 2 mappings suivant :
+
+* /api/recipes : la liste paginé (paramètre page=xxx) des recettes, ordonancées par date (les plus récentes en premier)
+* /api/recipes/{id} : un recette
+
+Ces pages n'affiche pas du html mais du json (on pourrait faire du xml mais c'est moins à la mode).
+
+Voici la liste des choses à faire :
+
+* Ajouter un `ApiController` avec ces 2 mappings
+* Trouver comment renvoyer du json depuis le Controller
+* Ajouter ou modifier des méthodes dans `RecipeService`
+* Mettre en place des tests pour ce Controller
+
+== Installation dans le cloud
+
+heroku ?
+
+https://devcenter.heroku.com/articles/getting-started-with-spring-mvc-hibernate
+http://stackoverflow.com/questions/13426246/change-heroku-start-parameter
+
+== Tests en groovy
+
+== Tests Selenium
+
+== Commentaires
+
+== système de like / dislike (+ / -)
+
+pas possible de voter plus d'un fois par jour (cookie).
+
+pas afficher le vote possible au chargement si déjà voté
+
+== Add seach by ingredients
+

@@ -1,43 +1,105 @@
-= Les services
-:stylesheet: ../../style.css
+
+include::../../header.adoc[]
+
+= Bugs dans les services
 
 Voici la liste des bugs répertoriés en relation avec les services
 
+== SER-1 ObjectId invalide
+
+.https://docs.mongodb.org/manual/reference/object-id/
 ****
-* <<SER-1>>  : invalide object id in RecipeService.findById(String id)
-* <<SER-2>>  : findRandom appelé 3 fois qui peut renvoyer 3 fois la même recette
-* <<SER-3>>  : pick a recipe depending on season
-* <<SER-4>>  : sécurisation
-* <<SER-5>>  : edit button when admin
-* <<SER-6>>  : add seach by ingredients
-* <<SER-7>>  : notation
-* <<SER-8>>  : commentaires
-* <<SER-9>>  :
-* <<SER-10>> :
+In MongoDB, documents stored in a collection require a unique _id field that acts as a primary key.
+
+ObjectId is a 12-byte BSON type, constructed using:
+
+* a 4-byte value representing the seconds since the Unix epoch,
+* a 3-byte machine identifier,
+* a 2-byte process id, and
+* a 3-byte counter, starting with a random value.
 ****
 
-NOTE: link:../C-DI/index.html[l'annexe C] explique le principe de l'injection de dépendances
+La page http://localhost:8080/recette/123pasvalide456 fait une 500
 
-== [[SER-1]]SER-1 :
+image::invalid-objectid.png[]
 
-== [[SER-2]]SER-2 :
+La ligne qui pose problème est dans `RecipeService` :
 
-== [[SER-3]]SER-3 :
+[source,java]
+----
+return recipeCollection.findOne(new ObjectId(id)).as(Recipe.class); <1>
+----
+<1> `new ObjectId(id)` échoue si `id` n'a pas le bon format
 
-== [[SER-4]]SER-4 :
+Rajoutez un test `findByIdWithInvalidId()` dans `RecipeServiceTest` qui s'assure que le service renvoie `null` dans ce cas.
 
-== [[SER-5]]SER-5 :
+Depuis le mapping `@RequestMapping("/recette/{id}")` dans `IndexController`, il faut aussi s'assurer que l'on renvoie une 404 dans ce cas.
 
-== [[SER-6]]SER-6 :
+Pour faire cela, on peut se servir de ce qui est indique sur http://stackoverflow.com/questions/2066946/trigger-404-in-spring-mvc-controller.
 
-== [[SER-7]]SER-7 :
+== SER-2 La home contient des doublons
 
-* système de like / dislike (+ / -)
-* pas possible de voter plus d'un fois par jour (cookie).
-* pas afficher le vote possible au chargement si déjà voté
+La page de home est construite à l'aide de la méthode
 
-[[SER-8]]
+[source,java]
+.randomColumns()
+----
+private Columns randomColumns() {
+  Columns columns = new Columns();
 
-[[SER-9]]
+  columns.add(recipeService.findRandom(10));
+  columns.add(recipeService.findRandom(10));
+  columns.add(recipeService.findRandom(10));
 
-[[SER-10]]
+  return columns;
+}
+----
+
+Or 2 appels différents à `recipeService.findRandom(10)` peut renvoyer deux fois les mêmes recettes.
+
+L'implémenation de `findRandom(int count)` repose sur une astuce en mongodb.
+
+[source,java]
+.findRandom(int count)
+----
+public Iterator<Recipe> findRandom(int count) {
+  return recipeCollection.find("{randomLocation: {$near: [#, 0]}}", Math.random()).limit(count).as(Recipe.class);
+}
+----
+
+On prend les `count` recettes les plus proches d'un point sur une droite.
+Pour faire cela, la classe `Recipe` à un attribut spécial `randomLocation`, initialisé à la création de l'object.
+
+[source,java]
+.randomLocation
+----
+private double[] randomLocation = new double[] {Math.random(), 0};
+----
+
+.https://docs.mongodb.org/manual/reference/operator/query/near/
+****
+Specifies a point for which a geospatial query returns the documents from nearest to farthest.
+
+The $near operator can specify either a GeoJSON point or legacy coordinate point.
+
+$near requires a geospatial index.
+****
+
+Comment faire pour éviter d'avoir plusieurs fois la même recette sur la home ?
+
+Comment mettre en place des tests pour couvrir ce point ?
+
+.Limitations
+****
+Aller chercher les recettes par paquets permet de faire moins de requête en base.
+
+Cependant, comme la répartition des recettes sur la droite est toujours la même, les requêtes proches remontteront donc souvent ensemble.
+****
+
+== SER-3 Recette du moment
+
+Chaque `Recipe` à une date associé.
+
+Comment pourrait on utiliser celle ci afin que la page 'recette du moment' remonte de préférence une recette avec date proche de la date courante ?
+
+C'est le genre de point difficile à tester en utilisant le site. Ici encore, les tests unitaires doivent être utilisés afin de garantir un bon fonctionnement.

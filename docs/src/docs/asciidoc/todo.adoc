@@ -43,10 +43,3 @@ lightbox pour les images (notamment pour intellij)
 . web services
 ****
 
-== Partie 4 : Variations
-
-****
-. going groovy
-. nosql
-. selenium
-****

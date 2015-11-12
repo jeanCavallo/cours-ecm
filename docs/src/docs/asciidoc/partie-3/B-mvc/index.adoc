@@ -25,7 +25,7 @@ image::mvc2.png[]
 
 NOTE: le front controller est fourni par Spring, le reste est à la charge du développeur.
 
-== Diagramme détaillée
+== Diagramme détaillé
 
 include::mvc.adoc[]
 

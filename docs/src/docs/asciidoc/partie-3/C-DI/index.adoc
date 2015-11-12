@@ -11,23 +11,25 @@ L'injection de dépendances (DI) permet de mettre ces composants en relation.
 
 Chaque composant devient plus autonome et il est plus simple de le tester.
 
+NOTE: Une composant Spring est aussi appelé Bean
+
 == Spring framework
 
-http://spring.io/[Spring] est un conteneur léger par injection de dépendances.
+http://projects.spring.io/spring-framework/[Spring] est un conteneur léger par injection de dépendances.
 
 [NOTE]
 ====
-il existe d'autres framework d'injection de dépendances comme par exemple celui de google https://github.com/google/guice[Guice].
+Il existe d'autres framework d'injection de dépendances comme par exemple celui de google https://github.com/google/guice[Guice].
 
 Le guide de Guice explique clairement la motivation derrière l'injection de dépendance : https://github.com/google/guice/wiki/Motivation
 ====
 
-En plus de faire de l'injection, Spring est une boite à outils riche pour les applications jee.
+Mais Spring ne s'arrête pas à l'injection de dépendances.
 
 [align=center]
 image::spring-overview.png[]
 
-Nous avons déjà vu sa partie MVC mais il y a bien plus que cela.
+Spring MVC est donc un des composants des outils de la famille Spring.
 
 == Exemple
 
@@ -36,7 +38,7 @@ Imaginons deux services qui collaborent.
 [align=center]
 image::spring-beans.png[]
 
-L'annotation `@Inject` permet
+L'annotation `@Inject` permet d'injecter un composant dans un autre composant.
 
 [source,java]
 ----
@@ -54,11 +56,11 @@ public class OtherService {
 
 NOTE: @Inject est le standard jee, spring supporte aussi sa propre annotation @Autowired et une autre annotation standard @Resource.
 
-NOTE: il est aussi possible de définir les beans et les injections en xml
+NOTE: Spring peut être configuré en xml ou via du code java.
 
 == @Component
 
-En plus de faire de l'injection, spring peut aussi découvrir les composants par scan
+Il est possible de définir ses Beans dans la configuration ou bien de scanner le classpath.
 
 [source,xml]
 <!--scan le package x.y.z-->
@@ -104,7 +106,9 @@ Cette approche est appelée *Aspect Oriented Programming* et peut être mis en p
 
 C'est particulièrement utile afin de factoriser des traitements *orthogonaux* au code métier.
 
-La nomenclature de l'AOP est complexe : advice, crosscuting, join point, point cut..., mais le principe reste simple : exécuter du code entre l'appelant et l'objet cible.
+Malheureusement, la nomenclature de l'AOP est complexe : advice, crosscuting, join point, point cut...
+
+C'est un outils puissant mais parfois difficile à manipuler.
 
 === Exemple : les transactions
 
