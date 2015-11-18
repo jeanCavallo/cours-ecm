@@ -3,7 +3,7 @@ include::../../header.adoc[]
 
 image::banner.png[width=100%]
 
-Un *Versioning Control System* (VCS) permet de stocker tout son fichiers : code, configuration, scripts...
+Un *Versioning Control System* (VCS) permet de stocker tous ses fichiers : code, configuration, scripts...
 
 NOTE: C'est le coffre fort d'une équipe de développement.
 
@@ -13,14 +13,14 @@ De tous les système récents, *git* est le plus à la mode.
 
 .Précison
 ****
-C'est un *distributed VCS* (DVCS) et suit donc une philosophie particulière.
+git est un *distributed VCS* (DVCS) et suit donc une philosophie particulière.
 
-Il multiplie les capacités de travail dans des branches (locales ou distantes) permettant de travailler simultanément sur plusiseurs sujets en parallèle.
+Il multiplie les capacités de travail au travers des branches (locales ou distantes) permettant de travailler simultanément sur plusieurs sujets en parallèle.
 ****
 
-Il est particulièrement adapté aux projets open source avec des bureaux dématérialisés et les collaborateurs multiples.
+Il est particulièrement adapté aux projets open source avec des bureaux dématérialisés et des collaborateurs multiples.
 
-En pratique, il est aussi assez simple à utiliser dans un cadre plus restreint.
+En pratique, il est aussi assez simple à utiliser dans un cadre plus restreint au sein de l'entreprise.
 
 == Compte github
 
@@ -30,13 +30,24 @@ C'est l'outils que nous allons utiliser pour notre projet.
 
 Créez un compte github et configurez une clée ssh en suivant le https://help.github.com/articles/generating-ssh-keys/[tutorial github]
 
+.Clé SSH
+****
+L'authentification par clé fonctionne grâce à 3 composants :
+
+*   Une clé publique : elle sera exportée sur chaque hôte sur lequel on souhaite pouvoir se connecter.
+*   Une clé privée : elle permet de prouver son identité aux serveurs.
+*   Une passphrase : Permet de sécuriser la clé privée (notons la subtilité, passphrase et pas password... donc « phrase de passe » et non pas « mot de passe »).
+
+source http://doc.fedora-fr.org/wiki/SSH_:_Authentification_par_clé
+****
+
 == Repository 'test-project'
 
 Depuis le dashboard, créez un repository test-project.
 
 On doit donc obtenir un repository de la forme `git@github.com:{user}/test-project.git`
 
-On peut choisir un autre nom pour le repository. Dans ce cas, il faut adapter les références à github pour toutes les manipulations à venir.
+On peut choisir un autre nom pour le repository. Dans ce cas, il faut adapter pour toutes les manipulations à venir.
 
 == Commandes en local
 
@@ -61,26 +72,27 @@ Initialized empty Git repository in /path/to/projects/test-project/.git/
 
 === .gitignore
 
-Certains fichiers ne doivent pas être envoyé vers le VCS : les fichiers générés lors de la compilation ou bien les fichiers générés par le système de build ne font pas partie des sources.
+Certains fichiers ne doivent pas être envoyé vers le serveur git : 
+
+* les fichiers générés lors du build
+* les fichiers de configuration de l'IDE
+* ...
 
 On crée le fichier *.gitignore* à la racine du projet afin de les exclure.
 
 [source.terminal]
 ----
 # gradle
-.gradle
-build
+.gradle <1>
+build <2>
 
-# intellij
+# intellij <3>
 .idea
 .iml
 ----
-
-Le répertoire *build* contient le résultat de la compilation et autres fichiers générés lors du build.
-
-Le répertoire *.gradle* est un répertoire de travail associé à notre outils de build.
-
-*.idea* et *.iml* sont la définition du module sous intellij.
+<1> répertoire de travail associé à notre outil de build
+<2> résultat de la compilation et autres fichiers générés lors du build
+<3> définition du module sous intellij
 
 Il faudra ajouter d'éventuels autres patterns si le besoin se présentait.
 
@@ -91,16 +103,18 @@ La commande git status doit donc afficher à peu près cela.
 [source.terminal]
 ----
 test-project$ git status
-# On branch master
+# On branch master <1>
 #
 # Initial commit
 #
 # Untracked files:
-#   (use "git add <file>..." to include in what will be committed)
+#   (use "git add <file>..." to include in what will be committed) <2>
 #
 #       .gitignore
 nothing added to commit but untracked files present (use "git add" to track)
 ----
+<1> nous sommes sur la branche locale 'master'
+<2> il y a souvent de l'aide en ligne de commande avec git
 
 On ajoute donc tout notre fichier et on commit.
 
@@ -121,7 +135,7 @@ test-project$ git remote add origin git@github.com:{user}/test-project.git
 
 === git push
 
-Afin d'envoyer les fichiers vers github, on utilise la commande push.
+Afin d'envoyer les fichiers vers github, on utilise la commande `push`
 
 [source.terminal]
 ----
