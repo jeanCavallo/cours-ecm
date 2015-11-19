@@ -61,8 +61,8 @@ db.inventory.find( { type: 'food', price: { $lt: 9.95 } } ) <1>
 ----
 <1> on cherche les documents de type 'food' avec un prix inférieur à 9.95 dans la collection 'inventory'
 
-Lorsque l'on construit une application, on utilise un driver.
-Selon le language et les frameworks, la façon d'utiliser mongo peut varier.
+Lorsque l'on construit une application, on utilise un **driver**.
+Selon le language et les frameworks, la façon d'utiliser mongo peut donc varier.
 
 == Replica Sets
 
@@ -107,7 +107,7 @@ Ainsi, les requêtes seraient réparties entre les noeuds pour plus de perfomanc
 
 == Map reduce
 
-Une des opération qui a rendu célèbre les bases NoSQL est le map-reduce : c'est un mécanisme de traitement en masse des données afin de fournir un résultat aggrégé.
+Une des opération qui a rendu célèbre les bases NoSQL est le *map-reduce* : c'est un mécanisme de traitement en masse des données afin de fournir un résultat aggrégé.
 
 .Map reduce
 image::map-reduce.png[align="center"]
@@ -123,7 +123,7 @@ Les qualités d'une base SQL sont :
 * *I* solation : toute transaction doit s'exécuter comme si elle était la seule sur le système
 * *D* urabilité : une transaction finalisée altère les données façon permanente et resistante à la panne
 
-Or mongodb ne supporte ni transaction, ni clé étrangère. Donc pas d'ACIDité.
+Or mongodb ne supporte ni transaction, ni clé étrangère. Donc pas d'**ACID**ité.
 
 En contrepartie de ces défauts, mongodb apporte plus de perfomance, plus de souplesse et plus de simplicité.
 
@@ -183,7 +183,7 @@ La base est prête à recevoir des connexions.
 
 On pourrait utiliser le shell mais une interface graphique est plus simple pour débuter.
 
-Il existe beaucoup de https://docs.mongodb.org/ecosystem/tools/administration-interfaces/[clients graphique]
+Il existe beaucoup de https://docs.mongodb.org/ecosystem/tools/administration-interfaces/[clients graphiques]
 
 Nous utiliserons http://robomongo.org/[robomongo].
 
