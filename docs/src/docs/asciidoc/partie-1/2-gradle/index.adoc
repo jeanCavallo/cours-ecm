@@ -6,7 +6,7 @@ image::banner.png[width=100%]
 Gradle est un outils de build écrit en groovy.
 
 * il permet d'automatiser toutes les tâches répétitives
-* il produit un *artéfact* comme par exemple une librairie, une application web, de la documentation...
+* généralement, il aide à produire l'*artéfact* du projet comme par exemple une librairie, une application web, de la documentation...
 
 En java, c'est souvent un *jar* (java archive) ou un *war* (web archive).
 
@@ -23,9 +23,9 @@ La forme de numérotation la plus répandue est http://semver.org/[semver]) pour
 
 .Les dépendances
 --
-Pour construire le produit, on a besoin de librairies : les dépendances (.jar en java).
+Pour construire le produit, on a besoin de librairies : les *dépendances* (.jar en java).
 
-Gradle va les chercher dans des repositories distants afin de pouvoir compiler notre code.
+Gradle va les chercher dans des *repositories* distants afin de pouvoir compiler notre code.
 --
 
 .Alternatives
@@ -91,8 +91,15 @@ Total time: 3.248 secs
 
 This build could be faster, please consider using the Gradle Daemon: http://gradle.org/docs/2.4/userguide/gradle_daemon.html
 ----
-<1> éxécution de la tâche wrapper
-<2> éxécution de la tâche init
+<1> éxécution de la tâche *wrapper*
+<2> éxécution de la tâche *init*
+
+.Gradle daemon
+****
+The Gradle Daemon is a background process that does the heavy lifting of running builds, then stays alive between builds waiting for the next build. This allows data and code that is likely to be required in the next build to be kept in memory, ready to go. This [underline]#__dramatically__# improves the performance of subsequent builds. Enabling the Gradle Daemon is an extremely cheap way to decrease build times.
+
+source https://docs.gradle.org/current/userguide/gradle_daemon.html
+****
 
 On peut voir les fichiers générés.
 
@@ -111,7 +118,7 @@ drwxr-xr-x   3 user  staff   102 22 jui 13:45 gradle          # rép. qui contie
 -rw-r--r--   1 user  staff   646 22 jui 13:45 settings.gradle # config multi projet
 ----
 
-Ou via la commande tree (brew install tree)
+Ou via la commande tree (`brew install tree`)
 
 [source.terminal]
 ----
@@ -130,6 +137,13 @@ test-project$ tree
 Les fichiers *gradlew*, *gradlew.bat* et le répertoire *gradle* constitue le *wrapper*.
 Il permettent de lancer le build sans avoir à installer préalablement gradle.
 C'est pratique pour de l'intégration continue ou bien pour tester rapidement sur une machine qui n'a pas gradle.
+
+.Gradle wrapper
+****
+The Gradle Wrapper (henceforth referred to as the “wrapper”) is the preferred way of starting a Gradle build. The wrapper is a batch script on Windows, and a shell script for other operating systems. When you start a Gradle build via the wrapper, Gradle will be automatically downloaded and used to run the build.
+
+source https://docs.gradle.org/current/userguide/gradle_wrapper.html
+****
 
 Le fichier *https://docs.gradle.org/current/dsl/org.gradle.api.initialization.Settings.html[settings.gradle]* est utile dans le cas d'un projet qui a des sous modules.
 
@@ -174,14 +188,14 @@ dependencies {
 }
 */
 ----
-<1> le plugin java
+<1> le plugin java est appliqué
 <2> le repository de librairies
 <3> une dépendance à la librairie de log slf4j
 <4> une dépendance pour les tests à la librairie junit
 
 == gradle build
 
-On change *tout* notre build.gradle
+Pour commencer, on simplifie *tout* notre build.gradle
 
 [source,groovy]
 ----
@@ -281,11 +295,11 @@ task hello << {
 }
 ----
 
-Chaque plugin, comme le https://docs.gradle.org/current/userguide/java_plugin.html[plugin java] vient avec son lot de tâches.
+Chaque plugin, comme le https://docs.gradle.org/current/userguide/java_plugin.html[plugin java] apporte son lot de tâches.
 
 == dépendances
 
-Une dépendance est du code que l'on récupère puis utilise depuis son projet.
+Une dépendance est une librairie nécessaire pour son projet.
 
 Par exemple, afin d'utiliser junit pour les tests :
 
@@ -304,17 +318,29 @@ dependencies {
     testCompile 'junit:junit:4.12' <1>
 }
 ----
-<1> on prend la version *4.12* de *junit* qui est dans le groupe *junit*
+<1> on prend la version *4.12* de *junit* qui est dans le groupe *junit*.
 
-junit sera donc disponible pour les tests.
+junit sera donc disponible pour les tests (**testCompile**).
+
+.Dependency configurations
+****
+The Java plugin defines a number of standard configurations. These configurations represent the classpaths that the Java plugin uses. Some are listed below, and you can find more details in Table 23.5, “Java plugin - dependency configurations”.
+
+* **compile**: The dependencies required to compile the production source of the project.
+* **runtime**: The dependencies required by the production classes at runtime. By default, also includes the compile time dependencies.
+* **testCompile**: The dependencies required to compile the test source of the project. By default, also includes the compiled production classes and the compile time dependencies.
+* **testRuntime**: The dependencies required to run the tests. By default, also includes the compile, runtime and test compile dependencies.
+
+source https://docs.gradle.org/current/userguide/artifact_dependencies_tutorial.html
+****
 
 == les repositories distants
 
 Gradle va chercher les dépendances dans des https://docs.gradle.org/current/userguide/artifact_dependencies_tutorial.html[repositories].
 
-Ici, nous avons utilisé https://bintray.com/bintray/jcenter[jcenter]. Il existe aussi http://search.maven.org/[mavenCentral]
+Ici, nous avons utilisé https://bintray.com/bintray/jcenter[jcenter]. Il existe aussi un autre repository public majeur : http://search.maven.org/[mavenCentral]
 
-Il est possible de définir son propre repository local à son entreprise par exemple :
+Il est possible d'utiliser un repository hébergé par une entreprise, par exemple :
 
 [source,groovy]
 .build.gradle
@@ -328,7 +354,7 @@ repositories {
 
 Un repository d'entreprise permet de stocker tout ce que l'on construit au quotidien.
 
-Nos projets deviennent donc des librairies disponibles pour d'autres projets.
+Nos propres projets peuvent devenir des librairies disponibles pour d'autres projets.
 
 == plugins
 
@@ -338,4 +364,4 @@ Voici quelques https://docs.gradle.org/current/userguide/standard_plugins.html[p
 * applications : application, ear, war et maven
 * qualité : checkstyle, codenarc, findbugs, jdepend, pmd et sonar
 
-Et bien sûr https://plugins.gradle.org/[tous les plugins]
+Et bien sûr un https://plugins.gradle.org/[moteur de recherche] sur le site de gradle.
