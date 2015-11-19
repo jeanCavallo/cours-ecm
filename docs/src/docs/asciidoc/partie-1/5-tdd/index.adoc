@@ -48,7 +48,7 @@ Le développement par les tests est une technique de développement Agile
 
 === Avantages
 
-* On se place en tant qu'utilisateur de ce qu'on construit
+* On se place en tant qu'utilisateur de ce que l'on construit
 * Le code est testé et on réduit le risque de régression
 * On aboutit à un design plus ouvert / plus flexible
 
@@ -80,12 +80,12 @@ public class ArrayListTest {
     }
 
     @Test
-    public void empty() {
+    public void empty() { <3>
         assertTrue(list.isEmpty());
     }
 
     @Test
-    public void add() {
+    public void add() { <3>
         collection.add("itemA");
         assertEquals(1, list.size());
     }
@@ -93,8 +93,11 @@ public class ArrayListTest {
 ----
 <1> exécuté avant chaque test
 <2> exécuté après chaque test
+<3> 2 tests
 
 == Un cas pratique
+
+Nous allons coder un peu afin de voir ce que les tests peuvent apporter au développement.
 
 === Répertoires de source
 
@@ -110,7 +113,7 @@ test-project$ mkdir -p src/main/java src/test/java
 
 === package fr.ecm.test
 
-On ajoute le package `fr.ecm.tp` dans `src/main/java`
+Puis on ajoute le package `fr.ecm.tp` dans `src/main/java`
 
 image:add-package.png[]
 
@@ -132,9 +135,11 @@ public class Calculator {
 }
 ----
 
+Pour le moment, on est a peu près sûr que cette classe ne fait ce qu'elle devrait.
+
 === CalculatorTest.java
 
-En faisant un kbd:[alt,return] on peut facilement ajouter un test
+En faisant un kbd:[alt,return] sur le nom de la classe on peut facilement ajouter un test
 
 image:create-test.png[]
 
@@ -143,6 +148,8 @@ On choisit Junit4
 image:create-test-junit4.png[]
 
 Le fichier CalculatorTest.java va automatiquement dans le package `fr.ecm.tp` de `src/main/java`
+
+NOTE: il est possible de créer cette classe de test sans le raccourçi intellij, mais pourquoi perdre du temps ?
 
 === Premier test
 
@@ -179,7 +186,7 @@ image:test-result.png[]
 
 Faites ce qu'il faut pour que le test passe.
 
-Après cela, pour le moment, il n'y a pas grand chose à refactorer.
+Après cela, pour le moment, il n'y a pas grand chose à améliorer (refactor).
 
 === Test suivant
 
@@ -191,7 +198,7 @@ Faire le test et puis le code pour la multiplication `calculator.multiply(6, 4)`
 
 La division présente un petit plus, que se passe t il si on fait un `calcultator.divide(3, 0)` ?
 
-Le test est l'occation de prendre une décision sur le comportement de cette méthode `divide`.
+Le test est l'occation de prendre une *décision* sur le comportement de cette méthode `divide`.
 
 Il y a plusieurs possibilités :
 
@@ -213,18 +220,6 @@ public void divideByZero() {
 ----
 
 Ecrire les tests `divide` et `divideByZero` et le code associé.
-
-=== Lambdas
-
-Sans toucher les tests, nous allons transformer notre code.
-
-[NOTE]
-.Les lambdas
-====
-C'est une nouveauté java 8 : c'est l'arrivée d'un peu de programmation fonctionelle.
-====
-
-TODO
 
 .Pour aller plus loin
 ****
