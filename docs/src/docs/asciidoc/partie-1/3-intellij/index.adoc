@@ -7,7 +7,7 @@ Un IDE est un environnement complet qui permet de travailler plus vite en regrou
 
 .JetBrains
 ****
-Intellij est développé par JetBrains qui maitient tout une suite de logiciels pour divers languages : php, python, ruby...
+Intellij est développé par https://www.jetbrains.com/[JetBrains] qui maitient tout une suite de logiciels pour divers languages : languages front, php, python, ruby...
 ****
 
 Intellij existe en 2 versions : *communautaire* et *ultimate*.
@@ -24,11 +24,20 @@ Les autres IDEs les plus utilisés sont :
 
 Nous allons intégrer notre projet naissant dans Intellij
 
+.Eclipse vs Intellij vs NetBeans
+****
+On choisit tous, plus ou moins, son language, son environnement, ses outils et toutes ses choses qui impactent notre productivité et notre bonheur à programmer.
+
+Mon expérience est que, malgré les qualités des autres produits, la famille de produits de JetBrains (dont Intellij) reste très supérieur.
+
+Chacun donc son avis, vous avez le mien.
+****
+
 == Projets et modules
 
 Un projet est la structure de base. C'est tout ce qu'on voit dans la fenêtre.
 
-Il définit un sdk et un niveau de compatibilité du language java (1.7, 1.8...).
+Il définit un sdk (software development kit) et un niveau de compatibilité du language java (1.7, 1.8...).
 
 Il contient 1 ou plusieurs modules. Un module contient des fichiers sources.
 
@@ -94,14 +103,14 @@ A chaque mise à jour du build.gradle (ajout d'une dépendance par exemple), Int
 --
 image::gradle-auto-import.png[width=300px,role=left,link='gradle-auto-import.png']
 
-Soit on active la mise à jour automatique
+Soit on active la mise à jour automatique (j'ai déjà quelques soucis avec cette option).
 --
 
 [.float-group]
 --
 image::refresh-gradle.png[width=300px,role=left,link='refresh-gradle.png']
 
-Soit il faut mettre à jour à chaque modification
+Soit il faut mettre à jour à chaque modification.
 --
 
 == Maintenant
