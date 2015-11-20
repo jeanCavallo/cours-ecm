@@ -4,14 +4,14 @@
 <meta charset="UTF-8">
 <!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="generator" content="Asciidoctor 1.5.2">
-<title>Github</title>
+<meta name="generator" content="Asciidoctor 1.5.3">
+<title>Compte github</title>
 <link rel="stylesheet" href="./../../style.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="./coderay-asciidoctor.css">
 </head>
 <body class="article toc2 toc-left">
 <div id="header">
-<h1>Github</h1>
 <div id="toc" class="toc2">
 <div id="toctitle">Table of Contents</div>
 <ul class="sectlevel1">
@@ -30,35 +30,51 @@
 </div>
 </div>
 <div id="content">
-<div id="preamble">
-<div class="sectionbody">
+<div class="paragraph">
+<p><a href="../../index.html">&lt;&lt; Retour à l&#8217;index</a></p>
+</div>
 <div class="imageblock">
 <div class="content">
 <img src="banner.png" alt="banner" width="100%">
 </div>
 </div>
 <div class="paragraph">
-<p><span class="image" style="float: right"><img src="vault.jpg" alt="Vault" width="100"></span></p>
+<p>Un <strong>Versioning Control System</strong> (VCS) permet de stocker tous ses fichiers : code, configuration, scripts&#8230;&#8203;</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+C&#8217;est le coffre fort d&#8217;une équipe de développement.
+</td>
+</tr>
+</table>
 </div>
 <div class="paragraph">
-<p>Un <strong>Versioning Control System</strong> (VCS) permet de stocker tout son fichiers : code, configuration, scripts&#8230;&#8203;</p>
-</div>
-<div class="paragraph">
-<p>C&#8217;est le coffre fort d&#8217;une équipe de développement.</p>
-</div>
-<div class="paragraph">
-<p>Il doit être simple d&#8217;interagir avec et simple de restaurer un état passé.</p>
+<p>Il doit être simple d&#8217;utilisation et facile de naviguer dans l&#8217;historique.</p>
 </div>
 <div class="paragraph">
 <p>De tous les système récents, <strong>git</strong> est le plus à la mode.</p>
 </div>
+<div class="sidebarblock">
+<div class="content">
+<div class="title">Précison</div>
 <div class="paragraph">
-<p>C&#8217;est un <strong>distributed VCS</strong> (DVCS) et suit donc une philosophie spéciale. Il multiplie les capacités de travail dans des branches (locales ou distantes) permettant de travailler simultanément sur plusiseurs sujets en parallèle. Il est particulièrement adapté à du travail sur des projets open source où les bureaux sont dématérialisés et les collaborateurs multiples.</p>
+<p>git est un <strong>distributed VCS</strong> (DVCS) et suit donc une philosophie particulière.</p>
 </div>
 <div class="paragraph">
-<p>En pratique, il est aussi assez simple à utiliser dans un cadre plus restreint.</p>
+<p>Il multiplie les capacités de travail au travers des branches (locales ou distantes) permettant de travailler simultanément sur plusieurs sujets en parallèle.</p>
 </div>
 </div>
+</div>
+<div class="paragraph">
+<p>Il est particulièrement adapté aux projets open source avec des bureaux dématérialisés et des collaborateurs multiples.</p>
+</div>
+<div class="paragraph">
+<p>En pratique, il est aussi assez simple à utiliser dans un cadre plus restreint au sein de l&#8217;entreprise.</p>
 </div>
 <div class="sect1">
 <h2 id="_compte_github">1. Compte github</h2>
@@ -72,6 +88,30 @@
 <div class="paragraph">
 <p>Créez un compte github et configurez une clée ssh en suivant le <a href="https://help.github.com/articles/generating-ssh-keys/">tutorial github</a></p>
 </div>
+<div class="sidebarblock">
+<div class="content">
+<div class="title">Clé SSH</div>
+<div class="paragraph">
+<p>L&#8217;authentification par clé fonctionne grâce à 3 composants :</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Une clé publique : elle sera exportée sur chaque hôte sur lequel on souhaite pouvoir se connecter.</p>
+</li>
+<li>
+<p>Une clé privée : elle permet de prouver son identité aux serveurs.</p>
+</li>
+<li>
+<p>Une passphrase : Permet de sécuriser la clé privée (notons la subtilité, passphrase et pas password&#8230;&#8203; donc « phrase de passe » et non pas « mot de passe »).</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>source <a href="http://doc.fedora-fr.org/wiki/SSH_:_Authentification_par_clé" class="bare">http://doc.fedora-fr.org/wiki/SSH_:_Authentification_par_clé</a></p>
+</div>
+</div>
+</div>
 </div>
 </div>
 <div class="sect1">
@@ -84,7 +124,7 @@
 <p>On doit donc obtenir un repository de la forme <code>git@github.com:{user}/test-project.git</code></p>
 </div>
 <div class="paragraph">
-<p>On peut choisir un autre nom pour le repository. Dans ce cas, il faut adapter les références à github pour toutes les manipulations à venir.</p>
+<p>On peut choisir un autre nom pour le repository. Dans ce cas, il faut adapter pour toutes les manipulations à venir.</p>
 </div>
 </div>
 </div>
@@ -116,7 +156,20 @@ Initialized empty Git repository in /path/to/projects/test-project/.git/</code><
 <div class="sect2">
 <h3 id="__gitignore">3.2. .gitignore</h3>
 <div class="paragraph">
-<p>Certains fichiers ne doivent pas être envoyé vers le VCS : les fichiers générés lors de la compilation ou bien les fichiers générés par le système de build ne font pas partie des sources.</p>
+<p>Certains fichiers ne doivent pas être envoyé vers le serveur git :</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>les fichiers générés lors du build</p>
+</li>
+<li>
+<p>les fichiers de configuration de l&#8217;IDE</p>
+</li>
+<li>
+<p>&#8230;&#8203;</p>
+</li>
+</ul>
 </div>
 <div class="paragraph">
 <p>On crée le fichier <strong>.gitignore</strong> à la racine du projet afin de les exclure.</p>
@@ -124,22 +177,29 @@ Initialized empty Git repository in /path/to/projects/test-project/.git/</code><
 <div class="listingblock terminal">
 <div class="content">
 <pre class="CodeRay highlight"><code># gradle
-.gradle
-build
+.gradle <i class="conum" data-value="1"></i><b>(1)</b>
+build <i class="conum" data-value="2"></i><b>(2)</b>
 
-# intellij
+# intellij <i class="conum" data-value="3"></i><b>(3)</b>
 .idea
 .iml</code></pre>
 </div>
 </div>
-<div class="paragraph">
-<p>Le répertoire <strong>build</strong> contient le résultat de la compilation et autres fichiers générés lors du build.</p>
-</div>
-<div class="paragraph">
-<p>Le répertoire <strong>.gradle</strong> est un répertoire de travail associé à notre outils de build.</p>
-</div>
-<div class="paragraph">
-<p><strong>.idea</strong> et <strong>.iml</strong> sont la définition du module sous intellij.</p>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>répertoire de travail associé à notre outil de build</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>résultat de la compilation et autres fichiers générés lors du build</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>définition du module sous intellij</td>
+</tr>
+</table>
 </div>
 <div class="paragraph">
 <p>Il faudra ajouter d&#8217;éventuels autres patterns si le besoin se présentait.</p>
@@ -153,16 +213,28 @@ build
 <div class="listingblock terminal">
 <div class="content">
 <pre class="CodeRay highlight"><code>test-project$ git status
-# On branch master
+# On branch master <i class="conum" data-value="1"></i><b>(1)</b>
 #
 # Initial commit
 #
 # Untracked files:
-#   (use "git add &lt;file&gt;..." to include in what will be committed)
+#   (use "git add &lt;file&gt;..." to include in what will be committed) <i class="conum" data-value="2"></i><b>(2)</b>
 #
 #       .gitignore
 nothing added to commit but untracked files present (use "git add" to track)</code></pre>
 </div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>nous sommes sur la branche locale 'master'</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>il y a souvent de l&#8217;aide en ligne de commande avec git</td>
+</tr>
+</table>
 </div>
 <div class="paragraph">
 <p>On ajoute donc tout notre fichier et on commit.</p>
@@ -188,7 +260,7 @@ test-project$ git commit -m "initial commit"</code></pre>
 <div class="sect2">
 <h3 id="_git_push">3.5. git push</h3>
 <div class="paragraph">
-<p>Afin d&#8217;envoyer les fichiers vers github, on utilise la commande push.</p>
+<p>Afin d&#8217;envoyer les fichiers vers github, on utilise la commande <code>push</code></p>
 </div>
 <div class="listingblock terminal">
 <div class="content">
@@ -212,6 +284,26 @@ test-project$ git commit -m "initial commit"</code></pre>
 <div class="listingblock terminal">
 <div class="content">
 <pre class="CodeRay highlight"><code>test-project$ git push</code></pre>
+</div>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="title">Pour aller plus loin</div>
+<div class="paragraph">
+<p><span class="image right"><img src="pro-git.jpg" alt="pro git" width="100"></span></p>
+</div>
+<div class="paragraph">
+<p>Les systèmes de versioning viennent avec leur complexité mais sont <strong>obligatoires</strong></p>
+</div>
+<div class="paragraph">
+<p>git offre beaucoup de richesse que l&#8217;on découvre au fil du temps.</p>
+</div>
+<div class="paragraph">
+<p>Le système décentralisé, nécessaire pour certaines types d&#8217;organisations, apporte une complexité initiale difficle à cerner.</p>
+</div>
+<div class="paragraph">
+<p><a href="http://www.amazon.fr/Pro-Git-Scott-Chacon/dp/1484200772">Pro Git</a> permet de comprendre les mécaniques et la philosophie de git.</p>
+</div>
 </div>
 </div>
 </div>

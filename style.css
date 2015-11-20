@@ -437,3 +437,8 @@ ol>li p {
     background: #000;
     color: #DFDEDE;
 }
+
+.listingblock.terminal .conum {
+    color: #000!important;
+    background-color: rgba(255,255,255,.8);
+}

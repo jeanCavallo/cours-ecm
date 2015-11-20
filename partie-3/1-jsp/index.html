@@ -4,64 +4,47 @@
 <meta charset="UTF-8">
 <!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="generator" content="Asciidoctor 1.5.2">
-<title>Templates JSP</title>
+<meta name="generator" content="Asciidoctor 1.5.3">
+<title>Erreurs dans les templates JSP</title>
 <link rel="stylesheet" href="./../../style.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="./coderay-asciidoctor.css">
 </head>
-<body class="article">
+<body class="article toc2 toc-left">
 <div id="header">
-<h1>Templates JSP</h1>
-</div>
-<div id="content">
-<div id="preamble">
-<div class="sectionbody">
-<div class="paragraph">
-<p>Voici la liste des bugs répertoriés en relation avec les JSP</p>
-</div>
-<div class="sidebarblock">
-<div class="content">
-<div class="ulist">
-<ul>
-<li>
-<p><a href="#JSP-1">[JSP-1]</a>  : Il manque un 's' dans l&#8217;entrée "Toutes les recette" du menu</p>
-</li>
-<li>
-<p><a href="#JSP-2">[JSP-2]</a>  : le lien vers les mentions légales est incorrect</p>
-</li>
-<li>
-<p><a href="#JSP-3">[JSP-3]</a>  : format date in recette.jsp</p>
-</li>
-<li>
-<p><a href="#JSP-4">[JSP-4]</a>  : format tags with for each</p>
-</li>
-<li>
-<p><a href="#JSP-5">[JSP-5]</a>  : include header with params</p>
-</li>
-<li>
-<p><a href="#JSP-6">[JSP-6]</a>  : format text with function</p>
-</li>
-<li>
-<p><a href="#JSP-7">[JSP-7]</a>  : auto complétion : data-service-url</p>
-</li>
-<li>
-<p><a href="#JSP-8">[JSP-8]</a>  : add sel / poivre</p>
-</li>
-<li>
-<p><a href="#JSP-9">[JSP-9]</a>  : delete then add, index is wrong</p>
-</li>
-<li>
-<p><a href="#JSP-10">[JSP-10]</a> : pagination</p>
+<div id="toc" class="toc2">
+<div id="toctitle">Table of Contents</div>
+<ul class="sectlevel0">
+<li><a href="#_erreurs_dans_les_templates_jsp">Erreurs dans les templates JSP</a>
+<ul class="sectlevel1">
+<li><a href="#_jsp_1_il_manque_un_s_dans_l_entrée_toutes_les_recette_du_menu">1. JSP-1 : il manque un 's' dans l&#8217;entrée "Toutes les recette" du menu</a></li>
+<li><a href="#_jsp_2_le_lien_vers_les_mentions_légales_est_incorrect">2. JSP-2 : le lien vers les mentions légales est incorrect</a></li>
+<li><a href="#_jsp_3_format_de_la_date_dans_recette_tag">3. JSP-3 : format de la date dans recette.tag</a></li>
+<li><a href="#_jsp_4_liste_des_tags_avec_foreach">4. JSP-4 : liste des tags avec forEach</a></li>
+<li><a href="#_jsp_5_factorisation_du_header">5. JSP-5 : factorisation du header</a></li>
+<li><a href="#_jsp_6_format_du_texte_dans_recette_tag">6. JSP-6 : format du texte dans recette.tag</a></li>
+<li><a href="#_jsp_7_auto_complétion_des_tags">7. JSP-7 : auto complétion des tags</a></li>
+<li><a href="#_jsp_8_ajouter_du_sel_et_du_poivre">8. JSP-8 : ajouter du sel et du poivre</a></li>
+<li><a href="#_jsp_9_index_dans_les_tableaux_d_ingrédients">9. JSP-9 : index dans les tableaux d&#8217;ingrédients</a></li>
+<li><a href="#_jsp_10_pagination">10. JSP-10 : pagination</a></li>
+</ul>
 </li>
 </ul>
 </div>
 </div>
+<div id="content">
+<div class="paragraph">
+<p><a href="../../index.html">&lt;&lt; Retour à l&#8217;index</a></p>
+</div>
+<h1 id="_erreurs_dans_les_templates_jsp" class="sect0">Erreurs dans les templates JSP</h1>
+<div class="paragraph">
+<p>Voici la liste des bugs répertoriés en relation avec les JSP</p>
 </div>
 <div class="admonitionblock note">
 <table>
 <tr>
 <td class="icon">
-<div class="title">Note</div>
+<i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
 Il n&#8217;est pas nécessaire de redémarrer le serveur tomcat avec <code>gradle tomcatRun</code> pour que les modifications soient prise en compte
@@ -73,18 +56,28 @@ Il n&#8217;est pas nécessaire de redémarrer le serveur tomcat avec <code>gradl
 <table>
 <tr>
 <td class="icon">
-<div class="title">Note</div>
+<i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-<a href="../A-jsp/index.html">l&#8217;annexe A</a> couvre ce qu&#8217;il est possible de faire dans les jsp
+<a href="../A-jsp/index.html">L&#8217;annexe A</a> couvre ce qu&#8217;il est possible de faire dans les jsp
 </td>
 </tr>
 </table>
 </div>
-</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Afin d&#8217;éditer les recettes, il faut utiliser l&#8217;interface d&#8217;admin sur /admin
+</td>
+</tr>
+</table>
 </div>
 <div class="sect1">
-<h2 id="__a_id_jsp_1_a_jsp_1_typo"><a id="JSP-1"></a>JSP-1 : Typo</h2>
+<h2 id="_jsp_1_il_manque_un_s_dans_l_entrée_toutes_les_recette_du_menu">1. JSP-1 : il manque un 's' dans l&#8217;entrée "Toutes les recette" du menu</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Il manque un 's' à "Toutes les recette" dans le menu de toutes les pages.</p>
@@ -98,7 +91,7 @@ Il n&#8217;est pas nécessaire de redémarrer le serveur tomcat avec <code>gradl
 </div>
 </div>
 <div class="sect1">
-<h2 id="__a_id_jsp_2_a_jsp_2_mauvais_lien"><a id="JSP-2"></a>JSP-2 : Mauvais lien</h2>
+<h2 id="_jsp_2_le_lien_vers_les_mentions_légales_est_incorrect">2. JSP-2 : le lien vers les mentions légales est incorrect</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Dans le footer, le lien vers les mentions légales n&#8217;est pas bon.</p>
@@ -112,7 +105,7 @@ Il n&#8217;est pas nécessaire de redémarrer le serveur tomcat avec <code>gradl
 </div>
 </div>
 <div class="sect1">
-<h2 id="__a_id_jsp_3_a_jsp_3_custom_tags_et_jstl"><a id="JSP-3"></a>JSP-3 : Custom tags et jstl</h2>
+<h2 id="_jsp_3_format_de_la_date_dans_recette_tag">3. JSP-3 : format de la date dans recette.tag</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Dans la jsp qui affiche une recette, on trouve <code>&lt;p&gt;${receipe.date}&lt;/p&gt;</code></p>
@@ -132,43 +125,325 @@ Il n&#8217;est pas nécessaire de redémarrer le serveur tomcat avec <code>gradl
 <p>Ce n&#8217;est pas très lisible.</p>
 </div>
 <div class="paragraph">
-<p>Il faut formatter avec le pattern suivant <code>dd MMM yyyy</code> (TODO doc java date patterns)</p>
-</div>
-<div id="JSP-5" class="paragraph">
-<p>Le footer est produit par le tag file footer.tag.</p>
+<p>Il faut formatter avec le pattern suivant <code>dd MMM yyyy</code> (voir les <a href="http://docs.oracle.com/javase/7/docs/api/java/text/SimpleDateFormat.html">patterns pour les dates</a>)</p>
 </div>
 <div class="paragraph">
-<p>On peut voir que ce n&#8217;est pas le cas pour le header.</p>
+<p>Regardez dans <a href="../A-jsp/index.html">l&#8217;annexe A</a> le custom tag formatDate de la JSTL. Vous pouvez aussi chercher sur le web.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_jsp_4_liste_des_tags_avec_foreach">4. JSP-4 : liste des tags avec forEach</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Dans la jsp qui affiche une recette, il y a la liste des tags associés à une recette.</p>
+</div>
+<div class="paragraph">
+<p>Actuellement, la liste est affiché comme cela : <code>&lt;span class="label label-primary"&gt;${fn:escapeXml(recipe.tags)}&lt;/span&gt;</code>.</p>
+</div>
+<div class="paragraph">
+<p>La propriété tags d&#8217;une recette est une liste.</p>
+</div>
+<div class="paragraph">
+<p>Cela donne donc quelque chose comme <span class="image"><img src="tags.png" alt="tags"></span> si il y a plusieurs tags.</p>
+</div>
+<div class="paragraph">
+<p>On voudrait plutôt faire une boucle sur les tags afin d&#8217;obtenir le code suivant :</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="CodeRay highlight"><code data-lang="jsp">&lt;nav class=&quot;navbar navbar-default navbar-fixed-top&quot;&gt;
-    &lt;div class=&quot;container-fluid&quot;&gt;
-        &lt;div class=&quot;navbar-header&quot;&gt;
-            &lt;button type=&quot;button&quot; class=&quot;navbar-toggle collapsed&quot; data-toggle=&quot;collapse&quot; data-target=&quot;#navbar-collapse&quot;&gt;
-                &lt;span class=&quot;sr-only&quot;&gt;Toggle navigation&lt;/span&gt;
-                &lt;span class=&quot;icon-bar&quot;&gt;&lt;/span&gt;
-                &lt;span class=&quot;icon-bar&quot;&gt;&lt;/span&gt;
-                &lt;span class=&quot;icon-bar&quot;&gt;&lt;/span&gt;
-            &lt;/button&gt;
-            &lt;a class=&quot;navbar-brand&quot; href=&quot;/&quot;&gt;Cooking Miam Miam&lt;/a&gt;
-        &lt;/div&gt;
+<pre class="CodeRay highlight"><code data-lang="html"><span class="tag">&lt;span</span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">label label-primary</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>choucoute<span class="tag">&lt;/span</span>
+<span class="tag">&lt;span</span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">label label-primary</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>alsace<span class="tag">&lt;/span</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Pour cela, utilisez le custom tag forEach de la librairie c (voir <a href="../A-jsp/index.html">l&#8217;annexe A</a> et le web)</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_jsp_5_factorisation_du_header">5. JSP-5 : factorisation du header</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Le footer est produit par le tag file footer.tag.</p>
+</div>
+<div class="paragraph">
+<p>On peut voir que ce n&#8217;est pas le cas pour le header qui est répété plusieurs fois.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="html"><span class="tag">&lt;nav</span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">navbar navbar-default navbar-fixed-top</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
+    <span class="tag">&lt;div</span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">container-fluid</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
+        <span class="tag">&lt;div</span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">navbar-header</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
+            <span class="tag">&lt;button</span> <span class="attribute-name">type</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">button</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">navbar-toggle collapsed</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">data-toggle</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">collapse</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">data-target</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">#navbar-collapse</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
+                <span class="tag">&lt;span</span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">sr-only</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>Toggle navigation<span class="tag">&lt;/span&gt;</span>
+                <span class="tag">&lt;span</span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">icon-bar</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span><span class="tag">&lt;/span&gt;</span>
+                <span class="tag">&lt;span</span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">icon-bar</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span><span class="tag">&lt;/span&gt;</span>
+                <span class="tag">&lt;span</span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">icon-bar</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span><span class="tag">&lt;/span&gt;</span>
+            <span class="tag">&lt;/button&gt;</span>
+            <span class="tag">&lt;a</span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">navbar-brand</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">href</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">/</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>Cooking Miam Miam<span class="tag">&lt;/a&gt;</span>
+        <span class="tag">&lt;/div&gt;</span>
 
-        &lt;div class=&quot;collapse navbar-collapse&quot; id=&quot;navbar-collapse&quot;&gt;
-            &lt;ul class=&quot;nav navbar-nav&quot;&gt;
-                &lt;li&gt;&lt;a href=&quot;/recettes&quot;&gt;Toutes les recette&lt;/a&gt;&lt;/li&gt;
-                &lt;li&gt;&lt;a href=&quot;/recette-du-moment&quot;&gt;Recette du moment&lt;/a&gt;&lt;/li&gt;
-            &lt;/ul&gt;
-        &lt;/div&gt;
-    &lt;/div&gt;
-&lt;/nav&gt;</code></pre>
+        <span class="tag">&lt;div</span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">collapse navbar-collapse</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">id</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">navbar-collapse</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
+            <span class="tag">&lt;ul</span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">nav navbar-nav</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
+                <span class="tag">&lt;li&gt;</span><span class="tag">&lt;a</span> <span class="attribute-name">href</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">/recettes</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>Toutes les recette<span class="tag">&lt;/a&gt;</span><span class="tag">&lt;/li&gt;</span>
+                <span class="tag">&lt;li&gt;</span><span class="tag">&lt;a</span> <span class="attribute-name">href</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">/recette-du-moment</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>Recette du moment<span class="tag">&lt;/a&gt;</span><span class="tag">&lt;/li&gt;</span>
+            <span class="tag">&lt;/ul&gt;</span>
+        <span class="tag">&lt;/div&gt;</span>
+    <span class="tag">&lt;/div&gt;</span>
+<span class="tag">&lt;/nav&gt;</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
 <p>Ce n&#8217;est pas bien car si on le change, il faut le faire dans tous les fichiers.</p>
 </div>
+<div class="sidebarblock">
+<div class="content">
+<div class="title">DRY</div>
 <div class="paragraph">
-<p>Il faut trouver le meilleur moyen de partager ce morceau entre les templates.</p>
+<p>La duplication de code est l&#8217;un des pire enemis du développeur.</p>
+</div>
+<div class="paragraph">
+<p>Le principe <strong>DRY</strong> (Don&#8217;t Repeat Yourself) énonce que "Every piece of knowledge must have a single, unambiguous, authoritative representation within a system."</p>
+</div>
+<div class="paragraph">
+<p>Sans cela, la maintenance d&#8217;un logiciel est un enfer.</p>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>La meilleure façon de factoriser est via un <strong>fichier tag</strong> comme pour le header.</p>
+</div>
+<div class="paragraph">
+<p>Au passage, il est même possible de passer un paramètre depuis chaque page afin de rendre actif un élément de la navigation.</p>
+</div>
+<div class="paragraph">
+<p><a href="../A-jsp/index.html">L&#8217;annexe A</a> décrit le fonctionnement des tag files.</p>
+</div>
+<div class="paragraph">
+<p>Voir également la doc <a href="http://getbootstrap.com/components/#navbar">Bootstrap</a> afin de rendre un élément actif.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_jsp_6_format_du_texte_dans_recette_tag">6. JSP-6 : format du texte dans recette.tag</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Dans la page de recette, si la recette possède un texte sur plusieurs lignes comme ceci :</p>
+</div>
+<div class="listingblock">
+<div class="title">exemple de texte sur plusieurs lignes</div>
+<div class="content">
+<pre>du texte
+du texte
+du texte
+et encore du texte.</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Il s&#8217;affiche sur une seule ligne dans le navigateur.</p>
+</div>
+<div class="paragraph">
+<p>Le code responsable dans la jsp est <code>&lt;p&gt;${fn:escapeXml(recipe.text)}&lt;/p&gt;</code></p>
+</div>
+<div class="paragraph">
+<p>La fonction escapeXml nous permet de bien afficher les &lt;, &gt; et &amp; qui sinon risqueraient de casser notre code html.</p>
+</div>
+<div class="paragraph">
+<p>Mais elle ne transforme pas les retours chariot en &lt;br&gt;.</p>
+</div>
+<div class="paragraph">
+<p>Il est possible de chainer les opérations afin d&#8217;arriver au résultat en utilisant une fonction replace.</p>
+</div>
+<div class="paragraph">
+<p>Cependant, il serait mieux de créer notre propre fonction qui fait les 2 opérations pour un seul appel depuis la jsp.</p>
+</div>
+<div class="paragraph">
+<p>Pour faire cela :</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>il faut ajouter un package fr.cmm.tags dans src/main/java</p>
+</li>
+<li>
+<p>il faut ajouter une classe Functions.java (au choix) dans le package</p>
+</li>
+<li>
+<p>il faut ajouter une méthode <strong>statique</strong> dans la classe java qui prend un String en paramètre et renvoie un String</p>
+</li>
+<li>
+<p>il faut ajouter une tld dans WEB-INF-tld</p>
+</li>
+<li>
+<p>il faut déclarer la tld dans la jsp</p>
+</li>
+<li>
+<p>il faut changer l&#8217;appel de excapeXml par notre méthode</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Pour l&#8217;impémentation, on peut utiliser <a href="https://commons.apache.org/proper/commons-lang/javadocs/api-3.1/org/apache/commons/lang3/StringEscapeUtils.html">StringEscapeUtils</a> qui est déjà présent dans notre projet.
+Pour les retours chariots, il faut faire un replace des <code>"\n"</code> par des <code>&lt;br&gt;</code></p>
+</div>
+<div class="paragraph">
+<p><a href="../A-jsp/index.html">L&#8217;annexe A</a> décrit le fonctionnement des fichiers tld et des fonctions.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_jsp_7_auto_complétion_des_tags">7. JSP-7 : auto complétion des tags</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Lorsqu&#8217;on édite une recette, il devrait y avoir de l&#8217;autocomplétion sur le champs tags.</p>
+</div>
+<div class="paragraph">
+<p>Cette fonctionnalité est mise en place au chargement de la page dans le code javascript présent dans le projet.</p>
+</div>
+<div class="paragraph">
+<p>La liste complète des tags est un service offert par l&#8217;IndexController via le mapping '/tags.json'.</p>
+</div>
+<div class="paragraph">
+<p>En étudiant le javascript, faites fonctionner l&#8217;autocomplétion sur les tags.</p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="title">data-* attributes</div>
+<div class="paragraph">
+<p>Les <a href="https://developer.mozilla.org/en-US/docs/Web/Guide/HTML/Using_data_attributes">data-* attributes</a> permettent de stocker de l&#8217;information en respect des normes.</p>
+</div>
+<div class="paragraph">
+<p>Ils sont pratiques afin de ranger des données qui ne correspondent à aucun attribut standard.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_jsp_8_ajouter_du_sel_et_du_poivre">8. JSP-8 : ajouter du sel et du poivre</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Pour gagner du temps, dans l&#8217;interface d&#8217;édition, le client aurait voulu un bouton 'ajouter du sel' et 'ajouter du poivre'.</p>
+</div>
+<div class="paragraph">
+<p>En étudiant le javascript du site et le fichier ingredient-form-row.jsp, ajoutez les boutons 'sel' et 'poivre' nécessaires.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_jsp_9_index_dans_les_tableaux_d_ingrédients">9. JSP-9 : index dans les tableaux d&#8217;ingrédients</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Lorsque l&#8217;on ajoute des ingrédients puis on en retire, on arrive avec le html suivant :</p>
+</div>
+<div class="listingblock">
+<div class="title">ingredients</div>
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="html"><span class="tag">&lt;div</span> <span class="attribute-name">id</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">ingredients</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
+ <span class="tag">&lt;div&gt;</span><span class="tag">&lt;/div&gt;</span>
+ <span class="tag">&lt;div&gt;</span><span class="tag">&lt;/div&gt;</span>
+ <span class="tag">&lt;div&gt;</span><span class="tag">&lt;/div&gt;</span>
+ <span class="tag">&lt;div&gt;</span>
+  <span class="tag">&lt;div</span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">row</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
+   <span class="tag">&lt;div</span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">col-xs-6</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
+    <span class="tag">&lt;input</span> <span class="attribute-name">type</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">text</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">form-control</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">placeholder</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">Nom</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">name</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">ingredients[3].name</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">value</span>=<span class="string"><span class="delimiter">&quot;</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
+   <span class="tag">&lt;/div&gt;</span>
+   <span class="tag">&lt;div</span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">col-xs-2</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
+    <span class="tag">&lt;input</span> <span class="attribute-name">type</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">text</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">form-control</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">placeholder</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">Quantité</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">name</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">ingredients[3].quantity</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">value</span>=<span class="string"><span class="delimiter">&quot;</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
+   <span class="tag">&lt;/div&gt;</span>
+   <span class="tag">&lt;div</span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">col-xs-2</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
+    <span class="tag">&lt;input</span> <span class="attribute-name">type</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">text</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">form-control</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">placeholder</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">Unité</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">name</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">ingredients[3].unit</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">value</span>=<span class="string"><span class="delimiter">&quot;</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
+   <span class="tag">&lt;/div&gt;</span>
+   <span class="tag">&lt;div</span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">col-xs-1</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
+    <span class="tag">&lt;button</span> <span class="attribute-name">type</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">button</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">btn btn-default</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">data-role</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">removeIngredient</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span><span class="tag">&lt;span</span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">glyphicon glyphicon-minus</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">aria-hidden</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">true</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span><span class="tag">&lt;/span&gt;</span><span class="tag">&lt;/button&gt;</span>
+   <span class="tag">&lt;/div&gt;</span>
+  <span class="tag">&lt;/div&gt;</span>
+ <span class="tag">&lt;/div&gt;</span>
+ <span class="tag">&lt;div&gt;</span>
+  <span class="tag">&lt;div</span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">row</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
+   <span class="tag">&lt;div</span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">col-xs-6</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
+    <span class="tag">&lt;input</span> <span class="attribute-name">type</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">text</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">form-control</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">placeholder</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">Nom</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">name</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">ingredients[5].name</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">value</span>=<span class="string"><span class="delimiter">&quot;</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
+   <span class="tag">&lt;/div&gt;</span>
+   <span class="tag">&lt;div</span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">col-xs-2</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
+    <span class="tag">&lt;input</span> <span class="attribute-name">type</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">text</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">form-control</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">placeholder</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">Quantité</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">name</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">ingredients[5].quantity</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">value</span>=<span class="string"><span class="delimiter">&quot;</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
+   <span class="tag">&lt;/div&gt;</span>
+   <span class="tag">&lt;div</span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">col-xs-2</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
+    <span class="tag">&lt;input</span> <span class="attribute-name">type</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">text</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">form-control</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">placeholder</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">Unité</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">name</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">ingredients[5].unit</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">value</span>=<span class="string"><span class="delimiter">&quot;</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
+   <span class="tag">&lt;/div&gt;</span>
+   <span class="tag">&lt;div</span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">col-xs-1</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
+    <span class="tag">&lt;button</span> <span class="attribute-name">type</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">button</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">btn btn-default</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">data-role</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">removeIngredient</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span><span class="tag">&lt;span</span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">glyphicon glyphicon-minus</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">aria-hidden</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">true</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span><span class="tag">&lt;/span&gt;</span><span class="tag">&lt;/button&gt;</span>
+   <span class="tag">&lt;/div&gt;</span>
+  <span class="tag">&lt;/div&gt;</span>
+ <span class="tag">&lt;/div&gt;</span>
+ <span class="tag">&lt;div&gt;</span>
+  <span class="tag">&lt;div</span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">row</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
+   <span class="tag">&lt;div</span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">col-xs-6</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
+    <span class="tag">&lt;input</span> <span class="attribute-name">type</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">text</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">form-control</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">placeholder</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">Nom</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">name</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">ingredients[6].name</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">value</span>=<span class="string"><span class="delimiter">&quot;</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
+   <span class="tag">&lt;/div&gt;</span>
+   <span class="tag">&lt;div</span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">col-xs-2</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
+    <span class="tag">&lt;input</span> <span class="attribute-name">type</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">text</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">form-control</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">placeholder</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">Quantité</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">name</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">ingredients[6].quantity</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">value</span>=<span class="string"><span class="delimiter">&quot;</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
+   <span class="tag">&lt;/div&gt;</span>
+   <span class="tag">&lt;div</span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">col-xs-2</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
+    <span class="tag">&lt;input</span> <span class="attribute-name">type</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">text</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">form-control</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">placeholder</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">Unité</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">name</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">ingredients[6].unit</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">value</span>=<span class="string"><span class="delimiter">&quot;</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
+   <span class="tag">&lt;/div&gt;</span>
+   <span class="tag">&lt;div</span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">col-xs-1</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
+    <span class="tag">&lt;button</span> <span class="attribute-name">type</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">button</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">btn btn-default</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">data-role</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">removeIngredient</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span><span class="tag">&lt;span</span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">glyphicon glyphicon-minus</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">aria-hidden</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">true</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span><span class="tag">&lt;/span&gt;</span><span class="tag">&lt;/button&gt;</span>
+   <span class="tag">&lt;/div&gt;</span>
+  <span class="tag">&lt;/div&gt;</span>
+ <span class="tag">&lt;/div&gt;</span>
+<span class="tag">&lt;/div&gt;</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>On peut voir que le tableau d&#8217;ingrédients à des trous (ici on a encore les index 3, 5 et 6)</p>
+</div>
+<div class="paragraph">
+<p>Ces données vont partir vers le serveur qui va remplir une liste de 6 éléments avec 3 trous.</p>
+</div>
+<div class="paragraph">
+<p>Si on sauve, on va donc récupérer 3 lignes de données vides :</p>
+</div>
+<div class="imageblock" style="text-align: center">
+<div class="content">
+<img src="ingredients-index.png" alt="ingredients index">
+</div>
+</div>
+<div class="paragraph">
+<p>Que faudrait il faire pour corriger ce problème ?</p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="title">RIA</div>
+<div class="paragraph">
+<p>Ce petit exemple de liste dynamique démontre que les frameworks classiques comme Spring MVC sont mal à l&#8217;aise avec ce genre de problème.</p>
+</div>
+<div class="paragraph">
+<p>Les frameworks pour les Rich Internet Applications (RIA) comme AngularJS traiteraient de ce problème beaucoup plus aisément.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_jsp_10_pagination">10. JSP-10 : pagination</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Dans recettes.jsp il y a une pagination qui n&#8217;est pas fonctionnelle pour le moment.</p>
+</div>
+<div class="paragraph">
+<p>Le code est <code>${pagination.pages}</code>.</p>
+</div>
+<div class="paragraph">
+<p>La classe <code>Pagination</code> est dans le package <code>fr.cmm.helper</code> (elle ne fonctionne pas bien, mais ce n&#8217;est pas le sujet pour le moment).</p>
+</div>
+<div class="paragraph">
+<p>En se servant de tout ce qui a été vu précédemment, formattez cette pagination en utilisant le <a href="http://getbootstrap.com/components/#pagination">composant pagination de bootstrap</a></p>
+</div>
+<div class="imageblock" style="text-align: center">
+<div class="content">
+<img src="pagination.png" alt="pagination">
+</div>
 </div>
 </div>
 </div>

@@ -4,14 +4,14 @@
 <meta charset="UTF-8">
 <!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="generator" content="Asciidoctor 1.5.2">
-<title>Intellij</title>
+<meta name="generator" content="Asciidoctor 1.5.3">
+<title>Projets et modules</title>
 <link rel="stylesheet" href="./../../style.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="./coderay-asciidoctor.css">
 </head>
 <body class="article toc2 toc-left">
 <div id="header">
-<h1>Intellij</h1>
 <div id="toc" class="toc2">
 <div id="toctitle">Table of Contents</div>
 <ul class="sectlevel1">
@@ -24,13 +24,24 @@
 </div>
 </div>
 <div id="content">
-<div id="preamble">
-<div class="sectionbody">
 <div class="paragraph">
-<p><span class="image"><img src="intellij.jpg" alt="Intellij" width="40" height="40"></span> Un IDE est un environnement complet qui permet de travailler plus vite en regroupant de multiples outils de développement dans une même interface.</p>
+<p><a href="../../index.html">&lt;&lt; Retour à l&#8217;index</a></p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="banner.png" alt="banner" width="100%">
+</div>
 </div>
 <div class="paragraph">
+<p>Un IDE est un environnement complet qui permet de travailler plus vite en regroupant de multiples outils de développement dans une même interface.</p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="title">JetBrains</div>
+<div class="paragraph">
 <p>Intellij est développé par JetBrains qui maitient tout une suite de logiciels pour divers languages : php, python, ruby&#8230;&#8203;</p>
+</div>
+</div>
 </div>
 <div class="paragraph">
 <p>Intellij existe en 2 versions : <strong>communautaire</strong> et <strong>ultimate</strong>.</p>
@@ -38,10 +49,10 @@
 <div class="ulist">
 <ul>
 <li>
-<p>La version communautaire est suffisante pour faire du java, du groovy ou du scala.</p>
+<p>La version <strong>communautaire</strong> est suffisante pour faire du java, du groovy ou du scala.</p>
 </li>
 <li>
-<p>La version ultimate rajoute le web, jee et d&#8217;avantages de languages et plateformes (<a href="https://www.jetbrains.com/idea/features/">toutes les features</a>).</p>
+<p>La version <strong>ultimate</strong> rajoute le web, jee et d&#8217;avantages de languages et plateformes (<a href="https://www.jetbrains.com/idea/features/">toutes les features</a>).</p>
 </li>
 </ul>
 </div>
@@ -63,8 +74,6 @@
 </div>
 <div class="paragraph">
 <p>Nous allons intégrer notre projet naissant dans Intellij</p>
-</div>
-</div>
 </div>
 <div class="sect1">
 <h2 id="_projets_et_modules">1. Projets et modules</h2>
@@ -208,9 +217,9 @@
 <div class="paragraph">
 <p>Notre projet de test est prêt à recevoir du code.</p>
 </div>
-<div class="listingblock">
+<div class="listingblock terminal">
 <div class="content">
-<pre class="CodeRay highlight"><code data-lang="terminal">test-project $ tree
+<pre class="CodeRay highlight"><code>test-project $ tree
 .
 ├── build.gradle
 ├── gradle

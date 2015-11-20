@@ -4,89 +4,189 @@
 <meta charset="UTF-8">
 <!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="generator" content="Asciidoctor 1.5.2">
-<title>Les services</title>
+<meta name="generator" content="Asciidoctor 1.5.3">
+<title>Bugs dans les services</title>
 <link rel="stylesheet" href="./../../style.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="./coderay-asciidoctor.css">
 </head>
-<body class="article">
+<body class="article toc2 toc-left">
 <div id="header">
-<h1>Les services</h1>
+<div id="toc" class="toc2">
+<div id="toctitle">Table of Contents</div>
+<ul class="sectlevel0">
+<li><a href="#_bugs_dans_les_services">Bugs dans les services</a>
+<ul class="sectlevel1">
+<li><a href="#_ser_1_objectid_invalide">1. SER-1 ObjectId invalide</a></li>
+<li><a href="#_ser_2_la_home_contient_des_doublons">2. SER-2 La home contient des doublons</a></li>
+<li><a href="#_ser_3_recette_du_moment">3. SER-3 Recette du moment</a></li>
+</ul>
+</li>
+</ul>
+</div>
 </div>
 <div id="content">
-<div id="preamble">
-<div class="sectionbody">
+<div class="paragraph">
+<p><a href="../../index.html">&lt;&lt; Retour à l&#8217;index</a></p>
+</div>
+<h1 id="_bugs_dans_les_services" class="sect0">Bugs dans les services</h1>
 <div class="paragraph">
 <p>Voici la liste des bugs répertoriés en relation avec les services</p>
 </div>
+<div class="sect1">
+<h2 id="_ser_1_objectid_invalide">1. SER-1 ObjectId invalide</h2>
+<div class="sectionbody">
 <div class="sidebarblock">
 <div class="content">
+<div class="title"><a href="https://docs.mongodb.org/manual/reference/object-id/" class="bare">https://docs.mongodb.org/manual/reference/object-id/</a></div>
+<div class="paragraph">
+<p>In MongoDB, documents stored in a collection require a unique _id field that acts as a primary key.</p>
+</div>
+<div class="paragraph">
+<p>ObjectId is a 12-byte BSON type, constructed using:</p>
+</div>
 <div class="ulist">
 <ul>
 <li>
-<p><a href="#SER-1">[SER-1]</a>  :</p>
+<p>a 4-byte value representing the seconds since the Unix epoch,</p>
 </li>
 <li>
-<p><a href="#SER-2">[SER-2]</a>  :</p>
+<p>a 3-byte machine identifier,</p>
 </li>
 <li>
-<p><a href="#SER-3">[SER-3]</a>  :</p>
+<p>a 2-byte process id, and</p>
 </li>
 <li>
-<p><a href="#SER-4">[SER-4]</a>  : sécurisation</p>
-</li>
-<li>
-<p><a href="#SER-5">[SER-5]</a>  : edit button when admin</p>
-</li>
-<li>
-<p><a href="#SER-6">[SER-6]</a>  : add seach by ingredients</p>
-</li>
-<li>
-<p><a href="#SER-7">[SER-7]</a>  : pick a recipe depending on season</p>
-</li>
-<li>
-<p><a href="#SER-8">[SER-8]</a>  :</p>
-</li>
-<li>
-<p><a href="#SER-9">[SER-9]</a>  :</p>
-</li>
-<li>
-<p><a href="#SER-10">[SER-10]</a> :</p>
+<p>a 3-byte counter, starting with a random value.</p>
 </li>
 </ul>
 </div>
 </div>
 </div>
-<div class="admonitionblock note">
+<div class="paragraph">
+<p>La page <a href="http://localhost:8080/recette/123pasvalide456" class="bare">http://localhost:8080/recette/123pasvalide456</a> fait une 500</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="invalid-objectid.png" alt="invalid objectid">
+</div>
+</div>
+<div class="paragraph">
+<p>La ligne qui pose problème est dans <code>RecipeService</code> :</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java"><span class="keyword">return</span> recipeCollection.findOne(<span class="keyword">new</span> ObjectId(id)).as(Recipe.class); <i class="conum" data-value="1"></i><b>(1)</b></code></pre>
+</div>
+</div>
+<div class="colist arabic">
 <table>
 <tr>
-<td class="icon">
-<div class="title">Note</div>
-</td>
-<td class="content">
-<a href="../C-DI/index.html">l&#8217;annexe C</a> explique le principe de l&#8217;injection de dépendances
-</td>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td><code>new ObjectId(id)</code> échoue si <code>id</code> n&#8217;a pas le bon format</td>
 </tr>
 </table>
 </div>
+<div class="paragraph">
+<p>Rajoutez un test <code>findByIdWithInvalidId()</code> dans <code>RecipeServiceTest</code> qui s&#8217;assure que le service renvoie <code>null</code> dans ce cas.</p>
 </div>
+<div class="paragraph">
+<p>Depuis le mapping <code>@RequestMapping("/recette/{id}")</code> dans <code>IndexController</code>, il faut aussi s&#8217;assurer que l&#8217;on renvoie une 404 dans ce cas.</p>
 </div>
-<div class="sect1">
-<h2 id="__a_id_ser_1_a_ser_1"><a id="SER-1"></a>SER-1 :</h2>
-<div class="sectionbody">
-
+<div class="paragraph">
+<p>Pour faire cela, on peut se servir de ce qui est indique sur <a href="http://stackoverflow.com/questions/2066946/trigger-404-in-spring-mvc-controller" class="bare">http://stackoverflow.com/questions/2066946/trigger-404-in-spring-mvc-controller</a>.</p>
 </div>
-</div>
-<div class="sect1">
-<h2 id="__a_id_ser_2_a_ser_2"><a id="SER-2"></a>SER-2 :</h2>
-<div class="sectionbody">
-
 </div>
 </div>
 <div class="sect1">
-<h2 id="__a_id_ser_3_a_ser_3"><a id="SER-3"></a>SER-3 :</h2>
+<h2 id="_ser_2_la_home_contient_des_doublons">2. SER-2 La home contient des doublons</h2>
 <div class="sectionbody">
+<div class="paragraph">
+<p>La page de home est construite à l&#8217;aide de la méthode</p>
+</div>
+<div class="listingblock">
+<div class="title">randomColumns()</div>
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java"><span class="directive">private</span> Columns randomColumns() {
+  Columns columns = <span class="keyword">new</span> Columns();
 
+  columns.add(recipeService.findRandom(<span class="integer">10</span>));
+  columns.add(recipeService.findRandom(<span class="integer">10</span>));
+  columns.add(recipeService.findRandom(<span class="integer">10</span>));
+
+  <span class="keyword">return</span> columns;
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Or 2 appels différents à <code>recipeService.findRandom(10)</code> peut renvoyer deux fois les mêmes recettes.</p>
+</div>
+<div class="paragraph">
+<p>L&#8217;implémenation de <code>findRandom(int count)</code> repose sur une astuce en mongodb.</p>
+</div>
+<div class="listingblock">
+<div class="title">findRandom(int count)</div>
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java"><span class="directive">public</span> <span class="predefined-type">Iterator</span>&lt;Recipe&gt; findRandom(<span class="type">int</span> count) {
+  <span class="keyword">return</span> recipeCollection.find(<span class="string"><span class="delimiter">&quot;</span><span class="content">{randomLocation: {$near: [#, 0]}}</span><span class="delimiter">&quot;</span></span>, <span class="predefined-type">Math</span>.random()).limit(count).as(Recipe.class);
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>On prend les <code>count</code> recettes les plus proches d&#8217;un point sur une droite.
+Pour faire cela, la classe <code>Recipe</code> à un attribut spécial <code>randomLocation</code>, initialisé à la création de l&#8217;object.</p>
+</div>
+<div class="listingblock">
+<div class="title">randomLocation</div>
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java"><span class="directive">private</span> <span class="type">double</span><span class="type">[]</span> randomLocation = <span class="keyword">new</span> <span class="type">double</span><span class="type">[]</span> {<span class="predefined-type">Math</span>.random(), <span class="integer">0</span>};</code></pre>
+</div>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="title"><a href="https://docs.mongodb.org/manual/reference/operator/query/near/" class="bare">https://docs.mongodb.org/manual/reference/operator/query/near/</a></div>
+<div class="paragraph">
+<p>Specifies a point for which a geospatial query returns the documents from nearest to farthest.</p>
+</div>
+<div class="paragraph">
+<p>The $near operator can specify either a GeoJSON point or legacy coordinate point.</p>
+</div>
+<div class="paragraph">
+<p>$near requires a geospatial index.</p>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Comment faire pour éviter d&#8217;avoir plusieurs fois la même recette sur la home ?</p>
+</div>
+<div class="paragraph">
+<p>Comment mettre en place des tests pour couvrir ce point ?</p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="title">Limitations</div>
+<div class="paragraph">
+<p>Aller chercher les recettes par paquets permet de faire moins de requête en base.</p>
+</div>
+<div class="paragraph">
+<p>Cependant, comme la répartition des recettes sur la droite est toujours la même, les requêtes proches remontteront donc souvent ensemble.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_ser_3_recette_du_moment">3. SER-3 Recette du moment</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Chaque <code>Recipe</code> à une date associé.</p>
+</div>
+<div class="paragraph">
+<p>Comment pourrait on utiliser celle ci afin que la page 'recette du moment' remonte de préférence une recette avec date proche de la date courante ?</p>
+</div>
+<div class="paragraph">
+<p>C&#8217;est le genre de point difficile à tester en utilisant le site. Ici encore, les tests unitaires doivent être utilisés afin de garantir un bon fonctionnement.</p>
+</div>
 </div>
 </div>
 </div>

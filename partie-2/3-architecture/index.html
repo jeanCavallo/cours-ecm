@@ -4,18 +4,37 @@
 <meta charset="UTF-8">
 <!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="generator" content="Asciidoctor 1.5.2">
+<meta name="generator" content="Asciidoctor 1.5.3">
 <title>Architecture de l&#8217;application</title>
 <link rel="stylesheet" href="./../../style.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="./coderay-asciidoctor.css">
 </head>
-<body class="article">
+<body class="article toc2 toc-left">
 <div id="header">
-<h1>Architecture de l&#8217;application</h1>
+<div id="toc" class="toc2">
+<div id="toctitle">Table of Contents</div>
+<ul class="sectlevel0">
+<li><a href="#_architecture_de_l_application">Architecture de l&#8217;application</a>
+<ul class="sectlevel1">
+<li><a href="#_vision_globale">1. vision globale</a></li>
+<li><a href="#_technology_stack">2. technology stack</a></li>
+<li><a href="#_structure_de_projet_standard">3. structure de projet standard</a></li>
+<li><a href="#_structure_de_l_app">4. structure de l&#8217;app</a></li>
+<li><a href="#_vue_séquentielle">5. vue séquentielle</a></li>
+<li><a href="#_tests_et_tdd">6. tests et TDD</a></li>
+</ul>
+</li>
+</ul>
+</div>
 </div>
 <div id="content">
+<div class="paragraph">
+<p><a href="../../index.html">&lt;&lt; Retour à l&#8217;index</a></p>
+</div>
+<h1 id="_architecture_de_l_application" class="sect0">Architecture de l&#8217;application</h1>
 <div class="sect1">
-<h2 id="_vision_globale">vision globale</h2>
+<h2 id="_vision_globale">1. vision globale</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>L&#8217;architecture est composée d&#8217;une application web qui est reliée à une base de données mongodb.</p>
@@ -26,16 +45,19 @@
 </div>
 </div>
 <div class="paragraph">
-<p>L&#8217;application est en java et est packagée sous le format standard war.</p>
+<p>L&#8217;application est en java et est packagée sous le format standard <strong>war</strong>.</p>
 </div>
 <div class="paragraph">
-<p>Mongodb est une base nosql qui stocke des documents en format BSON (Binary JSON).</p>
+<p>Mongodb est une base NOSQL qui stocke des documents en format BSON (Binary JSON).</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_technology_stack">technology stack</h2>
+<h2 id="_technology_stack">2. technology stack</h2>
 <div class="sectionbody">
+<div class="paragraph">
+<p>Voici la liste des principales technologies utilisées dans notre projet.</p>
+</div>
 <div class="sidebarblock">
 <div class="content">
 <div class="openblock float-group">
@@ -49,7 +71,7 @@
 <p>Java est un language de programmation orienté objet.</p>
 </div>
 <div class="paragraph">
-<p>Java c&#8217;est la jvm qui permet d e faire tourner les programmes et le jdk qui contient les libraries standard et le compilateur.</p>
+<p>Java c&#8217;est aussi la jvm qui permet de faire tourner les programmes et le jdk qui contient les libraries standard et le compilateur.</p>
 </div>
 <div class="paragraph">
 <p>Java Enterprise Edition (JEE) est un ensemble de librairies et outils facilitant (?) le développement d&#8217;applications.</p>
@@ -131,13 +153,10 @@
 </div>
 </div>
 <div class="paragraph">
-<p><a href="https://www.mongodb.org/">MongoDB</a> est une base données orientée document (en opposition des tables en SQL).</p>
+<p><a href="https://www.mongodb.org/">MongoDB</a> est une base données NOSQL orientée document.</p>
 </div>
 <div class="paragraph">
 <p>Un document est un arbre json qui est stocké en Binary JSON (BSON). Ce sont des structures souples, sans schéma.</p>
-</div>
-<div class="paragraph">
-<p>Mais elle n&#8217;offre pas les mêmes services que les bases SQL : transactions et intégrité référentielle.</p>
 </div>
 </div>
 </div>
@@ -156,7 +175,7 @@
 <p><a href="http://getbootstrap.com/">Bootstrap</a> est un framework html, css et javascript pour développer des pages responsives.</p>
 </div>
 <div class="paragraph">
-<p>Développé par des membres de twitter, il est aujourd&#8217;hui très largement utilisé.</p>
+<p>Développé initialement en interne chez twitter, il est aujourd&#8217;hui très largement utilisé.</p>
 </div>
 </div>
 </div>
@@ -178,7 +197,7 @@
 <p>Il est simple mais néanmoins très puissant.</p>
 </div>
 <div class="paragraph">
-<p>Il est utilisé par boostrap.</p>
+<p>Il est utilisé par certaines fonctionnalités de boostrap.</p>
 </div>
 </div>
 </div>
@@ -206,7 +225,7 @@
 </div>
 </div>
 <div class="sect1">
-<h2 id="_structure_de_projet_standard">structure de projet standard</h2>
+<h2 id="_structure_de_projet_standard">3. structure de projet standard</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Notre projet suit le <a href="https://maven.apache.org/guides/introduction/introduction-to-the-standard-directory-layout.html">Standard Directory Layout</a> introduit par Maven</p>
@@ -216,36 +235,106 @@
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="CodeRay highlight"><code>src                 // toutes les sources
-├─ main             // le code de l'application
-|  ├─ [language 1]  // le code est segmenté par language
+<pre class="CodeRay highlight"><code>src <i class="conum" data-value="1"></i><b>(1)</b>
+├─ main <i class="conum" data-value="2"></i><b>(2)</b>
+|  ├─ [language 1] <i class="conum" data-value="3"></i><b>(3)</b>
 |  ├─ [language 2]
-└─ test             // le code des test
+└─ test <i class="conum" data-value="4"></i><b>(4)</b>
    ├─ [language 1]
    ├─ [language 2]</code></pre>
 </div>
 </div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>toutes les sources</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>le code de l&#8217;application</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>le code est segmenté par language</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="4"></i><b>4</b></td>
+<td>le code des test</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+<strong>Convention over configuration</strong> : cette arborescence est une convention, si on la suit, il n&#8217;y a pas besoin de configuration.
+</td>
+</tr>
+</table>
+</div>
 <div class="paragraph">
-<p>Dans notre cas :</p>
+<p>Dans notre cas pour une application web JEE :</p>
 </div>
 <div class="listingblock">
 <div class="content">
 <pre class="CodeRay highlight"><code>src
 ├─ main
-|  ├─ java        // notre code en java
-|  ├─ resources   // les fichiers qui vont aussi dans le classpath
-|  └─ webapp      // les fichiers qui vont à la racine de l'application web
-|     ├─ WEB-INF  // fichiers de configuration protégés
-|     └─ META-INF // fichiers de méta données protégés
+|  ├─ java <i class="conum" data-value="1"></i><b>(1)</b>
+|  ├─ resources <i class="conum" data-value="2"></i><b>(2)</b>
+|  └─ webapp <i class="conum" data-value="3"></i><b>(3)</b>
+|     ├─ WEB-INF <i class="conum" data-value="4"></i><b>(4)</b>
+|     └─ META-INF <i class="conum" data-value="5"></i><b>(5)</b>
 └─ test
    ├─ java
    └─ resources</code></pre>
 </div>
 </div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>notre code en java</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>les fichiers qui vont aussi dans le classpath</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>les fichiers qui vont à la racine de l&#8217;application web</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="4"></i><b>4</b></td>
+<td>fichiers de configuration protégés</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="5"></i><b>5</b></td>
+<td>fichiers de méta données protégés</td>
+</tr>
+</table>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="title">WEB-INF/classes</div>
+<div class="paragraph">
+<p>Au lancement, WEB-INF/classes sera ajouté au classpath.</p>
+</div>
+<div class="paragraph">
+<p>WEB-INF/classes ne fait pas partie des sources mais est généré au build.</p>
+</div>
+<div class="paragraph">
+<p>WEB-INF/classes contiendra les classes java et tous les fichiers présents dans main/resources</p>
+</div>
+</div>
+</div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_structure_de_l_app">structure de l&#8217;app</h2>
+<h2 id="_structure_de_l_app">4. structure de l&#8217;app</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>L&#8217;application a une structure traditionnelle MVC pour le web.</p>
@@ -274,20 +363,92 @@
 </li>
 </ul>
 </div>
+<div class="paragraph">
+<p>Cette division permet d&#8217;utiliser le language ou la technologie la plus adaptée pour chaque partie de l&#8217;application.</p>
+</div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_vue_séquentielle">vue séquentielle</h2>
+<h2 id="_vue_séquentielle">5. vue séquentielle</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>dispatcher &#8594; controller &#8594; service &#8594; db &#8594; dispatcher &#8594; jsp view</p>
+<p>En pratique chaque composant est appelé dans un ordre bien précis afin de remplir son role.</p>
+</div>
+<div class="paragraph">
+<p>Voici la vision complète</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="mvc.png" alt="mvc" width="100%">
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>La DispatcherServlet reçoit la requête.</p>
+</li>
+<li>
+<p>La DispatcherServlet demande au HandlerMapping de choisir la bonne méthode (handler) sur le bon Controller.</p>
+</li>
+<li>
+<p>La DispatcherServlet demande à un HandlerAdapter d&#8217;appeler le Controller.</p>
+</li>
+<li>
+<p>Le HandlerAdapter appelle le Controller.</p>
+</li>
+<li>
+<p>Le Controller fait son travail avec l&#8217;aide des services et retourne le modèle de données et une référence à la vue qui doit s&#8217;exécuter.</p>
+</li>
+<li>
+<p>La DispatcherServlet demande au ViewResolver de résoudre la référence vers la View.</p>
+</li>
+<li>
+<p>La DispatcherServlet exécute la View.</p>
+</li>
+<li>
+<p>La View crée le rendu final de la page.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><a href="http://terasolunaorg.github.io/guideline/1.0.1.RELEASE/en/Overview/SpringMVCOverview.html">source sur http://terasolunaorg.github.io</a></p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Certaines étapes de ce cheminement sont optionnelles.
+</td>
+</tr>
+</table>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_tests_et_tdd">tests et TDD</h2>
+<h2 id="_tests_et_tdd">6. tests et TDD</h2>
 <div class="sectionbody">
-
+<div class="paragraph">
+<p>L&#8217;application dispose de plusieurs types de tests</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>tests unitaires avec junit4</p>
+</li>
+<li>
+<p>tests d&#8217;intégration avec junit4 et spring mocks</p>
+</li>
+<li>
+<p>tests d&#8217;interface avec junit4 et selenium (+ fluentlenium)</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Ces tests couvrent les points importants de l&#8217;application et nous assurent un meilleur niveau de qualité.</p>
+</div>
 </div>
 </div>
 </div>

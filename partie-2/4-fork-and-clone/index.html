@@ -4,37 +4,51 @@
 <meta charset="UTF-8">
 <!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="generator" content="Asciidoctor 1.5.2">
+<meta name="generator" content="Asciidoctor 1.5.3">
 <title>Récupération du projet</title>
 <link rel="stylesheet" href="./../../style.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="./coderay-asciidoctor.css">
 </head>
-<body class="article">
+<body class="article toc2 toc-left">
 <div id="header">
-<h1>Récupération du projet</h1>
+<div id="toc" class="toc2">
+<div id="toctitle">Table of Contents</div>
+<ul class="sectlevel0">
+<li><a href="#_récupération_du_projet">Récupération du projet</a>
+<ul class="sectlevel1">
+<li><a href="#_fork">1. Fork</a></li>
+<li><a href="#_clone">2. Clone</a></li>
+<li><a href="#_gradle_tomcatrun">3. gradle tomcatRun</a></li>
+<li><a href="#_structure_de_notre_projet">4. Structure de notre projet</a></li>
+<li><a href="#_le_site">5. Le site</a></li>
+</ul>
+</li>
+</ul>
+</div>
 </div>
 <div id="content">
-<div id="preamble">
-<div class="sectionbody">
+<div class="paragraph">
+<p><a href="../../index.html">&lt;&lt; Retour à l&#8217;index</a></p>
+</div>
+<h1 id="_récupération_du_projet" class="sect0">Récupération du projet</h1>
 <div class="paragraph">
 <p>Le code source du projet est sous github <a href="https://github.com/dbourdette/cours-ecm" class="bare">https://github.com/dbourdette/cours-ecm</a></p>
 </div>
-</div>
-</div>
 <div class="sect1">
-<h2 id="_fork">Fork</h2>
+<h2 id="_fork">1. Fork</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Il ne sera pas possible de travailler directement dans ce repository.</p>
+<p>Il ne sera pas possible de travailler directement dans ce repository (vous n&#8217;avez pas les droits).</p>
 </div>
 <div class="paragraph">
-<p>Github permet de rappatrier simplement un repository vers son compte en le forkant.</p>
+<p>Github permet de rappatrier simplement un repository vers son compte en faisant un <strong>fork</strong>.</p>
 </div>
 <div class="admonitionblock note">
 <table>
 <tr>
 <td class="icon">
-<div class="title">Note</div>
+<i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
 le guide complet du fork de github : <a href="https://help.github.com/articles/fork-a-repo/" class="bare">https://help.github.com/articles/fork-a-repo/</a>
@@ -51,18 +65,26 @@ le guide complet du fork de github : <a href="https://help.github.com/articles/f
 </div>
 </div>
 <div class="sect1">
-<h2 id="_clone">Clone</h2>
+<h2 id="_clone">2. Clone</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Une fois que le fork est fait, il suffit de faire un clone pour récupérer le projet en local.</p>
+<p>Une fois que le fork est fait, il suffit de faire un clone afin de récupérer le projet en local.</p>
 </div>
 <div class="listingblock terminal">
 <div class="content">
 <pre class="CodeRay highlight"><code>projects$ mkdir cours-ecm
-projects$ git clone https://github.com/{username}/cours-ecm
+projects$ git clone https://github.com/{username}/cours-ecm <i class="conum" data-value="1"></i><b>(1)</b>
 projects$ cd cours-ecm
 cours-ecm$</code></pre>
 </div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>On récupère le code de son fork</td>
+</tr>
+</table>
 </div>
 <div class="paragraph">
 <p>Vous avez maintenant le code source en local.</p>
@@ -73,7 +95,7 @@ cours-ecm$</code></pre>
 <div class="ulist">
 <ul>
 <li>
-<p>docs : qui contient le source pour ces pages html</p>
+<p>docs : qui contient le source de la documentation</p>
 </li>
 <li>
 <p>project : qui contient le code source du site</p>
@@ -83,13 +105,13 @@ cours-ecm$</code></pre>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_gradle_tomcatrun">gradle tomcatRun</h2>
+<h2 id="_gradle_tomcatrun">3. gradle tomcatRun</h2>
 <div class="sectionbody">
 <div class="admonitionblock note">
 <table>
 <tr>
 <td class="icon">
-<div class="title">Note</div>
+<i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
 il faut que la base mongodb soit lancée pour que l&#8217;application démarre avec succès
@@ -113,10 +135,10 @@ The Server is running at http://localhost:8080
 </div>
 </div>
 <div class="paragraph">
-<p>tomcatRun est une tâche qui a été ajoutée par le plugin 'com.bmuschko.tomcat'.</p>
+<p>tomcatRun est une tâche qui a été ajoutée par le plugin <code>com.bmuschko.tomcat</code>.</p>
 </div>
 <div class="listingblock">
-<div class="title">build.gradle</div>
+<div class="title">fichier build.gradle</div>
 <div class="content">
 <pre class="CodeRay highlight"><code>plugins {
     id "com.bmuschko.tomcat" version "2.1"
@@ -132,7 +154,7 @@ The Server is running at http://localhost:8080
 </div>
 </div>
 <div class="sect1">
-<h2 id="_structure_de_notre_projet">Structure de notre projet</h2>
+<h2 id="_structure_de_notre_projet">4. Structure de notre projet</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Notre projet reprend la structure classique des applications web jee.
@@ -147,7 +169,7 @@ Cependant, on y ajoute quelques fichiers relatifs aux frameworks utilisés.</p>
 |  |     └─ cmm                     // fr.cmm notre package de base
 |  |        ├─ controller           // nos controllers
 |  |        ├─ domain               // classes qui définissent notre domaine
-|  |        ├─ helper               // classes utilistaires
+|  |        ├─ helper               // classes utilitaires
 |  |        ├─ service              // les services
 |  |        ├─ SpringConfig.java    // la configation de spring
 |  |        └─ SpringProfiles.java  // les profils d'éxécution
@@ -175,6 +197,17 @@ Chaque emplacement correspond à une facette de notre projet.</p>
 </div>
 <div class="paragraph">
 <p>A partir d&#8217;ici, il va falloir intervenir à différents endroits afin de corriger ou ajouter des fonctionnalités de notre application.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_le_site">5. Le site</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>TODO: screenshot de la home du site</p>
+</div>
+<div class="paragraph">
+<p>TODO: boot de la base</p>
 </div>
 </div>
 </div>
