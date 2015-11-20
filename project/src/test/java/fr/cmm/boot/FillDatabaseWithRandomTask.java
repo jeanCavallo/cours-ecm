@@ -63,7 +63,7 @@ public class FillDatabaseWithRandomTask {
     }
 
     private List<String> randomTags() throws IOException {
-        return asList(TAGS[random(TAGS.length) - 1]);
+        return asList(TAGS[random(TAGS.length) - 1], TAGS[random(TAGS.length) - 1]);
     }
 
     private int random(int max) {

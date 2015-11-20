@@ -15,9 +15,7 @@
         <%-- FIX-SER-5 --%>
         <h1>${fn:escapeXml(recipe.title)}</h1>
         <p>${fn:escapeXml(recipe.intro)}</p>
-        <%-- FIX-JSP-4 --%>
         <span class="label label-primary">${fn:escapeXml(recipe.tags)}</span>
-        <%-- FIX-JSP-3 --%>
         <p>${recipe.date}</p>
         <c:if test="${not empty recipe.ingredients}">
             <ul>
