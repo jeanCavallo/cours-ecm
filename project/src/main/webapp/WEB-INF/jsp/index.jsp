@@ -32,7 +32,6 @@
             <div class="collapse navbar-collapse" id="navbar-collapse">
                 <ul class="nav navbar-nav">
                     <li><a href="/recettes">Toutes les recette</a></li>
-                    <%-- FIX-JSP-1 --%>
                     <li><a href="/recette-du-moment">Recette du moment</a></li>
                 </ul>
             </div>
