@@ -16,7 +16,6 @@
     <link rel="stylesheet" href="/css/style.css" />
 </head>
 <body>
-    <%-- FIX-JSP-5 --%>
     <nav class="navbar navbar-default navbar-fixed-top">
         <div class="container-fluid">
             <div class="navbar-header">

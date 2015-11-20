@@ -5,15 +5,19 @@ include::../../header.adoc[]
 
 Voici la liste des bugs répertoriés en relation avec les JSP
 
-NOTE: Il n'est pas nécessaire de redémarrer le serveur tomcat avec `gradle tomcatRun` pour que les modifications soient prise en compte
+Les templates JSP sont les fichiers responsables de la mise en page HTML.
 
-NOTE: link:../A-jsp/index.html[L'annexe A] couvre ce qu'il est possible de faire dans les jsp
+NOTE: Il n'est pas nécessaire de redémarrer le serveur tomcat avec `gradle tomcatRun` pour que les modifications soient prise en compte dans les jsp.
+
+NOTE: link:../A-jsp/index.html[L'annexe A] couvre ce qu'il est possible de faire dans les jsp.
 
 NOTE: Afin d'éditer les recettes, il faut utiliser l'interface d'admin sur /admin
 
 == JSP-1 : il manque un 's' dans l'entrée "Toutes les recette" du menu
 
 Il manque un 's' à "Toutes les recette" dans le menu de toutes les pages.
+
+image::jsp-1.png[]
 
 Les templates jsp sont dans src/main/webapp/WEB-INF/jsp
 
@@ -23,19 +27,21 @@ Il faut donc trouver tous les templates concernés et corriger.
 
 Dans le footer, le lien vers les mentions légales n'est pas bon.
 
+image::footer.png[]
+
 Il devrait pointer sur /mentions-legales
 
 Le footer a été partagé entre les templates au travers d'un tag file.
 
 == JSP-3 : format de la date dans recette.tag
 
-Dans la jsp qui affiche une recette, on trouve `<p>${receipe.date}</p>`
+Dans le tag file qui affiche une recette, on trouve `<p>${receipe.date}</p>`
 
 La propriété date d'une recette est de la classe `java.util.Date`.
 
 Comme il faut obtenir une chaîne de caractère, la jsp utilise la méthode toString() qui donne par exemple.
 
- Sun Jun 14 18:20:53 CEST 2015
+image::jsp-3.png[]
 
 Ce n'est pas très lisible.
 
@@ -49,7 +55,7 @@ Dans la jsp qui affiche une recette, il y a la liste des tags associés à une r
 
 Actuellement, la liste est affiché comme cela : `<span class="label label-primary">${fn:escapeXml(recipe.tags)}</span>`.
 
-La propriété tags d'une recette est une liste.
+La propriété tags d'une recette est une liste (`List<String>`).
 
 Cela donne donc quelque chose comme image:tags.png[] si il y a plusieurs tags.
 
