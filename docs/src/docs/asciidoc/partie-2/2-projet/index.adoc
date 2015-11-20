@@ -7,12 +7,19 @@ C'est un site de recettes de cuisine proposant un layout moderne et (un peu) res
 
 image::site.png[]
 
+.Code front
+****
+Le but de ce projet est de discuter de problématiques serveur.
+
+Le code front (html, css, js) est très en dessous de ce qui est exigible pour un vrai site professionnel.
+****
+
 == fonctionnalités
 
 Le site est divisé en 2 parties :
 
-* publique : accès aux pages de liste et recettes
-* admin : permet l'édition des recettes
+* pages publiques : accès aux pages de liste et recettes
+* pages d'admin : permet l'édition des recettes
 
 [ditaa, 'public', align="center"]
 .Principales pages du site

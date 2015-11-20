@@ -8,8 +8,5 @@ import org.springframework.context.annotation.Import;
 @Configuration
 @Import(SpringConfig.class)
 public class ImageServiceTestConfig {
-    @Bean
-    public ImageService imageService() {
-        return new ImageService();
-    }
+
 }

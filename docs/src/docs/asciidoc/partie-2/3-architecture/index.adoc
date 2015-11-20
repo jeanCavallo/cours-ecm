@@ -31,9 +31,9 @@ image::java.png[width="100",role="left"]
 
 Java est un language de programmation orienté objet.
 
-Java c'est aussi la jvm qui permet de faire tourner les programmes et le jdk qui contient les libraries standard et le compilateur.
+Java, c'est aussi la jvm qui permet de faire tourner les programmes et le jdk qui contient la librairie standard et le compilateur.
 
-Java Enterprise Edition (JEE) est un ensemble de librairies et outils facilitant (?) le développement d'applications.
+Java Enterprise Edition (JEE) est un ensemble de librairies supplémentaires et outils pour le développement d'applications.
 --
 ****
 
@@ -164,6 +164,10 @@ src
 <4> fichiers de configuration protégés
 <5> fichiers de méta données protégés
 
+Cette distribution est pratique pour le développement.
+
+Au build, gradle remettra tout ces répertoires dans le bon ordre à l'intérieur du fichier war généré.
+
 .WEB-INF/classes
 ****
 
@@ -179,7 +183,7 @@ WEB-INF/classes contiendra les classes java et tous les fichiers présents dans 
 
 L'application a une structure traditionnelle MVC pour le web.
 
-[ditaa, 'mvc', align="center"]
+[ditaa, 'mvc-simple', align="center"]
 ....
                                                                                          +----------+
                                  +-------------------+         +------------------+      |{s}       |
@@ -199,12 +203,12 @@ L'application a une structure traditionnelle MVC pour le web.
 
 Le rôle des composants :
 
-* request dispatcher : il est fournit par le framework. Il 'dispatch' les requêtes entrantes vers les bons controllers / vues
-* controllers : ils aiguillent la requête entre les services et la vue
-* services : on y range la logique un peu plus avancée et les accès à la base.
-* JSP views : ce sont les templates qui produisent le html
+* request dispatcher : il est fournit par le framework. Il 'dispatch' les requêtes entrantes vers les bons controllers / vues.
+* controllers : ils recoivent la requête, utilisent les services et pilotent le rendu.
+* services : on y range la logique métier.
+* JSP views : ce sont les templates qui produisent le html.
 
-Cette division permet d'utiliser le language ou la technologie la plus adaptée pour chaque partie de l'application.
+Cette division permet d'utiliser la technologie la plus adaptée pour chaque tâche.
 
 == vue séquentielle
 

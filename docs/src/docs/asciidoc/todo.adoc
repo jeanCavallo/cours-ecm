@@ -1,3 +1,9 @@
+== prerequesite
+
+jdk8 up and running
+
+== notes
+
 install java process
 
 gradlew

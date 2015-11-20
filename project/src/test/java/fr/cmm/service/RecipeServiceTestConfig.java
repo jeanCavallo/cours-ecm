@@ -8,8 +8,5 @@ import org.springframework.context.annotation.Import;
 @Configuration
 @Import(SpringConfig.class)
 public class RecipeServiceTestConfig {
-    @Bean
-    RecipeService recipeService() {
-        return new RecipeService();
-    }
+
 }
