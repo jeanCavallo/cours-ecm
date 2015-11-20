@@ -71,10 +71,10 @@
 <p>Java est un language de programmation orienté objet.</p>
 </div>
 <div class="paragraph">
-<p>Java c&#8217;est aussi la jvm qui permet de faire tourner les programmes et le jdk qui contient les libraries standard et le compilateur.</p>
+<p>Java, c&#8217;est aussi la jvm qui permet de faire tourner les programmes et le jdk qui contient la librairie standard et le compilateur.</p>
 </div>
 <div class="paragraph">
-<p>Java Enterprise Edition (JEE) est un ensemble de librairies et outils facilitant (?) le développement d&#8217;applications.</p>
+<p>Java Enterprise Edition (JEE) est un ensemble de librairies supplémentaires et outils pour le développement d&#8217;applications.</p>
 </div>
 </div>
 </div>
@@ -317,6 +317,12 @@
 </tr>
 </table>
 </div>
+<div class="paragraph">
+<p>Cette distribution est pratique pour le développement.</p>
+</div>
+<div class="paragraph">
+<p>Au build, gradle remettra tout ces répertoires dans le bon ordre à l&#8217;intérieur du fichier war généré.</p>
+</div>
 <div class="sidebarblock">
 <div class="content">
 <div class="title">WEB-INF/classes</div>
@@ -341,7 +347,7 @@
 </div>
 <div class="imageblock" style="text-align: center">
 <div class="content">
-<img src="mvc.png" alt="mvc" width="1050" height="252">
+<img src="mvc-simple.png" alt="mvc simple" width="1050" height="252">
 </div>
 </div>
 <div class="paragraph">
@@ -350,16 +356,16 @@
 <div class="ulist">
 <ul>
 <li>
-<p>request dispatcher : il est fournit par le framework. Il 'dispatch' les requêtes entrantes vers les bons controllers / vues</p>
+<p>request dispatcher : il est fournit par le framework. Il 'dispatch' les requêtes entrantes vers les bons controllers / vues.</p>
 </li>
 <li>
-<p>controllers : ils aiguillent la requête entre les services et la vue</p>
+<p>controllers : ils recoivent la requête, utilisent les services et pilotent le rendu.</p>
 </li>
 <li>
-<p>services : on y range la logique un peu plus avancée et les accès à la base.</p>
+<p>services : on y range la <strong>logique métier</strong>.</p>
 </li>
 <li>
-<p>JSP views : ce sont les templates qui produisent le html</p>
+<p>JSP views : ce sont les templates qui produisent le html.</p>
 </li>
 </ul>
 </div>
