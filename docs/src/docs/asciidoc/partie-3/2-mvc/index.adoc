@@ -5,7 +5,7 @@ include::../../header.adoc[]
 
 Voici la liste des bugs répertoriés en relation avec le MVC
 
-NOTE: Les modifications dans les controllers nécessitent de redémarrer le serveur `gradle tomcatRun`
+NOTE: Les modifications dans les controllers nécessitent de redémarrer le serveur `gradle tomcatRun`.
 
 NOTE: link:../B-mvc/index.html[l'annexe B] résume les concepts liés au MVC pour le web
 
@@ -47,7 +47,7 @@ Nous avons choisi d'utiliser un index partant de 1 pour la première page.
 
 Nous avons fait cela car l'index est visible pour l'utilisateur et que commencer à 1 est plus logique pour un humain.
 
-Attention, cela l'API, cela peut varier, ce qui engendre bon nombre de problèmes.
+Attention, les APIs commencent généralement à 0, ce qui peut engendrer bon nombre de problèmes.
 ****
 
 Cependant, que se passe t il si un utilisateur change l'index à la main en mettant 0 ou un nombre négatif ?

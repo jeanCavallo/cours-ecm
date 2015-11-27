@@ -37,6 +37,10 @@ Depuis le mapping `@RequestMapping("/recette/{id}")` dans `IndexController`, il 
 
 Pour faire cela, on peut se servir de ce qui est indique sur http://stackoverflow.com/questions/2066946/trigger-404-in-spring-mvc-controller.
 
+== SER-2-pre RecipeService.countByQuery(query)
+
+on fait un recipeCollection.count(); pour le moment.
+
 == SER-2 La home contient des doublons
 
 La page de home est construite à l'aide de la méthode

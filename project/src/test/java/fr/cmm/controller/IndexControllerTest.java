@@ -35,6 +35,8 @@ public class IndexControllerTest {
     @Before
     public void setup() {
         mockMvc = webAppContextSetup(wac).build();
+
+        Mockito.reset(recipeService);
     }
 
     @Test

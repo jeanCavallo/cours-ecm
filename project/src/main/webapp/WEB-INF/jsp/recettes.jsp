@@ -45,7 +45,6 @@
         <form class="form-inline">
             <div class="form-group">
                 <label for="tag">Tag</label>
-                <%-- FIX-MVC-2 --%>
                 <input type="text" data-role="tags" data-service-url="/tags.json" data-limit="1" class="form-control" id="tag" placeholder="Tag" name="tag" style="width: 200px;">
             </div>
             <%-- FIX-SER-6 --%>

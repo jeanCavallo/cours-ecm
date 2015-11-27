@@ -36,7 +36,6 @@ public class IndexController {
 
     @RequestMapping("/recettes")
     public String recettes(SearchForm searchForm, ModelMap model) {
-        // FIX-MVC-3 SearchForm what about invalid page index ?
         PageQuery pageQuery = new PageQuery();
         pageQuery.setIndex(searchForm.getPageIndex() - 1);
         pageQuery.setTag(searchForm.getTag());
@@ -80,7 +79,6 @@ public class IndexController {
 
     @RequestMapping("/contact")
     public String contact() {
-        // FIX-MVC-1 : wrong jsp
         return "contac";
     }
 

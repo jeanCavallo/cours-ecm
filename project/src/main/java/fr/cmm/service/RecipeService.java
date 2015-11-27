@@ -19,7 +19,7 @@ public class RecipeService {
     @Inject
     private MongoCollection recipeCollection;
 
-    public MongoCursor<Recipe> findByQuery(PageQuery query) {
+    public Iterable<Recipe> findByQuery(PageQuery query) {
         String mongoQuery = "{}";
         String[] params = {};
 

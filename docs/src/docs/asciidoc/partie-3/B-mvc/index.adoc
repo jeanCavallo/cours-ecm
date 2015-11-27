@@ -7,7 +7,7 @@ include::../../header.adoc[]
 ****
 MVC découpe une application en 3 aspects : Model, Vue et Controller.
 
-C'est un pattern présent dans de nombreux languages et envirronements.
+C'est un pattern présent dans de nombreux languages et environnements.
 
 C'est une division du code en sous technologies adaptées à chaque aspect.
 ****
@@ -31,7 +31,7 @@ include::mvc.adoc[]
 
 == Configuration
 
-Spring MVC ne brille pas pour sa *convention over configuration* (en partie à cause de JEE et en parie à cause de Spring).
+Spring MVC ne brille pas pour sa *convention over configuration* (en partie à cause de JEE et en partie à cause de Spring).
 
 La configuration se divise en 3 parties.
 
@@ -95,6 +95,8 @@ C'est un contexte spring dédié à la configuration du mvc
 <1> notre package java contenant les controllers
 
 NOTE: un component-scan permet de charger tous les composants Spring contenu dans un package java.
+
+NOTE: Il est possible de faire la même configuration en java.
 
 === SpringConfig
 
@@ -347,13 +349,63 @@ public class HelloWorldController {
 
 IMPORTANT: En cas d'erreur de conversion (/hello?value=xyz) une erreur 400 (Bad Request) est lancée.
 
-=== @RequestBody
+=== @RequestBody et @ResponseBody
 
-TODO
+http://docs.spring.io/spring/docs/current/spring-framework-reference/html/mvc.html#mvc-ann-requestbody[`@RequestBody`] permet de convertir le body de la requête HTTP en paramètre du handler
+
+[source,java]
+----
+@RequestMapping(path = "/something", method = RequestMethod.PUT)
+public void handle(@RequestBody String body) throws IOException {
+    ...
+}
+----
+
+http://docs.spring.io/spring/docs/current/spring-framework-reference/html/mvc.html#mvc-ann-responsebody[`@ResponseBody`] permet de convertir le type de retour du handler en body de la réponse HTPP.
+
+[source,java]
+----
+@RequestMapping(path = "/something")
+@ResponseBody
+public String helloWorld() {
+    return "Hello World";
+}
+----
+
+NOTE: En configurant spring, il devient facile de lire ou d'écrire du JSON ou du XML.
 
 === @ModelAttribute
 
-TODO
+Il y a usages possible pour cette annotation.
+
+==== Sur une méthode
+
+Elle permet d'ajouter un élément dans le modèle pour toutes les méthodes du controller.
+
+[source,java]
+----
+@ModelAttribute("defaultAccount") <1>
+public Account defaultAccount() {
+    return accountManager.findDefaultAccount();
+}
+----
+<1> defaultAccount sera disponible dans le handler et la vue
+
+Voir http://docs.spring.io/spring/docs/current/spring-framework-reference/html/mvc.html#mvc-ann-modelattrib-methods
+
+==== Sur un argument de méthode
+
+L'argument est récupéré du modèle. Si le modèle ne le connait pas, l'argument va être instancié et ajouté au modèle. Une fois dans le modèle, l'argument est rempli avec tous les paramètres de la requête qui correspondent à ses propriétés.
+
+[source,java]
+----
+@RequestMapping(path = "/owners/{ownerId}/pets/{petId}/edit", method = RequestMethod.POST)
+public String processSubmit(@ModelAttribute Pet pet) {
+    ...
+}
+----
+
+Voir http://docs.spring.io/spring/docs/current/spring-framework-reference/html/mvc.html#mvc-ann-modelattrib-method-args
 
 == Les formulaires
 

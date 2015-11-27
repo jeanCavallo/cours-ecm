@@ -35,4 +35,25 @@ public class PageQuery {
     public void setTag(String tag) {
         this.tag = tag;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        PageQuery pageQuery = (PageQuery) o;
+
+        if (index != pageQuery.index) return false;
+        if (size != pageQuery.size) return false;
+        return !(tag != null ? !tag.equals(pageQuery.tag) : pageQuery.tag != null);
+
+    }
+
+    @Override
+    public int hashCode() {
+        int result = index;
+        result = 31 * result + size;
+        result = 31 * result + (tag != null ? tag.hashCode() : 0);
+        return result;
+    }
 }
