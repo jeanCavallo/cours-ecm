@@ -97,7 +97,6 @@
                         <spring:bind path="tags">
                             <div class="form-group ${status.error ? 'has-error' : ''}">
                                 <label class="control-label" for="tags">Tags ${fn:escapeXml(status.errorMessage)}</label>
-                                <%-- FIX-JSP-7 --%>
                                 <form:input cssClass="form-control" id="tags" data-role="tags" placeholder="tag1,tag2" path="tagsAsString" />
                             </div>
                         </spring:bind>
@@ -117,8 +116,8 @@
                     <div class="col-xs-12">
                         <spring:bind path="ingredients">
                             <div class="form-group ${status.error ? 'has-error' : ''}">
-                                <%-- FIX-JSP-8 --%>
-                                <label class="control-label">Ingredients ${fn:escapeXml(status.errorMessage)} <button type="button" class="btn btn-default btn-xs" data-role="addIngredient"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></button></label>
+                                <label class="control-label">Ingredients ${fn:escapeXml(status.errorMessage)}</label>
+                                <button type="button" class="btn btn-default btn-xs" data-role="addIngredient"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></button>
                                 <div id="ingredients">
                                     <c:forEach var="ingredient" varStatus="loopStatus" items="${command.ingredients}">
                                         <jsp:include page="ingredient-form-row.jsp">

@@ -134,24 +134,45 @@ Il s'affiche sur une seule ligne dans le navigateur.
 
 Le code responsable dans la jsp est `<p>${fn:escapeXml(recipe.text)}</p>`
 
-La fonction escapeXml nous permet de bien afficher les <, > et & qui sinon risqueraient de casser notre code html.
+La fonction escapeXml nous permet de bien gérer les <, > et & qui sinon risqueraient de casser notre code html.
 
-Mais elle ne transforme pas les retours chariot en <br>.
+.HTML Entities
+****
+Some characters are reserved in HTML.
 
-Il est possible de chainer les opérations afin d'arriver au résultat en utilisant une fonction replace.
+If you use the less than (<) or greater than (>) signs in your text, the browser might mix them with tags.
 
-Cependant, il serait mieux de créer notre propre fonction qui fait les 2 opérations pour un seul appel depuis la jsp.
+Character entities are used to display reserved characters in HTML.
+
+source http://www.w3schools.com/html/html_entities.asp
+****
+
+Mais elle ne transforme pas les retours chariot (\n) en <br>.
+
+Il est possible de chainer les opérations afin d'arriver au résultat en utilisant une fonction replace de la jstl. Ce serait très inélégant.
+
+Il vaut mieux de créer notre propre fonction qui fait les 2 opérations pour un seul appel depuis la jsp.
 
 Pour faire cela :
 
 * il faut ajouter un package fr.cmm.tags dans src/main/java
-* il faut ajouter une classe Functions.java (au choix) dans le package
-* il faut ajouter une méthode *statique* dans la classe java qui prend un String en paramètre et renvoie un String
-* il faut ajouter une tld dans WEB-INF-tld
+* il faut ajouter une classe Functions.java dans le package
+* il faut ajouter une méthode *statique* publique dans la classe java qui prend un String en paramètre et renvoie un String
+* il faut bien sûr ajouter des tests unitaires dans une classe fr.cmm.tags.FunctionsTest dans src/test/java.
+* il faut ajouter une tld avec la fonction dans WEB-INF/tld
 * il faut déclarer la tld dans la jsp
 * il faut changer l'appel de excapeXml par notre méthode
 
-Pour l'impémentation, on peut utiliser https://commons.apache.org/proper/commons-lang/javadocs/api-3.1/org/apache/commons/lang3/StringEscapeUtils.html[StringEscapeUtils] qui est déjà présent dans notre projet.
+Voici quelques exemples de tests 
+
+[source,java]
+----
+assertEquals("a", Functions.text("a"));
+assertEquals("a<br>", Functions.text("a\n"));
+assertEquals("&a", Functions.text("&a"));
+----
+
+Pour l'impémentation, on peut utiliser https://commons.apache.org/proper/commons-lang/javadocs/api-3.3/org/apache/commons/lang3/StringEscapeUtils.html[StringEscapeUtils.escapeXml10(String)] et https://commons.apache.org/proper/commons-lang/javadocs/api-3.3/org/apache/commons/lang3/StringUtils.html[StringUtils.replace(String, String, String)] qui sont déjà présents dans notre projet.
 Pour les retours chariots, il faut faire un replace des `"\n"` par des `<br>`
 
 link:../A-jsp/index.html[L'annexe A] décrit le fonctionnement des fichiers tld et des fonctions.
@@ -162,9 +183,16 @@ Lorsqu'on édite une recette, il devrait y avoir de l'autocomplétion sur le cha
 
 Cette fonctionnalité est mise en place au chargement de la page dans le code javascript présent dans le projet.
 
-La liste complète des tags est un service offert par l'IndexController via le mapping '/tags.json'.
+La liste complète des tags est un service offert par l'``IndexController`` via le mapping '/tags.json'.
 
-En étudiant le javascript, faites fonctionner l'autocomplétion sur les tags.
+En étudiant le html et le javascript, ajoutez ce qu'il faut dans le html afin de faire fonctionner l'autocomplétion sur les tags.
+
+.tokenfield
+****
+Afin de proposer l'autocomplétion sur les tags, le projet utilise http://sliptree.github.io/bootstrap-tokenfield/[bootstrap-tokenfield].
+
+Cette librairie a été téléchargée dans notre projet au travers de http://bower.io/[bower].
+****
 
 .data-* attributes
 ****
@@ -178,6 +206,8 @@ Ils sont pratiques afin de ranger des données qui ne correspondent à aucun att
 Pour gagner du temps, dans l'interface d'édition, le client aurait voulu un bouton 'ajouter du sel' et 'ajouter du poivre'.
 
 En étudiant le javascript du site et le fichier ingredient-form-row.jsp, ajoutez les boutons 'sel' et 'poivre' nécessaires.
+
+NOTE: La page /admin/recettes/ingredientFormRow accèpte un ingredientIndex en paramètre. En regardant le code de la jsp `ingredient-form-row.jsp`, on peut voir que l'on peut aussi utiliser le paramètre ingredientName qui peut nous servir ici.
 
 == JSP-9 : index dans les tableaux d'ingrédients
 
@@ -241,7 +271,7 @@ Lorsque l'on ajoute des ingrédients puis on en retire, on arrive avec le html s
 </div>
 ----
 
-On peut voir que le tableau d'ingrédients à des trous (ici on a encore les index 3, 5 et 6)
+On peut voir que le tableau d'ingrédients (`ingredients[x]`) à des trous (ici on a encore les index 3, 5 et 6)
 
 Ces données vont partir vers le serveur qui va remplir une liste de 6 éléments avec 3 trous.
 
@@ -250,22 +280,36 @@ Si on sauve, on va donc récupérer 3 lignes de données vides :
 image::ingredients-index.png[align=center]
 
 Que faudrait il faire pour corriger ce problème ?
+Vaudrait il mieux le faire coté client ou serveur ?
 
 .RIA
 ****
-Ce petit exemple de liste dynamique démontre que les frameworks classiques comme Spring MVC sont mal à l'aise avec ce genre de problème.
+Ce petit exemple de formulaire avec une liste dynamique démontre que les frameworks classiques comme Spring MVC sont mal à l'aise avec ce genre de problème.
+
+Envoyer les données en JSON via une mécanique AJAX réglerait le problème.
 
 Les frameworks pour les Rich Internet Applications (RIA) comme AngularJS traiteraient de ce problème beaucoup plus aisément.
 ****
 
+IMPORTANT: Le but ici est d'imaginer une solution, pas de la coder.
+
 == JSP-10 : pagination
 
-Dans recettes.jsp il y a une pagination qui n'est pas fonctionnelle pour le moment.
+Dans `recettes.jsp` il y a une pagination qui n'est pas fonctionnelle pour le moment.
 
 Le code est `${pagination.pages}`.
 
-La classe `Pagination` est dans le package `fr.cmm.helper` (elle ne fonctionne pas bien, mais ce n'est pas le sujet pour le moment).
+La classe `Pagination` est dans le package `fr.cmm.helper` (getPages() est codé en dur, mais ce n'est pas le sujet pour le moment).
 
 En se servant de tout ce qui a été vu précédemment, formattez cette pagination en utilisant le http://getbootstrap.com/components/#pagination[composant pagination de bootstrap]
 
 image::pagination.png[align=center]
+
+NOTE: Le pattern afin de naviguer dans les pages est `/recettes?pageIndex=${index}`
+
+Afin d'avoir de l'autocomplétion pour la pagination dans la jsp, il est possible d'ajouter dans la jsp :
+
+[source]
+----
+<%--@elvariable id="pagination" type="fr.cmm.helper.Pagination"--%>
+----

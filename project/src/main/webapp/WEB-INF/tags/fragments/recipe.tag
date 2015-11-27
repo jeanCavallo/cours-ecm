@@ -24,7 +24,6 @@
                 </c:forEach>
             </ul>
         </c:if>
-        <%-- FIX-JSP-6 --%>
         <p>${fn:escapeXml(recipe.text)}</p>
     </div>
 </div>

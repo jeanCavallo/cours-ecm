@@ -241,11 +241,9 @@ Une taglib peut contenir des tags et des fonctions.
   xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee web-jsptaglibrary_2_0.xsd" version="2.0">
 
     <!-- propriétés de la taglib -->
-    <tlibversion>1.0</tlibversion>
-    <jspversion>2.0</jspversion>
-    <shortname>util</shortname>
+    <tlib-version>1.0</tlib-version>
+    <short-name>util</short-name>
     <uri>http://com.acme.tags/util</uri>
-    <info>Pagination taglib</info>
 
     <tag>
         <!-- nom du tag -->

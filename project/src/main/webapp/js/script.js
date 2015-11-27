@@ -1,4 +1,5 @@
 
+// at page load time
 $(function(){
     $('input[data-role="tags"]').each(function() {
         var input = $(this);
@@ -12,7 +13,6 @@ $(function(){
     });
 
     $('button[data-role="addIngredient"]').click(function() {
-        // FIX-JSP-9
         var index = $('#ingredients > div').length;
 
         $('#ingredients').append($('<div>').load('/admin/recettes/ingredientFormRow?ingredientIndex=' + index));

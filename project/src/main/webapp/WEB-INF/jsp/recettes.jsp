@@ -70,7 +70,6 @@
             </c:forEach>
         </ul>
 
-        <%-- FIX-JSP-10 --%>
         ${pagination.pages}
     </div>
 
