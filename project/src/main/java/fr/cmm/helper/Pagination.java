@@ -29,12 +29,10 @@ public class Pagination {
     }
 
     public int getPageCount() {
-        // FIX-MVC-4 : wrong page count
         return (int) count / pageSize;
     }
 
     public List<Integer> getPages() {
-        // FIX-MVC-5 : pages are hardcoded
         return asList(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
     }
 

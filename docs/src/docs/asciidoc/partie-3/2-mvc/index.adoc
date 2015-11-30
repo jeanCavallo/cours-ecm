@@ -74,29 +74,59 @@ public int getPageCount() {
 
 Par exemple, si il y a 20 éléments en base et que pageSize vaut 50, `getPageCount()` va donner 0.
 
-Aujoutez et faites passer des tests unitaires afin de couvrir les cas suivants :
-- count multiple de pageSize
-- count non multiple de pageSize
-- condition aux limites : count == 0
+Ajoutez et faites passer des tests unitaires afin de couvrir les cas suivants :
+
+* count est un multiple de pageSize
+* count n'est pas un multiple de pageSize
+* condition aux limites : count == 0
 
 Doit on tester le cas pageSize == 0 ?
 
-.Test driven
+.Tests unitaires
 ****
 Certains tests peuvent paraitre inutiles puisque le code fonctionne déjà.
 
 Oui mais une fois les tests en place, ils assureront qu'il n'y a pas de régression.
 
-Combiner avec de l'intégration continue, on sera averti très rapidement qu'un commit a casser le projet.
+Avec de l'intégration continue, chaque commit relance les tests : on saura immédiatement que le build est cassé.
 ****
 
 == MVC-5 : getPages() dans Pagination
 
-En corrigent le problème de pagination dans MVC-4, on a pu voir que le résultat de `getPages()` était hardcodé.
+Pas loin de la méthode `getPagesCount()` de MVC-4, on peut voir que le résultat de `getPages()` est hardcodé.
+
+[source,java]
+----
+public List getPages() {
+    return asList(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
+}
+----
 
 En passant par des tests unitaires, faire une impémentation correcte de cette méthode.
 
-Le fonctionnement le plus logique pour une navigation est de se contruire autour de l'index courant en essayant de mettre jusqu'a 10 éléments.
+Le fonctionnement souhaitée pour la navigation est de se contruire autour de l'index courant en essayant de mettre jusqu'a 10 éléments.
+
+.Test driven
+****
+Il n'est pas facile de deviner quel sera le bon algorithme.
+
+En commençant par les cas simples, par les tests, on construit la solution par petits bouts.
+
+Un fois en place, les tests nous permettront de retoucher (refactoring) le code en s'assurant qu'on ne casse rien.
+****
+
+.Magic number
+****
+La pagination fait au plus 10 éléments. Ce chiffre risque d'apparaitre plusieurs fois dans le code.
+
+Cela ne va pas sembler évident à quelqu'un venant relire le code.
+
+Afin d'éviter ce sentiment de chiffre venu de nul part, il est bon d'en faire une constante dans la classe `Pagination`
+[source,java]
+----
+public static final int PAGINATION_SIZE = 10;
+----
+****
 
 == MVC-6 : Recette inconnue
 
@@ -104,18 +134,22 @@ Pour le moment, on a très peu de gestion d'erreur.
 
 Si on va sur http://localhost:8080/recette/56375619d4c603aa4eb412dd on obtient une page très vide et cassée.
 
-Dans ce cas, on devrait obtenir une 404.
+Dans ce cas, on voudrait obtenir une 404 (page not found).
 
-En passant par les tests, s'assurer que l'obtient bien une 404 lorsque la recette n'existe pas.
+image::404-no-title.png[]
+
+En passant par les tests, s'assurer que l'obtient bien une 404 depuis `IndexController` lorsque la recette n'existe pas.
 
 .Mockito
 ****
 Afin de ne pas avoir à remplir la base pour les tests, on utilise la librairie Mockito.
 
-Elle permet d'obtenir une fausse RecipeService que l'on va pouvoir piloter depuis le test.
+Elle permet d'obtenir un faux RecipeService que l'on va pouvoir piloter depuis le test.
 
 Cela permet donc de tester notre IndexController en isolation du reste de notre code.
 ****
+
+Comment retourner une 404 depuis un Controller ? On pourra http://lmgtfy.com/?q=return+404+spring+mvc[s'aider de google].
 
 == MVC-7 : Pages 404 et 500
 
@@ -141,23 +175,13 @@ Nous allons donc ajouter des pages d'erreur plus jolies.
 <1> En cas d'erreur 404, on redirige vers la page /404
 <2> En cas d'erreur 500, on redirige vers la page /500
 
-Comme cette gestion d'erreur se fait au niveau conteneur de Servlet (tomcat), il se peut que le rerouting vers Spring ne se passe pas.
+Cette gestion d'erreur se fait au niveau conteneur de Servlet (tomcat).
 
-Pour aider le conteneur, on ajoute les mappings /404 et /500 sur la `DispatcherServlet`.
+Or notre servlet Spring est mappée sur `/` (normalament, ça veut dire 'tout'). Le conteneur manque un peu d'intelligence, il faut rajouter les mappings suivant :
 
 [source,xml]
 .Mapping supplémentaire pour la Servlet Spring
 ----
-<servlet>
-  <servlet-name>spring</servlet-name>
-  <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
-  <load-on-startup>1</load-on-startup>
-</servlet>
-<servlet-mapping>
-  <servlet-name>spring</servlet-name>
-  <url-pattern>/</url-pattern>
-</servlet-mapping>
-<!-- nouveaux mappings-->
 <servlet-mapping>
   <servlet-name>spring</servlet-name>
   <url-pattern>/404</url-pattern>
@@ -168,17 +192,21 @@ Pour aider le conteneur, on ajoute les mappings /404 et /500 sur la `DispatcherS
 </servlet-mapping>
 ----
 
-Ajoutez ces configurations ainsi que les mappings correspondant dans `IndexController`
+Ajoutez ces entrées ainsi que les `@RequestMapping` correspondant dans `IndexController`
 
 Enfin, ajoutez le fichier jsp qui affiche un message d'excuse. Un seul fichier jsp peut servir pour les 2 cas.
 
+Maintenant, http://localhost:8080/recette/56375619d4c603aa4eb412dd doit retourner une page d'erreur présentable.
+
+image::404-nice.png[]
+
 == MVC-8 : Messages de validation
 
-A l'édition d'une recette, si on omet le titre ou la date, on obtient une erreur :
+A l'édition d'une recette, si on ne met pas le titre ou la date, on obtient une erreur :
 
 image::validation-error.png[align=center]
 
-Tout d'abord le Controller fait de la gestion d'erreurs.
+C'est `AdminController` qui fait la gestion d'erreur.
 
 [source,java]
 .Handler de post du formulaire
@@ -200,6 +228,15 @@ public String post(@ModelAttribute("command") @Valid Recipe recipe, BindingResul
 <2> En cas de succès, on ajoute un message flash
 <3> Redirect after POST
 
+.addFlashAttribute(name, value)
+****
+Le scope flash est une zone qui contient des données qui seront disponibles uniquement lors de la prochaine requête.
+
+Il permet donc d'y ranger des objets juste avant un redirect.
+
+L'alternative serait de mettre des paramètres dans l'url du redirect, ce qui serait moins joli.
+****
+
 Puis la jsp affiche les erreurs présentes
 
 [source,xml]
@@ -212,8 +249,8 @@ Puis la jsp affiche les erreurs présentes
   </div>
 </spring:bind>
 ----
-<1> On indique a spring qu'on va travailler sur le champs title afin d'avoir accès aux erreurs de ce champs
-<2> Classe css en cas d'erreur
+<1> On indique à spring qu'on va travailler sur le champs 'title' afin d'avoir accès aux erreurs pour ce champs
+<2> Classe css 'has-error' en cas d'erreur
 <3> Le message d'erreur à coté du nom du champs
 
 Mais d'où vient le message "ne peut pas être vide" qui apparait ?
@@ -244,17 +281,17 @@ private Date date = new Date();
 <1> Le titre ne peut pas être null ou vide
 <2> La date ne peut pas être null
 
-Les 2 approches (manuelle et Bean Validation) peuvent être combinées en fonction des besoins.
+Les 2 approches (manuelle et Bean Validation) peuvent être combinées en fonction des besoins. Toutes les erreurs finissent dans BindingResult.
 
 Trouvez comment avoir les messages d'erreur suivant : "Titre est obligatoire" et "Date est obligatoire".
 
-Comment pourrait on faire si on souhaite ne pas pouvoir anti dater une recette uniquement à la création de celle ci ?
+Comment pourrait on faire si on souhaite ne pas pouvoir anti dater une recette uniquement à la création de celle ci ? (c'est une question assez rhétorique, il y a peu de chance que cela soit intéressant dans notre cas).
 
 == MVC-9 : Logs
 
 Actuellement, nous n'avons rien fait afin de configurer les logs.
 
-Lorsqu'on lance un test unitaire, on peut voir les lignes suivantes :
+Lorsqu'on lance un test unitaire qui charge un contexte spring, on peut voir les lignes suivantes :
 
 image::logs.png[align=center]
 
@@ -264,17 +301,15 @@ C'est en rouge parce que le code utilise la sortie error (stderr via `System.err
 
 Le problème en java est qu'il existe plusieurs librairies de log (java.util.logging, log4j...).
 
-Pour faire simple, il y a aussi des wrappeurs comme http://www.slf4j.org/[SLF4J] (Simple Logging Facade for Java) ou https://commons.apache.org/proper/commons-logging/[commons-logging]
+Pour faire encore plus simple, il existe aussi des wrappeurs comme http://www.slf4j.org/[SLF4J] (Simple Logging Facade for Java) ou https://commons.apache.org/proper/commons-logging/[commons-logging]
 
 .Librairies et wrappers
 ****
+Il n'y avait pas de librairie de gestion de log aux débuts de java. Beaucoup de librairies existent aujourd'hui sans vraiment de vainceur.
 
-Il n'y avait pas de librairie standard de log aux débuts de java. Beaucoup de librairies existent donc aujourd'hui.
-
-Comme chaque librairie utilisée a fait un choix, il faudrait s'aligner dans son projet.
+En théorie, il faudrait une configuration pour chaque librairie de log utilisée par notre code mais aussi les librairies.
 
 Pour ne pas avoir à subir cela, on peut utiliser un wrapper qui va s'adapter à la situation.
-
 ****
 
 Pour résumer, c'est joyeusement compliqué juste pour gérer les logs.
@@ -299,9 +334,9 @@ Log4j est actif mais mal configuré.
 
 Il existe plusieurs façon de configurer log4j.
 
-On va passer par un fichier log4j.properties à la racine du classpath.
+On va passer par un fichier `log4j.properties` à la racine du classpath.
 
-Il suffit donc de rajouter ce fichier dans src/test/resources :
+Il suffit donc de rajouter ce fichier dans `src/test/resources` :
 
 .log4j.properties
 ----
@@ -313,7 +348,7 @@ log4j.appender.console.layout=org.apache.log4j.PatternLayout <3>
 log4j.appender.console.layout.ConversionPattern=%5p [%t] (%F:%L) - %m%n <4>
 
 ----
-<1> Définition du root logger avec 'console' comme appender (sortie)
+<1> Définition du root logger en niveau ERROR avec 'console' comme appender (sortie)
 <2> L'appender 'console' va écrire via le ConsoleAppender (System.out et System.err)
 <3> la sortie de 'console' est formattée
 <4> Format de la sortie
@@ -330,44 +365,50 @@ Par exemple, pour les Appenders, on trouve un FileAppender, un RollingFileAppend
 Les logs en rouge doivent avoir disparu.
 
 Il est possible (et recommandé) de faire de même pour l'application en production.
-Par exemple, on pourrait mettre un fichier de configuration log4j dans src/main/resources.
+Par exemple, on pourrait mettre un fichier de configuration log4j dans `src/main/resources`.
 
 == MVC-10 : Sécurisation
 
 Actuellement, tout le monde peut accéder à /admin et donc administrer notre site.
 
-La librairie la plus complète pour ce genre de besoin est http://projects.spring.io/spring-security/[spring security].
+La librairie la plus complète pour ce genre de besoin est http://projects.spring.io/spring-security/[spring security]. Comme son nom peut le laisser entendre, elle se marie assez bien avec un projet spring.
 
 === Ajout de spring-security
 
 Comme pour log4j, on rajoute la librairie
 
-[source,groovy]
+[source]
 .build.gradle
 ----
+
 compile 'org.springframework.security:spring-security-core:4.0.3.RELEASE'
 compile 'org.springframework.security:spring-security-config:4.0.3.RELEASE'
 compile 'org.springframework.security:spring-security-web:4.0.3.RELEASE'
+
 ----
 
 Il faut penser à recharger le projet dans l'onglet gradle.
 
 === Ajout de l'intercepteur
 
-Il faut faire en sorte que spring security intercepte toutes les requêtes.
+Spring security doit intercepter toutes les requêtes.
 
 [source,xml]
 .web.xml
 ----
 <filter>
     <filter-name>springSecurityFilterChain</filter-name>
-    <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
+    <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class> <1>
 </filter>
 <filter-mapping>
     <filter-name>springSecurityFilterChain</filter-name>
-    <url-pattern>/*</url-pattern>
+    <url-pattern>/*</url-pattern> <2>
 </filter-mapping>
 ----
+<1> Le filtre spring security
+<2> Intercepte toutes les requêtes
+
+Le mieux est de place ce filtre avant l'encoding-filter, afin qu'il soit traversé en premier. L'ordre dans le web.xml est important.
 
 Ainsi, avant d'arriver sur la `DispatcherServlet`, les requêtes passeront au travers du `DelegatingFilterProxy`.
 
@@ -376,7 +417,7 @@ Ainsi, avant d'arriver sur la `DispatcherServlet`, les requêtes passeront au tr
 Il reste a configurer spring security.
 
 [source,xml]
-.web.xml
+.Modification du ContextLoaderListener dans le web.xml
 ----
 <listener>
     <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
@@ -394,7 +435,7 @@ Il reste a configurer spring security.
 Et la classe java correspondante
 
 [source,java]
-.SpringSecurity
+.fr.cmm.SpringSecurity
 ----
 @Configuration
 @EnableWebSecurity
@@ -407,32 +448,92 @@ public class SpringSecurity extends WebSecurityConfigurerAdapter {
     }
 
     @Override
-    protected void configure(HttpSecurity http) throws Exception {
+    protected void configure(HttpSecurity http) throws Exception { <4>
         http
-                .authorizeRequests()
-                    .antMatchers("/admin").authenticated()
-                    .and()
-                .formLogin()
-                    .loginPage("/login")
-                    .permitAll()
-                .and()
-                    .logout()
-                    .permitAll();
-    }
+            .authorizeRequests()
+                .antMatchers("/admin/**").authenticated() <5>
+            .and()
+                .formLogin(); <6>
+            .and()
+                .logout() <7>
+                .logoutSuccessUrl("/")
+                .logoutRequestMatcher(new AntPathRequestMatcher("/logout"));
 }
 ----
 <1> Configuration globale
-<2> La base des utilisateurs est en mémoire
-<3> On ajoute un utilisateur
+<2> La base des utilisateurs est en mémoire. En production, nous aurions très certainement une base de données afin de stocker les utilisateurs.
+<3> On ajoute un utilisateur avec le role ADMIN.
+<4> Configuration des requêtes http
+<5> /admin/** nécessite d'être authentifié
+<6> Le login est disponible via un formulaire
+<7> Gestion du logout.
 
-TODO
+Lorsque l'on cherche a accéder à une page admin, on a le formulaire suivant.
 
+image::auth-form.png[]
 
-=== MVC-11 Bouton 'éditer'
+C'est bien, c'est pas très joli, mais on ne peut plus se déconnecter : )
 
-TODO
+== MVC-11 Déconnexion
 
-=== MVC-12 Formulaire de login
+Il est nécessaire de pouvoir se déconnecter. Nous allons ajouter un lien dans la navbar sur toutes les pages.
 
-TODO
+Afin de rajouter le lien de façon condionelle, nous utilisons la lib de https://docs.spring.io/spring-security/site/docs/current/reference/html/taglibs.html[customs tags pour spring security]
+
+[source]
+----
+compile 'org.springframework.security:spring-security-taglibs:4.0.3.RELEASE'
+----
+
+Dans `header.tag` faites apparaitre un lien 'déconnexion' si l'utilisateur est `isAuthenticated()` à l'aide de la lib
+
+[source,xml]
+----
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+
+...
+
+<sec:authorize access="isAuthenticated()">
+    ...
+</sec:authorize>
+----
+
+La doc de boostrap sur la navbar : http://getbootstrap.com/components/#navbar
+
+image::navbar-logout.png[]
+
+.CSRF
+****
+Afin de pouvoir utiliser un lien simple pour la déconnexion nous avons utiliser la config 
+
+[source]
+----
+.logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
+----
+
+Cela désactive la protection Cross Site Request Forgery pour le logout.
+
+C'est déconseillé par spring security. Il faudrait utiliser un formulaire plutôt qu'un lien.
+
+Voir la doc sur le http://docs.spring.io/spring-security/site/docs/4.0.1.RELEASE/reference/htmlsingle/#csrf-logout[logout avec le filtre CSRF]
+****
+
+== MVC-12 Bouton 'éditer'
+
+Si l'utilisateur est connecté et possède le role 'ADMIN', pourquoi ne pas lui ajouter un bouton éditer disponible depuis une recette ?
+
+Cette fois, le contrôle de l'accès se fait avec `hasRole('ADMIN')`
+
+.Autorisations
+****
+Ici, nous donnons des droits uniquement aux ADMINs.
+
+Nous pourrions avoir d'autres types d'utilisateurs et profiter du login afin d'autoriser les commentaires, les notations, l'ajout de recettes pour les éditeurs...
+
+Dans les jsp comme dans les contrôleurs, spring security permet de régler finement les autorisations.
+****
+
+== MVC-13 Formulaire de login
+
+Actuellement, le formulaire de login est moche. En s'aidant de la doc http://docs.spring.io/spring-security/site/docs/4.0.1.RELEASE/reference/htmlsingle/#jc-form[spring security] et http://getbootstrap.com/css/#forms[bootstrap] mettez en ligne un formulaire de login dans l'esprit du site.
 

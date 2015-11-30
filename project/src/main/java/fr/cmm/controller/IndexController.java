@@ -71,7 +71,6 @@ public class IndexController {
 
     @RequestMapping("/recette/{id}")
     public String recette(@PathVariable("id") String id, ModelMap model) {
-        // FIX-MVC-6 : handle not found and create page 404
         model.put("recipe", recipeService.findById(id));
 
         return "recette";
