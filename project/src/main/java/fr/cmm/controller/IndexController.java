@@ -53,7 +53,6 @@ public class IndexController {
 
     @RequestMapping("/recette-du-moment")
     public String recettesDuMoment(ModelMap model) {
-        // FIX-SER-7
         model.put("recipe", recipeService.findRandom(1).next());
 
         return "recette-du-moment";

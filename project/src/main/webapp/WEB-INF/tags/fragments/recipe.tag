@@ -12,7 +12,6 @@
         </div>
     </div>
     <div class="col-xs-12 col-sm-8">
-        <%-- FIX-SER-5 --%>
         <h1>${fn:escapeXml(recipe.title)}</h1>
         <p>${fn:escapeXml(recipe.intro)}</p>
         <span class="label label-primary">${fn:escapeXml(recipe.tags)}</span>
