@@ -7,15 +7,19 @@ Un *Versioning Control System* (VCS) permet de stocker tous ses fichiers : code,
 
 NOTE: C'est le coffre fort d'une équipe de développement.
 
-Il doit être simple d'utilisation et facile de naviguer dans l'historique.
+Il doit être simple d'utilisation et permettre de naviguer dans l'historique.
 
-De tous les système récents, *git* est le plus à la mode.
+De tous les système récents, c'est *git* qui est le plus à la mode.
 
-.Précison
+.DVCS
 ****
-git est un *distributed VCS* (DVCS) et suit donc une philosophie particulière.
+git est un *Distributed VCS* et suit donc une philosophie particulière.
 
-Il multiplie les capacités de travail au travers des branches (locales ou distantes) permettant de travailler simultanément sur plusieurs sujets en parallèle.
+Il multiplie les capacités de travail au travers des branches locales ou distantes.
+
+Cela permet à beaucoup de personnes de travailler simultanément sur plusieurs sujets en parallèle.
+
+L'exemple classique est le https://github.com/torvalds/linux[noyau linux].
 ****
 
 Il est particulièrement adapté aux projets open source avec des bureaux dématérialisés et des collaborateurs multiples.
@@ -24,7 +28,7 @@ En pratique, il est aussi assez simple à utiliser dans un cadre plus restreint 
 
 == Compte github
 
-image:github.png[40, 40] https://github.com/[Github] est un site web qui propose une interface web communautaire par dessus git. Github est gratuit pour les projets open source et simple à utiliser. Cela en fait un outils de référence pour les projets open source.
+image:github.png[40, 40] https://github.com/[Github] est un site web qui propose une interface web communautaire par dessus git. Github est gratuit pour les projets open source et simple à utiliser. Cela en fait un outil de référence pour les projets open source.
 
 C'est l'outils que nous allons utiliser pour notre projet.
 
@@ -34,7 +38,7 @@ Créez un compte github et configurez une clée ssh en suivant le https://help.g
 ****
 L'authentification par clé fonctionne grâce à 3 composants :
 
-*   Une clé publique : elle sera exportée sur chaque hôte sur lequel on souhaite pouvoir se connecter.
+*   Une clé publique : elle sera exportée sur chaque hôte vers lequel on souhaite pouvoir se connecter.
 *   Une clé privée : elle permet de prouver son identité aux serveurs.
 *   Une passphrase : Permet de sécuriser la clé privée (notons la subtilité, passphrase et pas password... donc « phrase de passe » et non pas « mot de passe »).
 
@@ -44,6 +48,8 @@ source http://doc.fedora-fr.org/wiki/SSH_:_Authentification_par_clé
 == Repository 'test-project'
 
 Depuis le dashboard, créez un repository test-project.
+
+image::new-repository.png[]
 
 On doit donc obtenir un repository de la forme `git@github.com:{user}/test-project.git`
 
@@ -72,7 +78,7 @@ Initialized empty Git repository in /path/to/projects/test-project/.git/
 
 === .gitignore
 
-Certains fichiers ne doivent pas être envoyé vers le serveur git : 
+Certains fichiers ne doivent pas être versionnés et envoyés vers le serveur git : 
 
 * les fichiers générés lors du build
 * les fichiers de configuration de l'IDE
@@ -98,7 +104,7 @@ Il faudra ajouter d'éventuels autres patterns si le besoin se présentait.
 
 === git add
 
-La commande git status doit donc afficher à peu près cela.
+La commande `git status` doit donc afficher à peu près cela.
 
 [source.terminal]
 ----
@@ -114,19 +120,20 @@ test-project$ git status
 nothing added to commit but untracked files present (use "git add" to track)
 ----
 <1> nous sommes sur la branche locale 'master'
-<2> il y a souvent de l'aide en ligne de commande avec git
+<2> il y a souvent de l'aide au résultat des commandes git
 
-On ajoute donc tout notre fichier et on commit.
+On ajoute donc notre fichier et on fait notre premier commit.
 
 [source.terminal]
 ----
 test-project$ git add .gitignore
-test-project$ git commit -m "initial commit"
+test-project$ git commit -m "initial commit" <1>
 ----
+<1> L'option -m permet de définir le message du commit
 
 === git remote add
 
-Il nous reste donc a relier notre master local au origin/master
+Il nous reste donc a relier notre master local au origin/master de github
 
 [source.terminal]
 ----
@@ -158,11 +165,15 @@ Maintenant `git push` et `git pull` feront automatiqment le lien avec origin. La
 test-project$ git push
 ----
 
+=== git pull
+
+`git pull` est la commande opposé de `git push`. Elle permet de récupérer les modifications depuis le serveur distant vers son poste.
+
 .Pour aller plus loin
 ****
 image:pro-git.jpg[pro git,100,role=right]
 
-Les systèmes de versioning viennent avec leur complexité mais sont *obligatoires*
+Les systèmes de versioning viennent avec leur complexité mais sont *OBLIGATOIRES*
 
 git offre beaucoup de richesse que l'on découvre au fil du temps.
 
