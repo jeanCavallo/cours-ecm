@@ -1,12 +1,12 @@
 :stylesheet: style.css
 
-image::banner.png[alt='Applications web en java']
+image::banner.jpg[alt='Applications web en java']
 
 Java est un language *fortement typé*.
 
 Avec une certaine lourdeur syntaxique, il semble peu adapté au web.
 
-Ses nombreux *frameworks* et la *richesse de son environnement* le rendent pourtant incontournable.
+*Son environnement d'exécution* et ses nombreux *frameworks* le rendent pourtant incontournable.
 
 == Partie 1 : la forge logicielle : pratiques et outils
 
