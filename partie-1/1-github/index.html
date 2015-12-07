@@ -24,6 +24,7 @@
 <li><a href="#_git_add">3.3. git add</a></li>
 <li><a href="#_git_remote_add">3.4. git remote add</a></li>
 <li><a href="#_git_push">3.5. git push</a></li>
+<li><a href="#_git_pull">3.6. git pull</a></li>
 </ul>
 </li>
 </ul>
@@ -54,19 +55,25 @@ C&#8217;est le coffre fort d&#8217;une équipe de développement.
 </table>
 </div>
 <div class="paragraph">
-<p>Il doit être simple d&#8217;utilisation et facile de naviguer dans l&#8217;historique.</p>
+<p>Il doit être simple d&#8217;utilisation et permettre de naviguer dans l&#8217;historique.</p>
 </div>
 <div class="paragraph">
-<p>De tous les système récents, <strong>git</strong> est le plus à la mode.</p>
+<p>De tous les système récents, c&#8217;est <strong>git</strong> qui est le plus à la mode.</p>
 </div>
 <div class="sidebarblock">
 <div class="content">
-<div class="title">Précison</div>
+<div class="title">DVCS</div>
 <div class="paragraph">
-<p>git est un <strong>distributed VCS</strong> (DVCS) et suit donc une philosophie particulière.</p>
+<p>git est un <strong>Distributed VCS</strong> et suit donc une philosophie particulière.</p>
 </div>
 <div class="paragraph">
-<p>Il multiplie les capacités de travail au travers des branches (locales ou distantes) permettant de travailler simultanément sur plusieurs sujets en parallèle.</p>
+<p>Il multiplie les capacités de travail au travers des branches locales ou distantes.</p>
+</div>
+<div class="paragraph">
+<p>Cela permet à beaucoup de personnes de travailler simultanément sur plusieurs sujets en parallèle.</p>
+</div>
+<div class="paragraph">
+<p>L&#8217;exemple classique est le <a href="https://github.com/torvalds/linux">noyau linux</a>.</p>
 </div>
 </div>
 </div>
@@ -80,7 +87,7 @@ C&#8217;est le coffre fort d&#8217;une équipe de développement.
 <h2 id="_compte_github">1. Compte github</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p><span class="image"><img src="github.png" alt="40" width="40"></span> <a href="https://github.com/">Github</a> est un site web qui propose une interface web communautaire par dessus git. Github est gratuit pour les projets open source et simple à utiliser. Cela en fait un outils de référence pour les projets open source.</p>
+<p><span class="image"><img src="github.png" alt="40" width="40"></span> <a href="https://github.com/">Github</a> est un site web qui propose une interface web communautaire par dessus git. Github est gratuit pour les projets open source et simple à utiliser. Cela en fait un outil de référence pour les projets open source.</p>
 </div>
 <div class="paragraph">
 <p>C&#8217;est l&#8217;outils que nous allons utiliser pour notre projet.</p>
@@ -97,7 +104,7 @@ C&#8217;est le coffre fort d&#8217;une équipe de développement.
 <div class="ulist">
 <ul>
 <li>
-<p>Une clé publique : elle sera exportée sur chaque hôte sur lequel on souhaite pouvoir se connecter.</p>
+<p>Une clé publique : elle sera exportée sur chaque hôte vers lequel on souhaite pouvoir se connecter.</p>
 </li>
 <li>
 <p>Une clé privée : elle permet de prouver son identité aux serveurs.</p>
@@ -119,6 +126,11 @@ C&#8217;est le coffre fort d&#8217;une équipe de développement.
 <div class="sectionbody">
 <div class="paragraph">
 <p>Depuis le dashboard, créez un repository test-project.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="new-repository.png" alt="new repository">
+</div>
 </div>
 <div class="paragraph">
 <p>On doit donc obtenir un repository de la forme <code>git@github.com:{user}/test-project.git</code></p>
@@ -156,7 +168,7 @@ Initialized empty Git repository in /path/to/projects/test-project/.git/</code><
 <div class="sect2">
 <h3 id="__gitignore">3.2. .gitignore</h3>
 <div class="paragraph">
-<p>Certains fichiers ne doivent pas être envoyé vers le serveur git :</p>
+<p>Certains fichiers ne doivent pas être versionnés et envoyés vers le serveur git :</p>
 </div>
 <div class="ulist">
 <ul>
@@ -208,7 +220,7 @@ build <i class="conum" data-value="2"></i><b>(2)</b>
 <div class="sect2">
 <h3 id="_git_add">3.3. git add</h3>
 <div class="paragraph">
-<p>La commande git status doit donc afficher à peu près cela.</p>
+<p>La commande <code>git status</code> doit donc afficher à peu près cela.</p>
 </div>
 <div class="listingblock terminal">
 <div class="content">
@@ -232,24 +244,32 @@ nothing added to commit but untracked files present (use "git add" to track)</co
 </tr>
 <tr>
 <td><i class="conum" data-value="2"></i><b>2</b></td>
-<td>il y a souvent de l&#8217;aide en ligne de commande avec git</td>
+<td>il y a souvent de l&#8217;aide au résultat des commandes git</td>
 </tr>
 </table>
 </div>
 <div class="paragraph">
-<p>On ajoute donc tout notre fichier et on commit.</p>
+<p>On ajoute donc notre fichier et on fait notre premier commit.</p>
 </div>
 <div class="listingblock terminal">
 <div class="content">
 <pre class="CodeRay highlight"><code>test-project$ git add .gitignore
-test-project$ git commit -m "initial commit"</code></pre>
+test-project$ git commit -m "initial commit" <i class="conum" data-value="1"></i><b>(1)</b></code></pre>
 </div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>L&#8217;option -m permet de définir le message du commit</td>
+</tr>
+</table>
 </div>
 </div>
 <div class="sect2">
 <h3 id="_git_remote_add">3.4. git remote add</h3>
 <div class="paragraph">
-<p>Il nous reste donc a relier notre master local au origin/master</p>
+<p>Il nous reste donc a relier notre master local au origin/master de github</p>
 </div>
 <div class="listingblock terminal">
 <div class="content">
@@ -286,6 +306,12 @@ test-project$ git commit -m "initial commit"</code></pre>
 <pre class="CodeRay highlight"><code>test-project$ git push</code></pre>
 </div>
 </div>
+</div>
+<div class="sect2">
+<h3 id="_git_pull">3.6. git pull</h3>
+<div class="paragraph">
+<p><code>git pull</code> est la commande opposé de <code>git push</code>. Elle permet de récupérer les modifications depuis le serveur distant vers son poste.</p>
+</div>
 <div class="sidebarblock">
 <div class="content">
 <div class="title">Pour aller plus loin</div>
@@ -293,7 +319,7 @@ test-project$ git commit -m "initial commit"</code></pre>
 <p><span class="image right"><img src="pro-git.jpg" alt="pro git" width="100"></span></p>
 </div>
 <div class="paragraph">
-<p>Les systèmes de versioning viennent avec leur complexité mais sont <strong>obligatoires</strong></p>
+<p>Les systèmes de versioning viennent avec leur complexité mais sont <strong>OBLIGATOIRES</strong></p>
 </div>
 <div class="paragraph">
 <p>git offre beaucoup de richesse que l&#8217;on découvre au fil du temps.</p>
