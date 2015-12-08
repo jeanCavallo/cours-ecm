@@ -181,3 +181,5 @@ Le système décentralisé, nécessaire pour certaines types d'organisations, ap
 
 http://www.amazon.fr/Pro-Git-Scott-Chacon/dp/1484200772[Pro Git] permet de comprendre les mécaniques et la philosophie de git.
 ****
+
+include::../../footer.adoc[]

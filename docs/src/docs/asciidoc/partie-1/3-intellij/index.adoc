@@ -132,3 +132,5 @@ test-project $ tree
 ├── settings.gradle
 └── test-project.iml
 ----
+
+include::../../footer.adoc[]
