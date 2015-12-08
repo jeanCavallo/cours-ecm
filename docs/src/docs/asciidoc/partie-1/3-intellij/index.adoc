@@ -17,7 +17,7 @@ Intellij existe en 2 versions : *communautaire* et *ultimate*.
 
 Intellij ultimate n'est pas gratuit mais ses qualités justifient amplement un tarif qui n'est pas très élevé.
 
-Les autres IDEs les plus utilisés sont :
+.Alternatives
 
 * *Eclipse* : l'IDE le plus utilisé car il est extrêmement complet et gratuit. Ses nombreux plugins font sa richesse.
 * *Netbeans* : c'est l'IDE de référence développé par Oracle. Il est gratuit et suit très bien les spécifications jee. Ce n'est pourtant pas l'environnement de choix pour les utilisateurs avancés.
@@ -28,20 +28,20 @@ Nous allons intégrer notre projet naissant dans Intellij
 ****
 On choisit tous, plus ou moins, son language, son environnement, ses outils et toutes ses choses qui impactent notre productivité et notre bonheur à programmer.
 
-Mon expérience est que, malgré les qualités des autres produits, la famille de produits de JetBrains (dont Intellij) reste très supérieur.
+Mon expérience est que, malgré les qualités des autres produits, la famille de produits de JetBrains (dont Intellij) reste très supérieure.
 
-Chacun donc son avis, vous avez le mien.
+A chacun donc son avis, vous avez le mien.
 ****
 
 == Projets et modules
 
-Un projet est la structure de base. C'est tout ce qu'on voit dans la fenêtre.
+Un *projet* est la structure de base. C'est tout ce qu'on voit dans la fenêtre.
 
 Il définit un sdk (software development kit) et un niveau de compatibilité du language java (1.7, 1.8...).
 
-Il contient 1 ou plusieurs modules. Un module contient des fichiers sources.
+Il contient 1 ou plusieurs *modules*. Un module contient des fichiers sources.
 
-Chaque module est indépendant et possède ses fichiers et des librairies.
+Chaque module est indépendant et possède ses fichiers et ses librairies.
 
 == Préférences
 
@@ -103,7 +103,7 @@ A chaque mise à jour du build.gradle (ajout d'une dépendance par exemple), Int
 --
 image::gradle-auto-import.png[width=300px,role=left,link='gradle-auto-import.png']
 
-Soit on active la mise à jour automatique (j'ai déjà quelques soucis avec cette option).
+Soit on active la mise à jour automatique (j'ai déjà eu quelques soucis avec cette option).
 --
 
 [.float-group]

@@ -9,7 +9,7 @@ C'est un language *fortement typé* : les contrôles sont effecutés à la compi
 
 NOTE: ce document ne contient que quelques rappels et n'est pas du tout exhaustif
 
-== compilation et bytecode
+== Compilation et bytecode
 
 Les fichiers .java sont compilés en .class qui contiennent du byte code.
 
@@ -24,7 +24,7 @@ Les fichiers .class peuvent être exécuté partout ou il y a une *Java Virtual 
 source https://en.wikipedia.org/wiki/Write_once,_run_anywhere
 ****
 
-La commande javac de compilation fait partie du *Java Development Kit* (jdk).
+La commande `javac` de compilation fait partie du *Java Development Kit* (JDK).
 
 [source.terminal]
 ----
@@ -33,10 +33,10 @@ javac -classpath lib1.jar;lib2.jar Hello.java
 
 .classpath
 ****
-C'est dans le classpath que la jvm va chercher les Classes java nécessaire à l'exécution d'un programme java.
+La jvm va chercher les Classes java nécessaires à l'exécution d'un programme java dans le *classpath*.
 ****
 
-En pratique, la commande de compilation devient rapidement très compexe. Fort heureusement, c'est l'IDE ou le système de build qui a la charge de générée et piloter celle ci.
+En pratique, la commande de compilation devient rapidement très complexe. Fort heureusement, c'est l'IDE ou le système de build qui a la charge de générer et piloter celle ci.
 
 == Organisation
 
@@ -44,7 +44,7 @@ En pratique, la commande de compilation devient rapidement très compexe. Fort h
 
 Les classes java sont organisées en *packages* (répertoires).
 
-Cela permet d'avoir plusieurs classes avec le même nom mais dans des packages différents.
+Il est possible d'avoir un même nom de classe dans des packages différents.
 
 === Import
 
@@ -100,7 +100,7 @@ L'interface définit généralement un contrat que les classes l'implémentant d
 ****
 Il existe 2 nouveautés en java 8 pour les interfaces :
 
-* on a le droit d'écrirer des méthodes statiques,
+* on a le droit d'y écrire des méthodes statiques,
 * une méthode indiquée comme `default` peut contenir du code.
 ****
 
@@ -128,7 +128,7 @@ public @interface Validate {
 <1> L'annotation sera présente au runtime
 <2> Elle est applicable sur des classes
 
-Comme son nom l'indique, elle sert à annoter (marquer) un autre élément, un peu comme un sticker.
+Comme son nom l'indique, elle sert à annoter (marquer) un autre élément, un peu comme un label ou un tag.
 
 [source,java]
 .utilisation
@@ -170,15 +170,15 @@ java.io.FileNotFoundException: my_file.txt <1>
         at java.io.FileInputStream.<init>(FileInputStream.java)
         at Main.main(Main.java:19) <3>
 ----
-<1> nous avons une FileNotFoundException qui a pour message 'my_file.txt'
+<1> nous avons une `FileNotFoundException` qui a pour message 'my_file.txt'
 <2> la ligne générant cette erreur est dans le constructeur de FileInputStream
 <3> nous sommes passé par la méthode main de la class Main à la ligne 19
 
-Cela peut sembler un peu indigeste au départ mais c'est très utile et complet.
+Cela peut sembler un peu indigeste au départ mais c'est très complet et donc très utile.
 
 == gestion de la mémoire
 
-La machine virtuelle java réserve et libère la mémoire : nous sommes dans un environnement managé.
+En java, on ne gère pas la mémoire à la main : nous sommes dans un environnement managé.
 
 La mémoire est segmentée afin d'y répartir les objets chargés.
 
@@ -221,7 +221,7 @@ Malgré ces évolutions, la compatibilité avec les versions passées est très 
 
 == Une plateforme riche et diverse
 
-La richesse de la plateforme est essentiellement dû aux librairies issues de la communauté.
+La richesse de la plateforme est essentiellement due aux librairies issues de la communauté.
 
 Voici quelques exemples :
 
@@ -230,5 +230,8 @@ Voici quelques exemples :
 * https://github.com/google/guice[guice]
 * https://lucene.apache.org/core/[lucene]
 * http://www.joda.org/joda-time/[joda time] qui a inspiré la java date and time API de java 8
+* ...
 
 La liste est extrêmement longue, entre innnovation et reprise de ce qui se fait dans les autres languages.
+
+include::../../footer.adoc[]

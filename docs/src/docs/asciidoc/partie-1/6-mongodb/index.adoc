@@ -32,17 +32,17 @@ C'est un arbre classique JSON avec un attribut _id de type ObjectId.
 
 .Not Only SQL (wikipedia)
 ****
-En informatique, NoSQL (Not only SQL en anglais) désigne une catégorie de systèmes de gestion de base de données (SGBD) qui n'est plus fondée sur l'architecture classique des bases relationnelles. L'unité logique n'y est plus la table, et les données ne sont en général pas manipulées avec SQL.
+En informatique, *NoSQL* (Not only SQL en anglais) désigne une catégorie de systèmes de gestion de base de données (SGBD) qui n'est plus fondée sur l'architecture classique des *bases relationnelles*. L'unité logique n'y est plus la table, et les données ne sont en général pas manipulées avec SQL.
 ****
 
 == Collections
 
-Les documents sont rangés dans des *collections* l'équivalent des tables sql.
+Les documents sont rangés dans des *collections* (l'équivalent des tables en sql).
 
-Cependant, les collections sont beaucoup moins rigides que les tables.
-Chaque document peut avoir sa propre structure.
+Les collections sont beaucoup moins rigides que les tables :
+il n'y a pas de schéma et donc chaque document peut avoir sa propre structure.
 
-Cela n'empêche pas les collections de gérer des index afin d'assurer la performance.
+Cela n'empêche pas de pouvoir positionner des index sur les propriétés afin d'assurer la performance des lectures.
 
 == Shell & Javascript
 
@@ -53,7 +53,7 @@ The mongo shell is an interactive *JavaScript* interface to MongoDB and is a com
 You can use the mongo shell to query and update data as well as perform administrative operations.
 ****
 
-L'api mongo est riche et bien documentée.
+L'https://docs.mongodb.org/manual/reference/method/[api mongo] est riche et bien documentée.
 
 .Exemple de requête
 ----
@@ -61,16 +61,16 @@ db.inventory.find( { type: 'food', price: { $lt: 9.95 } } ) <1>
 ----
 <1> on cherche les documents de type 'food' avec un prix inférieur à 9.95 dans la collection 'inventory'
 
-Lorsque l'on construit une application, on utilise un **driver**.
-Selon le language et les frameworks, la façon d'utiliser mongo peut donc varier.
+En java, on utilise un **driver**.
+Selon le language et les frameworks, la façon d'interagir avec la base mongo peut donc varier.
 
 == Replica Sets
 
 L'origine des bases NoSql vise la performance sur des volumes de données importants.
 
-Dans ce cadre, mongodb propose des replica sets : un groupe de process qui maintiennent le même jeu de données.
+Mongodb propose des replica sets : un groupe de process qui maintiennent les mêmes données.
 
-Cela apporte haute disponibilité (tolérance à la panne) et redondance (tolérance à la perte de données sur un noeud).
+Cela apporte *haute disponibilité* (tolérance à la panne) et *redondance* (tolérance à la perte de données sur un noeud).
 
 Un replica set contient toujours un serveur primaire et des secondaires.
 
@@ -80,14 +80,15 @@ image::replica-set.png[align="center"]
 Pour augmenter la performance, il est possible que les clients viennent lire sur les secondaires.
 Il se peut donc qu'au moment de la lecture, les données ne soient pas encore répliquées vers les secondaires.
 
+.Eventual Consistency
 [quote, Amazon, Eventual Consistency]
 the storage system guarantees that if no new updates are made to the object, eventually all accesses will return the last updated value.
 
 == Sharding
 
-Le sharding est l'éclatement de l'ensemble des données en sous ensemble.
+Le sharding est l'éclatement des données en sous ensembles.
 
-Cela permet de répartir la charge des requêtes entres plusieurs serveurs.
+Cela permet aux requêtes d'être distribuées entres plusieurs serveurs afin de travailler sur des volumes plus faibles.
 
 .Shards
 image::shards.png[align="center"]
@@ -109,6 +110,9 @@ Ainsi, les requêtes seraient réparties entre les noeuds pour plus de perfomanc
 
 Une des opération qui a rendu célèbre les bases NoSQL est le *map-reduce* : c'est un mécanisme de traitement en masse des données afin de fournir un résultat aggrégé.
 
+* map : transformation des résultats
+* reduce : aggrégation du résultat
+
 .Map reduce
 image::map-reduce.png[align="center"]
 
@@ -127,7 +131,7 @@ Or mongodb ne supporte ni transaction, ni clé étrangère. Donc pas d'**ACID**i
 
 En contrepartie de ces défauts, mongodb apporte plus de perfomance, plus de souplesse et plus de simplicité.
 
-== installation
+== Installation
 
 Pour installer mongodb on passe par homebrew :
 
@@ -181,7 +185,7 @@ La base est prête à recevoir des connexions.
 
 == Robomongo
 
-On pourrait utiliser le shell mais une interface graphique est plus simple pour débuter.
+On pourrait utiliser le shell mais une interface graphique est plus simple pour viasualisé les résultats des requêtes.
 
 Il existe beaucoup de https://docs.mongodb.org/ecosystem/tools/administration-interfaces/[clients graphiques]
 
@@ -192,3 +196,5 @@ Installez ce logiciel et connectez vous à la base en local sur le port 27017.
 Une fois connecté, vous pouvez créer une base, des collections et faire de multiples https://docs.mongodb.org/manual/tutorial/query-documents/[requêtes].
 
 image::robomongo.png[]
+
+include::../../footer.adoc[]

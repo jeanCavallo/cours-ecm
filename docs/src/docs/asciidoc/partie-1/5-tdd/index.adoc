@@ -9,6 +9,8 @@ Le développement par les tests est une technique de développement Agile
 
 === La boucle d'ajout de fonctionnalité
 
+Voici la boucle immuable du TDD
+
 [ditaa, 'TDD cycle', align="center"]
 ----
 +--------------+
@@ -48,6 +50,8 @@ Le développement par les tests est une technique de développement Agile
 
 === Avantages
 
+C'est une pratique, au départ, contre intuitive. Elle a de multiple avantages :
+
 * On se place en tant qu'utilisateur de ce que l'on construit
 * Le code est testé et on réduit le risque de régression
 * On aboutit à un design plus ouvert / plus flexible
@@ -66,34 +70,35 @@ import org.junit.*;
 import static org.junit.Assert.*;
 import java.util.*;
 
-public class ArrayListTest {
+public class ArrayListTest { <1>
 
     private ArrayList list;
 
     @Before
-    public void setUp() { <1>
+    public void setUp() { <2>
         list = new ArrayList();
     }
 
     @After
-    public void tearDown() { <2>
+    public void tearDown() { <3>
     }
 
     @Test
-    public void empty() { <3>
+    public void empty() { <4>
         assertTrue(list.isEmpty());
     }
 
     @Test
-    public void add() { <3>
+    public void add() { <4>
         collection.add("itemA");
         assertEquals(1, list.size());
     }
 }
 ----
-<1> exécuté avant chaque test
-<2> exécuté après chaque test
-<3> 2 tests
+<1> le nom de la classe testée suffixée par Test
+<2> exécuté avant chaque test
+<3> exécuté après chaque test
+<4> 2 tests
 
 == Un cas pratique
 
@@ -147,7 +152,7 @@ On choisit Junit4
 
 image:create-test-junit4.png[]
 
-Le fichier CalculatorTest.java va automatiquement dans le package `fr.ecm.tp` de `src/main/java`
+Le fichier `CalculatorTest.java` va automatiquement dans le package `fr.ecm.tp` de `src/test/java`
 
 NOTE: il est possible de créer cette classe de test sans le raccourçi intellij, mais pourquoi perdre du temps ?
 
@@ -168,11 +173,12 @@ public class CalculatorTest {
     private Calculator calculator = new Calculator();
 
     @Test
-    public void add() {
+    public void add() { <1>
         assertEquals(3, calculator.add(1, 2));
     }
 }
 ----
+<1> On teste la méthode `add(int, int)`
 
 On lance le test en faisant un click droit sur la classe
 
@@ -186,7 +192,7 @@ image:test-result.png[]
 
 Faites ce qu'il faut pour que le test passe.
 
-Après cela, pour le moment, il n'y a pas grand chose à améliorer (refactor).
+Après cela, pour le moment, il n'y a pas grand chose à améliorer (to refactor).
 
 === Test suivant
 
@@ -233,3 +239,5 @@ Le TDD n'est pas une spécificité java, cela s'applique à tous les languages.
 
 http://www.amazon.fr/Test-Driven-Development-Kent-Beck/dp/0321146530[Test Driven Development: By Example] explique les mécaniques du développement par les tests.
 ****
+
+include::../../footer.adoc[]
