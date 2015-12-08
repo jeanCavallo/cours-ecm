@@ -17,12 +17,12 @@
 <ul class="sectlevel0">
 <li><a href="#_architecture_de_l_application">Architecture de l&#8217;application</a>
 <ul class="sectlevel1">
-<li><a href="#_vision_globale">1. vision globale</a></li>
-<li><a href="#_technology_stack">2. technology stack</a></li>
-<li><a href="#_structure_de_projet_standard">3. structure de projet standard</a></li>
-<li><a href="#_structure_de_l_app">4. structure de l&#8217;app</a></li>
-<li><a href="#_vue_séquentielle">5. vue séquentielle</a></li>
-<li><a href="#_tests_et_tdd">6. tests et TDD</a></li>
+<li><a href="#_vision_globale">1. Vision globale</a></li>
+<li><a href="#_technology_stack">2. Technology stack</a></li>
+<li><a href="#_structure_de_projet_standard">3. Structure de projet standard</a></li>
+<li><a href="#_structure_logicielle_de_l_app">4. Structure logicielle de l&#8217;app</a></li>
+<li><a href="#_vue_séquentielle">5. Vue séquentielle</a></li>
+<li><a href="#_tests_et_tdd">6. Tests et TDD</a></li>
 </ul>
 </li>
 </ul>
@@ -34,7 +34,7 @@
 </div>
 <h1 id="_architecture_de_l_application" class="sect0">Architecture de l&#8217;application</h1>
 <div class="sect1">
-<h2 id="_vision_globale">1. vision globale</h2>
+<h2 id="_vision_globale">1. Vision globale</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>L&#8217;architecture est composée d&#8217;une application web qui est reliée à une base de données mongodb.</p>
@@ -53,7 +53,7 @@
 </div>
 </div>
 <div class="sect1">
-<h2 id="_technology_stack">2. technology stack</h2>
+<h2 id="_technology_stack">2. Technology stack</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Voici la liste des principales technologies utilisées dans notre projet.</p>
@@ -108,7 +108,7 @@
 <div class="content">
 <div class="imageblock left">
 <div class="content">
-<img src="tomcat.png" alt="tomcat" width="100">
+<img src="Tomcat.png" alt="Tomcat" width="100">
 </div>
 </div>
 <div class="paragraph">
@@ -225,13 +225,13 @@
 </div>
 </div>
 <div class="sect1">
-<h2 id="_structure_de_projet_standard">3. structure de projet standard</h2>
+<h2 id="_structure_de_projet_standard">3. Structure de projet standard</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Notre projet suit le <a href="https://maven.apache.org/guides/introduction/introduction-to-the-standard-directory-layout.html">Standard Directory Layout</a> introduit par Maven</p>
+<p>Maven a introduit le <a href="https://maven.apache.org/guides/introduction/introduction-to-the-standard-directory-layout.html">Standard Directory Layout</a> : c&#8217;est une façon standard d&#8217;organiser ses sources.</p>
 </div>
 <div class="paragraph">
-<p>par défaut, Gradle suit ce standard :</p>
+<p>Gradle suit ce standard :</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -277,7 +277,7 @@
 </table>
 </div>
 <div class="paragraph">
-<p>Dans notre cas pour une application web JEE :</p>
+<p>Dans notre cas, pour une <strong>application web</strong> JEE :</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -320,27 +320,22 @@
 <div class="paragraph">
 <p>Cette distribution est pratique pour le développement.</p>
 </div>
-<div class="paragraph">
-<p>Au build, gradle remettra tout ces répertoires dans le bon ordre à l&#8217;intérieur du fichier war généré.</p>
-</div>
-<div class="sidebarblock">
-<div class="content">
-<div class="title">WEB-INF/classes</div>
-<div class="paragraph">
-<p>Au lancement, WEB-INF/classes sera ajouté au classpath.</p>
-</div>
-<div class="paragraph">
-<p>WEB-INF/classes ne fait pas partie des sources mais est généré au build.</p>
-</div>
-<div class="paragraph">
-<p>WEB-INF/classes contiendra les classes java et tous les fichiers présents dans main/resources</p>
-</div>
-</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+Au build, gradle va compilé les classes java et produire le war. La structure à l&#8217;intérieur du war est différente de celle des sources.
+</td>
+</tr>
+</table>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_structure_de_l_app">4. structure de l&#8217;app</h2>
+<h2 id="_structure_logicielle_de_l_app">4. Structure logicielle de l&#8217;app</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>L&#8217;application a une structure traditionnelle MVC pour le web.</p>
@@ -356,16 +351,16 @@
 <div class="ulist">
 <ul>
 <li>
-<p>request dispatcher : il est fournit par le framework. Il 'dispatch' les requêtes entrantes vers les bons controllers / vues.</p>
+<p><strong>request dispatcher</strong> : il est fournit par le framework. Il 'dispatch' les requêtes entrantes vers les bons controllers / vues.</p>
 </li>
 <li>
-<p>controllers : ils recoivent la requête, utilisent les services et pilotent le rendu.</p>
+<p><strong>controllers</strong> : ils recoivent la requête, utilisent les services et pilotent le rendu.</p>
 </li>
 <li>
-<p>services : on y range la logique métier.</p>
+<p><strong>services</strong> : on y range la logique métier.</p>
 </li>
 <li>
-<p>JSP views : ce sont les templates qui produisent le html.</p>
+<p><strong>JSP views</strong> : ce sont les templates qui produisent le html.</p>
 </li>
 </ul>
 </div>
@@ -375,7 +370,7 @@
 </div>
 </div>
 <div class="sect1">
-<h2 id="_vue_séquentielle">5. vue séquentielle</h2>
+<h2 id="_vue_séquentielle">5. Vue séquentielle</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>En pratique chaque composant est appelé dans un ordre bien précis afin de remplir son role.</p>
@@ -434,10 +429,10 @@ Certaines étapes de ce cheminement sont optionnelles.
 </div>
 </div>
 <div class="sect1">
-<h2 id="_tests_et_tdd">6. tests et TDD</h2>
+<h2 id="_tests_et_tdd">6. Tests et TDD</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>L&#8217;application dispose de plusieurs types de tests</p>
+<p>L&#8217;application peut disposer de plusieurs types de tests</p>
 </div>
 <div class="ulist">
 <ul>
@@ -454,6 +449,9 @@ Certaines étapes de ce cheminement sont optionnelles.
 </div>
 <div class="paragraph">
 <p>Ces tests couvrent les points importants de l&#8217;application et nous assurent un meilleur niveau de qualité.</p>
+</div>
+<div class="paragraph">
+<p>Malheureusement, la couverture de test actuelle est très insuffisante.</p>
 </div>
 <div class="paragraph">
 <p><a href="../../index.html">&lt;&lt; Retour à l&#8217;index</a></p>
