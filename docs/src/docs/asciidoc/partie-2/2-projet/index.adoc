@@ -5,24 +5,25 @@ include::../../header.adoc[]
 
 C'est un site de recettes de cuisine proposant un layout moderne et (un peu) responsive
 
-image::site.png[]
+image::site.jpg[]
 
-.Code front
+.HTML, CSS, javascript, ergonomie...
 ****
-Le but de ce projet est de discuter de problématiques serveur.
+Le but de ce projet est de discuter de problématiques serveur (backend).
 
-Le code front (html, css, js) est très en dessous de ce qui est exigible pour un vrai site professionnel.
+Le code frontend est très en dessous de ce qui est exigible pour un vrai site professionnel.
 ****
 
-== fonctionnalités
+== Sitemap
 
-Le site est divisé en 2 parties :
+Voici l'ensemble des pages du site :
 
 * pages publiques : accès aux pages de liste et recettes
 * pages d'admin : permet l'édition des recettes
 
+.Pages publiques
+
 [ditaa, 'public', align="center"]
-.Principales pages du site
 ....
        +-------+
        |{d}    |
@@ -43,8 +44,9 @@ Le site est divisé en 2 parties :
     \------------------------------/
 ....
 
+.Pages d'admin
+
 [ditaa, 'admin', align="center"]
-.Partie administration
 ....
 +-------+          +-------+          +-------+
 |{d}    |          |{d}    |          |{d}    |
@@ -53,7 +55,7 @@ Le site est divisé en 2 parties :
 +-------+          +-------+          +-------+
 ....
 
-== état et TODOs
+== État de l'application
 
 En l'état, l'applicaton démarre en local dans un environnement de développement.
 
@@ -63,3 +65,5 @@ On va donc
 
 * corriger tous les bugs,
 * et rajouter les fonctionnalités manquantes.
+
+include::../../footer.adoc[]

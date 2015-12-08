@@ -203,6 +203,13 @@ dependencies {
 }
 ----
 
+.DSL
+****
+Le language du fichier build.gradle est du groovy, un language alternatif à java pour la jvm.
+
+En profitant de groovy, gradle propose un Domain Specific Language (DSL) : c'est un language informatique particulièrement adapté à un problème donné.
+****
+
 Avec la commande `gradle build`, on obtient
 
 [source.terminal]

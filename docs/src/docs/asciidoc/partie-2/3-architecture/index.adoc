@@ -3,7 +3,7 @@ include::../../header.adoc[]
 = Architecture de l'application
 :stylesheet: ../../style.css
 
-== vision globale
+== Vision globale
 
 L'architecture est composée d'une application web qui est reliée à une base de données mongodb.
 
@@ -20,7 +20,7 @@ L'application est en java et est packagée sous le format standard *war*.
 
 Mongodb est une base NOSQL qui stocke des documents en format BSON (Binary JSON).
 
-== technology stack
+== Technology stack
 
 Voici la liste des principales technologies utilisées dans notre projet.
 
@@ -53,7 +53,7 @@ Il est plus récent et plus souple que son concurent principal : maven
 ****
 [.float-group]
 --
-image::tomcat.png[width="100",role="left"]
+image::Tomcat.png[width="100",role="left"]
 
 http://tomcat.apache.org/[Tomcat] est un serveur web pouvant lancer des applications java.
 
@@ -120,11 +120,11 @@ Dans notre projet, on s'en sert pour récupérer jquery et bootstrap.
 --
 ****
 
-== structure de projet standard
+== Structure de projet standard
 
-Notre projet suit le https://maven.apache.org/guides/introduction/introduction-to-the-standard-directory-layout.html[Standard Directory Layout] introduit par Maven
+Maven a introduit le https://maven.apache.org/guides/introduction/introduction-to-the-standard-directory-layout.html[Standard Directory Layout] : c'est une façon standard d'organiser ses sources.
 
-par défaut, Gradle suit ce standard :
+Gradle suit ce standard :
 
 [source]
 ----
@@ -143,7 +143,7 @@ src <1>
 
 IMPORTANT: *Convention over configuration* : cette arborescence est une convention, si on la suit, il n'y a pas besoin de configuration.
 
-Dans notre cas pour une application web JEE :
+Dans notre cas, pour une *application web* JEE :
 
 [source]
 ----
@@ -166,20 +166,9 @@ src
 
 Cette distribution est pratique pour le développement.
 
-Au build, gradle remettra tout ces répertoires dans le bon ordre à l'intérieur du fichier war généré.
+IMPORTANT: Au build, gradle va compilé les classes java et produire le war. La structure à l'intérieur du war est différente de celle des sources.
 
-.WEB-INF/classes
-****
-
-Au lancement, WEB-INF/classes sera ajouté au classpath.
-
-WEB-INF/classes ne fait pas partie des sources mais est généré au build.
-
-WEB-INF/classes contiendra les classes java et tous les fichiers présents dans main/resources
-
-****
-
-== structure de l'app
+== Structure logicielle de l'app
 
 L'application a une structure traditionnelle MVC pour le web.
 
@@ -203,14 +192,14 @@ L'application a une structure traditionnelle MVC pour le web.
 
 Le rôle des composants :
 
-* request dispatcher : il est fournit par le framework. Il 'dispatch' les requêtes entrantes vers les bons controllers / vues.
-* controllers : ils recoivent la requête, utilisent les services et pilotent le rendu.
-* services : on y range la logique métier.
-* JSP views : ce sont les templates qui produisent le html.
+* *request dispatcher* : il est fournit par le framework. Il 'dispatch' les requêtes entrantes vers les bons controllers / vues.
+* *controllers* : ils recoivent la requête, utilisent les services et pilotent le rendu.
+* *services* : on y range la logique métier.
+* *JSP views* : ce sont les templates qui produisent le html.
 
 Cette division permet d'utiliser la technologie la plus adaptée pour chaque tâche.
 
-== vue séquentielle
+== Vue séquentielle
 
 En pratique chaque composant est appelé dans un ordre bien précis afin de remplir son role.
 
@@ -218,12 +207,16 @@ Voici la vision complète
 
 include::../../partie-3/B-mvc/mvc.adoc[]
 
-== tests et TDD
+== Tests et TDD
 
-L'application dispose de plusieurs types de tests
+L'application peut disposer de plusieurs types de tests
 
 * tests unitaires avec junit4
 * tests d'intégration avec junit4 et spring mocks
 * tests d'interface avec junit4 et selenium (+ fluentlenium)
 
 Ces tests couvrent les points importants de l'application et nous assurent un meilleur niveau de qualité.
+
+Malheureusement, la couverture de test actuelle est très insuffisante.
+
+include::../../footer.adoc[]

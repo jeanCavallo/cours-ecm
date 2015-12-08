@@ -21,7 +21,7 @@ Avant de rentrer de le projet, nous devons mettre en place quelques outils.
 
 == Partie 2 : Bienvenue chez S4U
 
-Présentation du projet
+Votre premier jour chez S4U.
 
 . link:partie-2/1-contexte/index.html[Contexte]
 . link:partie-2/2-projet/index.html[Le projet]

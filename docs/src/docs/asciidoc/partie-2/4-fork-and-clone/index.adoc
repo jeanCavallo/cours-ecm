@@ -23,7 +23,6 @@ Une fois que le fork est fait, il suffit de faire un clone afin de récupérer l
 
 [source.terminal]
 ----
-projects$ mkdir cours-ecm
 projects$ git clone https://github.com/{username}/cours-ecm <1>
 projects$ cd cours-ecm
 cours-ecm$
@@ -134,7 +133,7 @@ public void fillDbWithRandomRecipes() throws IOException {
 }
 ----
 
-NOTE: Afin de naviguer rapidement vers une classe, il est possible d'utiliser le raccourci kbd:[⌘+n]
+IMPORTANT: Afin de naviguer rapidement vers une classe, il est possible d'utiliser le raccourci kbd:[⌘+n]
 
 Exécutez ce test afin de remplir la base locale.
 
@@ -172,4 +171,6 @@ INFOS: Closing org.springframework.context.support.GenericApplicationContext@531
 Process finished with exit code 0
 ----
 
-On peut voir les recettes en allant sur le site.
+On peut maintenant aller voir les recettes sur http://localhost:8080[le site].
+
+include::../../footer.adoc[]
