@@ -38,7 +38,7 @@ Le projet est divisé en 2 parties :
 
 == gradle tomcatRun
 
-NOTE: il faut que la base mongodb soit lancée pour que l'application démarre avec succès
+IMPORTANT: il faut que la base mongodb soit lancée pour que l'application démarre avec succès
 
 A la racine on peut lancer le site :
 
@@ -133,7 +133,7 @@ public void fillDbWithRandomRecipes() throws IOException {
 }
 ----
 
-IMPORTANT: Afin de naviguer rapidement vers une classe, il est possible d'utiliser le raccourci kbd:[⌘+n]
+NOTE: Afin de naviguer rapidement vers une classe, il est possible d'utiliser le raccourci kbd:[⌘+n]
 
 Exécutez ce test afin de remplir la base locale.
 
