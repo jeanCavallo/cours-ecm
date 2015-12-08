@@ -22,7 +22,7 @@
 <li><a href="#_sharding">5. Sharding</a></li>
 <li><a href="#_map_reduce">6. Map reduce</a></li>
 <li><a href="#_sql_vs_mongodb">7. SQL vs MongoDB</a></li>
-<li><a href="#_installation">8. installation</a></li>
+<li><a href="#_installation">8. Installation</a></li>
 <li><a href="#_création_du_répertoire_de_données">9. Création du répertoire de données</a></li>
 <li><a href="#_lancer_la_base">10. Lancer la base</a></li>
 <li><a href="#_robomongo">11. Robomongo</a></li>
@@ -76,7 +76,7 @@
 <div class="content">
 <div class="title">Not Only SQL (wikipedia)</div>
 <div class="paragraph">
-<p>En informatique, NoSQL (Not only SQL en anglais) désigne une catégorie de systèmes de gestion de base de données (SGBD) qui n&#8217;est plus fondée sur l&#8217;architecture classique des bases relationnelles. L&#8217;unité logique n&#8217;y est plus la table, et les données ne sont en général pas manipulées avec SQL.</p>
+<p>En informatique, <strong>NoSQL</strong> (Not only SQL en anglais) désigne une catégorie de systèmes de gestion de base de données (SGBD) qui n&#8217;est plus fondée sur l&#8217;architecture classique des <strong>bases relationnelles</strong>. L&#8217;unité logique n&#8217;y est plus la table, et les données ne sont en général pas manipulées avec SQL.</p>
 </div>
 </div>
 </div>
@@ -86,14 +86,14 @@
 <h2 id="_collections">2. Collections</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Les documents sont rangés dans des <strong>collections</strong> l&#8217;équivalent des tables sql.</p>
+<p>Les documents sont rangés dans des <strong>collections</strong> (l&#8217;équivalent des tables en sql).</p>
 </div>
 <div class="paragraph">
-<p>Cependant, les collections sont beaucoup moins rigides que les tables.
-Chaque document peut avoir sa propre structure.</p>
+<p>Les collections sont beaucoup moins rigides que les tables :
+il n&#8217;y a pas de schéma et donc chaque document peut avoir sa propre structure.</p>
 </div>
 <div class="paragraph">
-<p>Cela n&#8217;empêche pas les collections de gérer des index afin d&#8217;assurer la performance.</p>
+<p>Cela n&#8217;empêche pas de pouvoir positionner des index sur les propriétés afin d&#8217;assurer la performance des lectures.</p>
 </div>
 </div>
 </div>
@@ -112,7 +112,7 @@ You can use the mongo shell to query and update data as well as perform administ
 </div>
 </div>
 <div class="paragraph">
-<p>L&#8217;api mongo est riche et bien documentée.</p>
+<p>L&#8217;<a href="https://docs.mongodb.org/manual/reference/method/">api mongo</a> est riche et bien documentée.</p>
 </div>
 <div class="listingblock">
 <div class="title">Exemple de requête</div>
@@ -129,8 +129,8 @@ You can use the mongo shell to query and update data as well as perform administ
 </table>
 </div>
 <div class="paragraph">
-<p>Lorsque l&#8217;on construit une application, on utilise un <strong>driver</strong>.
-Selon le language et les frameworks, la façon d&#8217;utiliser mongo peut donc varier.</p>
+<p>En java, on utilise un <strong>driver</strong>.
+Selon le language et les frameworks, la façon d&#8217;interagir avec la base mongo peut donc varier.</p>
 </div>
 </div>
 </div>
@@ -141,10 +141,10 @@ Selon le language et les frameworks, la façon d&#8217;utiliser mongo peut donc 
 <p>L&#8217;origine des bases NoSql vise la performance sur des volumes de données importants.</p>
 </div>
 <div class="paragraph">
-<p>Dans ce cadre, mongodb propose des replica sets : un groupe de process qui maintiennent le même jeu de données.</p>
+<p>Mongodb propose des replica sets : un groupe de process qui maintiennent les mêmes données.</p>
 </div>
 <div class="paragraph">
-<p>Cela apporte haute disponibilité (tolérance à la panne) et redondance (tolérance à la perte de données sur un noeud).</p>
+<p>Cela apporte <strong>haute disponibilité</strong> (tolérance à la panne) et <strong>redondance</strong> (tolérance à la perte de données sur un noeud).</p>
 </div>
 <div class="paragraph">
 <p>Un replica set contient toujours un serveur primaire et des secondaires.</p>
@@ -160,6 +160,7 @@ Selon le language et les frameworks, la façon d&#8217;utiliser mongo peut donc 
 Il se peut donc qu&#8217;au moment de la lecture, les données ne soient pas encore répliquées vers les secondaires.</p>
 </div>
 <div class="quoteblock">
+<div class="title">Eventual Consistency</div>
 <blockquote>
 the storage system guarantees that if no new updates are made to the object, eventually all accesses will return the last updated value.
 </blockquote>
@@ -174,10 +175,10 @@ the storage system guarantees that if no new updates are made to the object, eve
 <h2 id="_sharding">5. Sharding</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Le sharding est l&#8217;éclatement de l&#8217;ensemble des données en sous ensemble.</p>
+<p>Le sharding est l&#8217;éclatement des données en sous ensembles.</p>
 </div>
 <div class="paragraph">
-<p>Cela permet de répartir la charge des requêtes entres plusieurs serveurs.</p>
+<p>Cela permet aux requêtes d&#8217;être distribuées entres plusieurs serveurs afin de travailler sur des volumes plus faibles.</p>
 </div>
 <div class="imageblock" style="text-align: center">
 <div class="content">
@@ -212,6 +213,16 @@ the storage system guarantees that if no new updates are made to the object, eve
 <div class="sectionbody">
 <div class="paragraph">
 <p>Une des opération qui a rendu célèbre les bases NoSQL est le <strong>map-reduce</strong> : c&#8217;est un mécanisme de traitement en masse des données afin de fournir un résultat aggrégé.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>map : transformation des résultats</p>
+</li>
+<li>
+<p>reduce : aggrégation du résultat</p>
+</li>
+</ul>
 </div>
 <div class="imageblock" style="text-align: center">
 <div class="content">
@@ -255,7 +266,7 @@ the storage system guarantees that if no new updates are made to the object, eve
 </div>
 </div>
 <div class="sect1">
-<h2 id="_installation">8. installation</h2>
+<h2 id="_installation">8. Installation</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Pour installer mongodb on passe par homebrew :</p>
@@ -336,7 +347,7 @@ Or, if you don't want/need launchctl, you can just run:
 <h2 id="_robomongo">11. Robomongo</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>On pourrait utiliser le shell mais une interface graphique est plus simple pour débuter.</p>
+<p>On pourrait utiliser le shell mais une interface graphique est plus simple pour viasualisé les résultats des requêtes.</p>
 </div>
 <div class="paragraph">
 <p>Il existe beaucoup de <a href="https://docs.mongodb.org/ecosystem/tools/administration-interfaces/">clients graphiques</a></p>
@@ -354,6 +365,9 @@ Or, if you don't want/need launchctl, you can just run:
 <div class="content">
 <img src="robomongo.png" alt="robomongo">
 </div>
+</div>
+<div class="paragraph">
+<p><a href="../../index.html">&lt;&lt; Retour à l&#8217;index</a></p>
 </div>
 </div>
 </div>
