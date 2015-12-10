@@ -166,7 +166,12 @@ src
 
 Cette distribution est pratique pour le développement.
 
-IMPORTANT: Au build, gradle va compilé les classes java et produire le war. La structure à l'intérieur du war est différente de celle des sources.
+[NOTE]
+====
+Au build, gradle va compiler les classes java et produire le war. La structure à l'intérieur du war est différente de celle des sources.
+
+image::gradle-build.jpg[]
+====
 
 == Structure logicielle de l'app
 
