@@ -19,7 +19,7 @@ asciidoctor {
 
     resources {
         from('src/docs/asciidoc') {
-            include '**/*.png', '**/*.jpg', '**/*.css', '**/*.otf', '**/*.js', '**/*.html'
+            include '**/*.png', '**/*.jpg', '**/*.css', '**/*.otf', '**/*.woff', '**/*.ttf', '**/*.js', '**/*.html'
         }
     }
 
