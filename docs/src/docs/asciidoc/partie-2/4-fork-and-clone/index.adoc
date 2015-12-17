@@ -23,7 +23,7 @@ Une fois que le fork est fait, il suffit de faire un clone afin de récupérer l
 
 [source.terminal]
 ----
-projects$ git clone https://github.com/{username}/cours-ecm <1>
+projects$ git clone https://github.com/{username}/cours-ecm.git <1>
 projects$ cd cours-ecm
 cours-ecm$
 ----
