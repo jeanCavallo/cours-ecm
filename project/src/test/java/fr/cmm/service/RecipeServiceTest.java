@@ -109,4 +109,19 @@ public class RecipeServiceTest {
         Assert.assertNull(recipeService.findById("123pasvalide456"));
 
     }
+
+    @Test
+    public void countByQuery() {
+        PageQuery pageQuery = new PageQuery();
+        pageQuery.setTag("tag1");
+
+        recipeService.save(new Recipe().withTags("tag1","tag4"));
+        recipeService.save(new Recipe().withTags("tag1"));
+        recipeService.save(new Recipe().withTags("tag2"));
+        recipeService.save(new Recipe().withTags("tag2"));
+        recipeService.save(new Recipe().withTags("tag3"));
+
+        Assert.assertEquals(2, recipeService.countByQuery(pageQuery));
+    }
+
 }
