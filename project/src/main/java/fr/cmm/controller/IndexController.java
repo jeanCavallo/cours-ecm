@@ -3,17 +3,23 @@ package fr.cmm.controller;
 import javax.inject.Inject;
 
 import fr.cmm.controller.form.SearchForm;
+import fr.cmm.domain.Recipe;
 import fr.cmm.helper.PageIndex;
 import fr.cmm.helper.PageQuery;
 import fr.cmm.helper.Pagination;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.*;
+
+
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import fr.cmm.helper.Columns;
 import fr.cmm.service.RecipeService;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.List;
 
@@ -76,7 +82,13 @@ public class IndexController {
 
     @RequestMapping("/recette/{id}")
     public String recette(@PathVariable("id") String id, ModelMap model) {
-        model.put("recipe", recipeService.findById(id));
+        Recipe recipe = recipeService.findById(id);
+
+        if(recipe == null) {
+            throw new ResourceNotFoundException();
+        }
+
+        model.put("recipe", recipe);
 
         return "recette";
     }
@@ -90,5 +102,8 @@ public class IndexController {
     public String mentionsLegales() {
         return "mentions-legales";
     }
+
 }
+
+
 

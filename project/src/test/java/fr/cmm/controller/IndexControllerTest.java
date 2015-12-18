@@ -91,4 +91,14 @@ public class IndexControllerTest {
                 .andExpect(model().attributeExists("recipes"))
                 .andExpect(view().name("recettes"));
     }
+
+    @Test
+    public void recettesIsError404() throws Exception {
+        String id = "56375";
+
+        Mockito.when(recipeService.findById(id)).thenReturn(null);
+
+        mockMvc.perform(get("/recettes/"+id))
+                .andExpect(status().is(404));
+    }
 }
