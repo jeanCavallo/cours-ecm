@@ -46,6 +46,12 @@ public class IndexControllerTest {
     }
 
     @Test
+    public void contact() throws Exception {
+        mockMvc.perform(get("/contact"))
+                .andExpect(view().name("contact"));
+    }
+
+    @Test
     public void recette() throws Exception {
         String id = "56375619d4c603aa4eb412af";
 
