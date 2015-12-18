@@ -3,6 +3,7 @@ package fr.cmm.controller;
 import javax.inject.Inject;
 
 import fr.cmm.controller.form.SearchForm;
+import fr.cmm.helper.PageIndex;
 import fr.cmm.helper.PageQuery;
 import fr.cmm.helper.Pagination;
 import org.springframework.stereotype.Controller;
@@ -15,6 +16,8 @@ import fr.cmm.service.RecipeService;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.List;
+
+import static fr.cmm.helper.PageIndex.fixPageIndex;
 
 @Controller
 public class IndexController {
@@ -36,12 +39,14 @@ public class IndexController {
 
     @RequestMapping("/recettes")
     public String recettes(SearchForm searchForm, ModelMap model) {
+        int safePageIndex = fixPageIndex(searchForm.getPageIndex());
+
         PageQuery pageQuery = new PageQuery();
-        pageQuery.setIndex(searchForm.getPageIndex() - 1);
+        pageQuery.setIndex(safePageIndex - 1);
         pageQuery.setTag(searchForm.getTag());
 
         Pagination pagination = new Pagination();
-        pagination.setPageIndex(searchForm.getPageIndex());
+        pagination.setPageIndex(safePageIndex);
         pagination.setPageSize(pageQuery.getSize());
         pagination.setCount(recipeService.countByQuery(pageQuery));
 

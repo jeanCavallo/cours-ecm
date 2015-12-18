@@ -1,6 +1,7 @@
 package fr.cmm.controller;
 
 import fr.cmm.domain.Recipe;
+import fr.cmm.helper.PageQuery;
 import fr.cmm.service.RecipeService;
 import org.junit.Before;
 import org.junit.Test;
@@ -13,6 +14,8 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.web.context.WebApplicationContext;
 
 import javax.inject.Inject;
+
+import java.util.ArrayList;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.model;
@@ -61,5 +64,31 @@ public class IndexControllerTest {
                 .andExpect(status().is(200))
                 .andExpect(model().attributeExists("recipe"))
                 .andExpect(view().name("recette"));
+    }
+
+    @Test
+    public void recettes() throws Exception {
+        PageQuery pageQuery = new PageQuery();
+        pageQuery.setIndex(2);
+        pageQuery.setTag("simon");
+
+        Mockito.when(recipeService.findByQuery(pageQuery)).thenReturn(new ArrayList<>());
+
+        mockMvc.perform(get("/recettes?tag=simon&pageIndex=3"))
+                .andExpect(model().attributeExists("recipes"))
+                .andExpect(view().name("recettes"));
+
+    }
+
+    @Test
+    public void recettesWithBadPageIndex() throws Exception {
+        PageQuery pageQuery = new PageQuery();
+        pageQuery.setIndex(0);
+
+        Mockito.when(recipeService.findByQuery(pageQuery)).thenReturn(new ArrayList<>());
+
+        mockMvc.perform(get("/recettes?pageIndex=-10"))
+                .andExpect(model().attributeExists("recipes"))
+                .andExpect(view().name("recettes"));
     }
 }
