@@ -38,13 +38,10 @@ public class RecipeServiceTest {
     }
 
     @Test
-    public void save() {
-        Recipe recipe = new Recipe();
-        recipe.setTitle("test recipe");
+    void save() {
+        recipeService.save(new Recipe(title: 'test recipe'))
 
-        recipeService.save(recipe);
-
-        Assert.assertEquals("test recipe", recipeCollection.findOne().as(Recipe.class).getTitle());
+        assert recipeCollection.findOne().as(Recipe).title == 'test recipe'
     }
 
     @Test
@@ -111,7 +108,7 @@ public class RecipeServiceTest {
     }
 
     @Test
-    public void countByQuery() {
+    public void countByQuery() { // Finir de résoudre ce test /!\
         PageQuery pageQuery = new PageQuery();
         pageQuery.setTag("tag1");
 
