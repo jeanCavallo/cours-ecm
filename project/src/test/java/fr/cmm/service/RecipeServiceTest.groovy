@@ -39,48 +39,39 @@ public class RecipeServiceTest {
 
     @Test
     void save() {
-        recipeService.save(new Recipe(title: 'test recipe'))
+        recipeService.save(new Recipe(title: 'test recipe'));
 
-        assert recipeCollection.findOne().as(Recipe).title == 'test recipe'
+        assert recipeCollection.findOne().as(Recipe).title == 'test recipe';
     }
 
     @Test
     public void findById() {
-        Recipe recipe = new Recipe();
-        recipe.setTitle("test recipe");
+        recipeService.save(new Recipe(title: 'test recipe',id :'5673cc8644ae4fd141dfced1'));
 
-        recipeService.save(recipe);
-
-        Assert.assertEquals("test recipe", recipeService.findById(recipe.getId()).getTitle());
+        assert recipeService.findById('5673cc8644ae4fd141dfced1').title == 'test recipe';
     }
 
     @Test
     public void findByQuery() {
-        recipeService.save(new Recipe());
-        recipeService.save(new Recipe());
-        recipeService.save(new Recipe());
-        recipeService.save(new Recipe());
-        recipeService.save(new Recipe());
+        5.times { recipeService.save(new Recipe()) };
 
-        Assert.assertEquals(5, stream(recipeService.findByQuery(new PageQuery()).spliterator(), false).count());
+        assert recipeService.findByQuery(new PageQuery()).size() == 5;
     }
 
     @Test
-    public void findByQueryWithCustomPageSize() {
-        recipeService.save(new Recipe());
-        recipeService.save(new Recipe());
-        recipeService.save(new Recipe());
-        recipeService.save(new Recipe());
-        recipeService.save(new Recipe());
+    public void 'findByQuery with custom page size'() {
+        5.times { recipeService.save(new Recipe()) };
 
         PageQuery pageQuery = new PageQuery();
         pageQuery.setSize(2);
 
-        Assert.assertEquals(2, stream(recipeService.findByQuery(pageQuery).spliterator(), false).count());
+
+        assert recipeService.findByQuery(pageQuery).size() == 2;
+
     }
 
     @Test
-    public void findByQueryWithTag() {
+    public void 'findByQuery with tag'() {
         recipeService.save(new Recipe().withTags("tag1"));
         recipeService.save(new Recipe().withTags("tag1"));
         recipeService.save(new Recipe().withTags("tag2"));
@@ -94,7 +85,7 @@ public class RecipeServiceTest {
     }
 
     @Test
-    public void findAllTags() {
+    public void 'find all tags'() {
         recipeService.save(new Recipe().withTags("tag1", "tag2"));
         recipeService.save(new Recipe().withTags("tag2", "tag3"));
 
@@ -102,7 +93,7 @@ public class RecipeServiceTest {
     }
 
     @Test
-    public void findByIdWithInvalidId(){
+    public void 'findById with invalid id'(){
         Assert.assertNull(recipeService.findById("123pasvalide456"));
 
     }
@@ -112,7 +103,7 @@ public class RecipeServiceTest {
         PageQuery pageQuery = new PageQuery();
         pageQuery.setTag("tag1");
 
-        recipeService.save(new Recipe().withTags("tag1","tag4"));
+        recipeService.save(new Recipe(tags: ['tag1', 'tag4']));
         recipeService.save(new Recipe().withTags("tag1"));
         recipeService.save(new Recipe().withTags("tag2"));
         recipeService.save(new Recipe().withTags("tag2"));
